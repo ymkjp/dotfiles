@@ -39,15 +39,15 @@ HTML = SRC.sub( /\.pdf$/, '.html' )
 ZIP = SRC.sub( /\.pdf$/, '.zip' )
 
 def count_pages
-	open( "|pdfinfo #{SRC}", 'r:utf-8', &:read ).scan( /^Pages:\s*(\d+)/ ).flatten[0].to_i
+	open( "|pdfinfo '#{SRC}'", 'r:utf-8', &:read ).scan( /^Pages:\s*(\d+)/ ).flatten[0].to_i
 end
 
 def book_title
-	open( "|pdfinfo #{SRC}", 'r:utf-8', &:read ).scan( /^Title:\s*(.+)$/ ).flatten[0]
+	open( "|pdfinfo '#{SRC}'", 'r:utf-8', &:read ).scan( /^Title:\s*(.+)$/ ).flatten[0]
 end
 
 def book_author
-	open( "|pdfinfo #{SRC}", 'r:utf-8', &:read ).scan( /^Author:\s*(.+)$/ ).flatten[0]
+	open( "|pdfinfo '#{SRC}'", 'r:utf-8', &:read ).scan( /^Author:\s*(.+)$/ ).flatten[0]
 end
 
 def image_list( dir, ext, count )
@@ -101,8 +101,8 @@ PNGS.each_with_index do |png, i|
 
 	file PPMS[i] => [PPM_DIR, SRC] do
 		unless ppm_exist?( PPMS[-1] ) then
-			#sh "pdftoppm -r 300 -gray #{SRC} #{PPM_DIR}/tmp"
-			sh "pdfimages #{SRC} #{PPM_DIR}/tmp"
+			#sh "pdftoppm -r 300 -gray '#{SRC}' #{PPM_DIR}/tmp"
+			sh "pdfimages '#{SRC}' #{PPM_DIR}/tmp"
 		end
 	end
 end
@@ -113,15 +113,15 @@ desc 'generate pdf file by concat all png files.'
 task :pdf => DST
 
 file DST => [PDF_DIR, 'metadata.txt'] + PDFS do
-	sh "pdftk #{PDFS.join ' '} cat output #{PDF_DIR}/#{DST}"
-	sh "pdftk #{PDF_DIR}/#{DST} update_info metadata.txt output #{DST}" 
+	sh "pdftk #{PDFS.join ' '} cat output '#{PDF_DIR}/tmp_output.pdf'"
+	sh "pdftk '#{PDF_DIR}/tmp_output.pdf' update_info metadata.txt output '#{DST}'" 
 end
 
 desc 'generate metadata file from source pdf.'
 task :metadata => 'metadata.txt'
 
 file 'metadata.txt' => SRC do |t|
-	sh "pdftk #{t.prerequisites.join ' '} dump_data output ./#{t.name}"
+	sh "pdftk #{t.prerequisites.map {|i| "'#{i}'" }.join ' '} dump_data output ./#{t.name}"
 end
 
 desc 'crop ppm files to png files.'
@@ -157,7 +157,10 @@ end
 
 desc 'cleanap all tmp files.'
 task :clean => ['clean-png', 'clean-ppm', 'clean-pdf'] do
-	rm 'metadata.txt'
+	begin
+		rm 'metadata.txt'
+	rescue
+	end
 	begin
 		rm [HTML, OPF]
 	rescue
@@ -169,12 +172,12 @@ end
 
 desc 'generate zip file'
 task :zip => PNGS do
-  sh "zip -j #{ZIP} #{PNGS.join ' '}"
+  sh "zip -j '#{ZIP}' #{PNGS.join ' '}"
 end
 
 desc 'generate MOBI file.'
 task :mobi => [OPF, HTML] + PNGS do |t|
-	sh "kindlegen #{OPF} -o #{MOBI}"
+	sh "kindlegen '#{OPF}' -o '#{MOBI}'"
 end
 
 rule '.opf' => '.pdf' do |t|
