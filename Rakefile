@@ -26,17 +26,24 @@ SIZE = ENV['SIZE'] || '560x735' # for small books reading portrait style
 LEVEL = ENV['LEVEL'] || '0%,100%'
 #LEVEL = '0%,80%,0.2' # for grayscale or fullcolor origin.
 
+POSTFIX = ENV['POSTFIX'] ? ".#{ENV['POSTFIX']}" : '.out'
+
 #---------------------------------------------------------
 
 PPM_DIR = './ppm'; directory PPM_DIR
 PNG_DIR = './png'; directory PNG_DIR
 PDF_DIR = './pdf'; directory PDF_DIR
 
-DST = SRC.sub( /\.pdf$/, '.out.pdf' )
 MOBI = SRC.sub( /\.pdf$/, '.mobi' )
 OPF = SRC.sub( /\.pdf$/, '.opf' )
 HTML = SRC.sub( /\.pdf$/, '.html' )
 ZIP = SRC.sub( /\.pdf$/, '.zip' )
+
+DST = SRC.sub( /\.pdf$/, "#{POSTFIX}.pdf" )
+if ENV['UPDATE_METADATA']
+   DST.sub!(/\[(.+)\]\s*/, '')
+   AUTHOR = $1
+end
 
 def count_pages
 	open( "|pdfinfo '#{SRC}'", 'r:utf-8', &:read ).scan( /^Pages:\s*(\d+)/ ).flatten[0].to_i
@@ -114,14 +121,17 @@ task :pdf => DST
 
 file DST => [PDF_DIR, 'metadata.txt'] + PDFS do
 	sh "pdftk #{PDFS.join ' '} cat output '#{PDF_DIR}/tmp_output.pdf'"
-	sh "pdftk '#{PDF_DIR}/tmp_output.pdf' update_info metadata.txt output '#{DST}'" 
+	sh "pdftk '#{PDF_DIR}/tmp_output.pdf' update_info_utf8 metadata.txt output '#{DST}'"
+	if ENV['UPDATE_METADATA']
+		sh "echo \"InfoKey: Creator\nInfoValue: Kindlizer (#{SIZE})\nInfoKey: Author\nInfoValue: #{AUTHOR}\n\" | pdftk '#{PDF_DIR}/tmp_output.pdf' update_info_utf8 - output '#{DST}'"
+	end
 end
 
 desc 'generate metadata file from source pdf.'
 task :metadata => 'metadata.txt'
 
 file 'metadata.txt' => SRC do |t|
-	sh "pdftk #{t.prerequisites.map {|i| "'#{i}'" }.join ' '} dump_data output ./#{t.name}"
+	sh "pdftk #{t.prerequisites.map {|i| "'#{i}'" }.join ' '} dump_data_utf8 output ./#{t.name}"
 end
 
 desc 'crop ppm files to png files.'
