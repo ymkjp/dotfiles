@@ -18,7 +18,7 @@ LEFT = ENV['LEFT'] || 50
 RIGHT = ENV['RIGHT'] || 50
 
 SIZE = ENV['SIZE'] || '560x735' # for small books reading portrait style
-#SIZE = ENV['SIZE'] || '657x905' # for kindle paperwhite 1024x768 
+#SIZE = ENV['SIZE'] || '658x905' # for kindle paperwhite
 #SIZE = '720' # for large books reading landscape style
 #SIZE = 'x693' # for generating mobi, portrait style only
 #SIZE = '600x800' # for generating zip archived png files 
