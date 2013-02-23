@@ -1,0 +1,17 @@
+# 全ファイルを一度無視
+/*
+# さらにdotfileを無視
+/.*
+
+# 無視したくないファイルを![filename]で指定
+!/.bash_aliases
+!/.bash_profile
+!/.bashrc
+!/.vimrc
+!/.gvimrc
+!/.vim
+!/.gitignore
+!/.gitignore_global
+!/.gitconfig
+!/.gitconfig.local
+!/.gitmodules
