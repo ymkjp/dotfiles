@@ -1,7 +1,3 @@
-# -------------------- 
-# .bashrc 
-# -------------------- 
-
 # Color
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
