@@ -166,7 +166,7 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'scrooloose/nerdtree'
 
-"""unite.vim {{{
+"unite.vim {{{
 	" The prefix key.
 	nnoremap    [unite]   <Nop>
 	nmap    f [unite]
@@ -294,20 +294,20 @@ NeoBundle 'scrooloose/nerdtree'
       " Display user name on Linux.
       let g:vimshell_prompt = $USER."% "
 
-    "  call vimshell#set_execute_file('bmp,jpg,png,gif', 'gexe eog')
-    "  call vimshell#set_execute_file('mp3,m4a,ogg', 'gexe amarok')
-    "  let g:vimshell_execute_file_list['zip'] = 'zipinfo'
-    "  call vimshell#set_execute_file('tgz,gz', 'gzcat')
-    "    call vimshell#set_execute_file('tbz,bz2', 'bzcat')
+      call vimshell#set_execute_file('bmp,jpg,png,gif', 'gexe eog')
+      call vimshell#set_execute_file('mp3,m4a,ogg', 'gexe amarok')
+      let g:vimshell_execute_file_list['zip'] = 'zipinfo'
+      call vimshell#set_execute_file('tgz,gz', 'gzcat')
+        call vimshell#set_execute_file('tbz,bz2', 'bzcat')
     endif
 
-    "" Initialize execute file list.
-    "let g:vimshell_execute_file_list = {}
-    "call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
-    "let g:vimshell_execute_file_list['rb'] = 'ruby'
-    "let g:vimshell_execute_file_list['pl'] = 'perl'
-    "let g:vimshell_execute_file_list['py'] = 'python'
-    "call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
+    " Initialize execute file list.
+    let g:vimshell_execute_file_list = {}
+    call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
+    let g:vimshell_execute_file_list['rb'] = 'ruby'
+    let g:vimshell_execute_file_list['pl'] = 'perl'
+    let g:vimshell_execute_file_list['py'] = 'python'
+    call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
 
     autocmd FileType vimshell
     \ call vimshell#altercmd#define('g', 'git')
