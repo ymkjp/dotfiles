@@ -15,3 +15,5 @@
 !/.gitconfig
 !/.gitconfig.local
 !/.gitmodules
+
+/.vim/backups/

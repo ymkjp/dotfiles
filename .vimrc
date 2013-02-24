@@ -403,15 +403,8 @@ NeoBundleLazy 'taichouchou2/unite-reek', {
       \ },
       \ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] },
       \ 'depends' : 'Shougo/unite.vim' }
-NeoBundleLazy 'taichouchou2/alpaca_complete', {
-      \ 'depends' : 'tpope/vim-rails',
-      \ 'build' : {
-      \    'mac':  'gem install alpaca_complete',
-      \    'unix': 'gem install alpaca_complete',
-      \   }
-      \ }
  
-let s:bundle_rails = 'unite-rails unite-rails_best_practices unite-rake alpaca_complete'
+let s:bundle_rails = 'unite-rails unite-rails_best_practices unite-rake'
  
 function! s:bundleLoadDepends(bundle_names) "{{{
   " bundleの読み込み
