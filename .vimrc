@@ -1,49 +1,58 @@
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
 
-" -------------------
-" .vimrc
-" -------------------
-
-" -------------------
-" 基本設定
-" -------------------
-set autoindent
-
-"編集中のファイル名を表示
+" ========== General Config =========="{{{
 set title
-
-"行番号を表示する
 set number
+set modeline
+set history=1000                "Store lots of :cmdline history
+set showcmd                     "Show incomplete cmds down the bottom
+set showmode                    "Show current mode down the bottom
+set gcr=a:blinkon0              "Disable cursor blink
+set visualbell                  "No sounds
+set autoread                    "Reload files changed outside vim
 
 "カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
-
 "日本語の行の連結時には空白を入力しない。
 set formatoptions+=mM
-
 "□や○の文字があってもカーソル位置がずれないようにする。
 set ambiwidth=double
-
 "画面最後の行をできる限り表示する。
 set display+=lastline
 
-" -------------------
-" tab
-" -------------------
+" ========== Indentation ==========
+set autoindent
+set smartindent
+set smarttab
 set expandtab
 set shiftwidth=4
 set softtabstop=0
 set tabstop=4
 
-" -------------------
-" バックアップ
-" -------------------
-set backup
-set backupdir=$HOME/.vim-backup
-let &directory = &backupdir
+set nowrap       "Don't wrap lines
+set linebreak    "Wrap lines at convenient points
 
-" -------------------
-" language
-" -------------------
+" ========== Folds ==========
+set foldmethod=indent   "fold based on indent
+set foldnestmax=3       "deepest fold is 3 levels
+set nofoldenable        "dont fold by default
+
+" ========== Turn Off Swap Files ==========
+set noswapfile
+set nobackup
+set nowb
+
+" ========== Persistent Undo ==========
+" Keep undo history across sessions, by storing in file.
+" Only works all the time.
+
+silent !mkdir ~/.vim/backups > /dev/null 2>&1
+set undodir=~/.vim/backups
+set undofile
+
+" ========== Language ==========
 " 文字コードの自動認識
 if &encoding !=# 'utf-8'
     set encoding=japan
@@ -53,9 +62,7 @@ endif
 " 改行コードの自動認識
 set fileformats=unix,dos,mac
 
-" -------------------
-" 検索
-" -------------------
+" ========== Search Settings ==========
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する(noignorecase)
 set ignorecase
 " 検索文字列に大文字が含まれている場合は区別して検索する(nosmartcase)
@@ -68,10 +75,12 @@ set incsearch
 "検索をファイルの先頭へループしない
 set nowrapscan
 
+" ========== Scrolling ==========
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
 
-" -----
-" 色の設定
-" -----
+" ========== 色の設定 ==========
 syntax on
 let g:hybrid_use_Xresources = 1
 colorscheme hybrid
@@ -92,9 +101,7 @@ hi clear CursorLine
 hi CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
-"-----
-" MAPS
-"-----
+" ========== MAPS ==========
 inoremap {} {}<LEFT>
 inoremap [] []<LEFT>
 inoremap () ()<LEFT>
@@ -109,19 +116,19 @@ nnoremap <C-k> :<C-k>j
 nnoremap <C-l> :<C-l>j
 nnoremap <C-h> :<C-h>j
 
-"-----
-" Abbreviations
-"-----
-ab #l --------------------
+" ========== Abbreviations ==========
+ab #l ----------
+ab #L ==========
 
-"-----
-" PLUGINS
-"-----
+"}}}
 
-" neobundle"{{{
+
+" ========== PLUGINS ==========
+"
+"neobundle"{{{
 filetype plugin indent off     " required!
  
-" initialize"{{{
+"initialize"{{{
 if has('vim_starting')
   let bundle_dir = '~/.bundle'
   if !isdirectory(bundle_dir.'/neobundle.vim')
@@ -334,6 +341,12 @@ NeoBundle 'scrooloose/nerdtree'
     vmap <silent> ,ss :VimShellSendString<CR>
     " 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
     nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
+" }}}
+
+"NERDTree" {{{
+    autocmd vimenter * if !argc() | NERDTree | endif
+    nnoremap <C-n> :NERDTreeToggle<CR>
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " }}}
 " }}}
  
@@ -761,3 +774,5 @@ NeoBundle 'w0ng/vim-hybrid'
     let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " }}}
 
+
+" vim:set foldmethod=marker commentstring="%s :

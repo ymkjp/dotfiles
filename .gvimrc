@@ -45,6 +45,6 @@ augroup hack234
    autocmd!
    if has('mac')
       autocmd FocusGained * set transparency=0
-      autocmd FocusLost * set transparency=40
+      autocmd FocusLost * set transparency=10
    endif
 augroup END
