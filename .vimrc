@@ -12,6 +12,7 @@ set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
+set clipboard+=unnamed
 
 "カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
@@ -521,8 +522,14 @@ set infercase
 	let g:neocomplcache_enable_at_startup = 1
 	" Use smartcase.
 	let g:neocomplcache_enable_smart_case = 1
+    let g:neocomplcache_enable_smart_case = 1
+    " Use camel case completion.
+    let g:neocomplcache_enable_camel_case_completion = 1
+    " Use underscore completion.
+    let g:neocomplcache_enable_underbar_completion = 1
 	" Set minimum syntax keyword length.
 	let g:neocomplcache_min_syntax_length = 3
+    " buffer file name pattern that locks neocomplcache. e.g. ku.vim or fuzzyfinder
 	let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 	" Enable heavy features.
@@ -550,12 +557,7 @@ set infercase
 
 	" Recommended key-mappings.
 	" <CR>: close popup and save indent.
-	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-	function! s:my_cr_function()
-	  return neocomplcache#smart_close_popup() . "\<CR>"
-	  " For no inserting <CR> key.
-	  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-	endfunction
+    inoremap <expr><CR>  neocomplcache#smart_close_popup( . "\<CR>")
 	" <TAB>: completion.
 	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 	" <C-h>, <BS>: close popup and delete backword char.
@@ -563,8 +565,6 @@ set infercase
 	inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 	inoremap <expr><C-y>  neocomplcache#close_popup()
 	inoremap <expr><C-e>  neocomplcache#cancel_popup()
-	" Close popup by <Space>.
-	"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
 
 	" For cursor moving in insert mode(Not recommended)
 	"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"

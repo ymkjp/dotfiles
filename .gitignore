@@ -15,5 +15,6 @@
 !/.gitconfig
 !/.gitconfig.local
 !/.gitmodules
+!/.tmux.conf
 
 /.vim/backups/
