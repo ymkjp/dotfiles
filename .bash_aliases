@@ -14,9 +14,11 @@ alias grep='grep --color'
 
 # Vim
 vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
-alias less="/usr/share/vim/vim${vim_version}/macros/less.sh"
+if [ -f /usr/share/vim/vim${vim_version}/macros/less.sh ] ; then
+    alias less="/usr/share/vim/vim${vim_version}/macros/less.sh"
+fi
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
-alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
+alias ips="ifconfig -a"
