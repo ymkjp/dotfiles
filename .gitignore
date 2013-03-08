@@ -16,5 +16,6 @@
 !/.gitconfig.local
 !/.gitmodules
 !/.tmux.conf
+!/.tmux-powerlinerc
 
 /.vim/backups/
