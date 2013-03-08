@@ -17,5 +17,6 @@
 !/.gitmodules
 !/.tmux.conf
 !/.tmux-powerlinerc
+!/tmux-powerline/
 
 /.vim/backups/
