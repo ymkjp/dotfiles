@@ -1,3 +1,8 @@
+" ========== First to do ==========
+" :NeoBundleInstall
+" vimproc
+" neocomplcache-rsense
+
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -87,7 +92,18 @@ let g:hybrid_use_Xresources = 1
 colorscheme hybrid
 
 " 全角スペースを視覚化
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
+function! ZenkakuSpace()
+  highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+endfunction
+ 
+if has('syntax')
+  augroup ZenkakuSpace
+    autocmd!
+    autocmd ColorScheme       * call ZenkakuSpace()
+    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+  augroup END
+  call ZenkakuSpace()
+endif
 
 " カーソル行をハイライト
 set cursorline
@@ -95,7 +111,9 @@ set cursorline
 augroup cch
     autocmd! cch
     autocmd WinLeave * set nocursorline
+    "autocmd WinLeave * set nocursorcolumn
     autocmd WinEnter,BufRead * set cursorline
+    "autocmd WinEnter,BufRead * set cursorcolumn
 augroup END
 
 hi clear CursorLine
@@ -103,19 +121,8 @@ hi CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
 " ========== MAPS ==========
-inoremap {} {}<LEFT>
-inoremap [] []<LEFT>
-inoremap () ()<LEFT>
-inoremap "" ""<LEFT>
-inoremap '' ''<LEFT>
-inoremap <> <><LEFT>
 " ;でコマンド入力( ;と:を入れ替)
 noremap ; :
-" CTRL-hjklでウィンドウ移動
-nnoremap <C-j> :<C-w>j
-nnoremap <C-k> :<C-k>j
-nnoremap <C-l> :<C-l>j
-nnoremap <C-h> :<C-h>j
 
 " ========== Abbreviations ==========
 ab #l ----------
@@ -149,7 +156,7 @@ augroup END
 " コマンドを伴うやつの遅延読み込み
 function! BundleWithCmd(bundle_names, cmd) "{{{
   call BundleLoadDepends(a:bundle_names)
- 
+
   " コマンドの実行
   if !empty(a:cmd)
     execute a:cmd
@@ -173,6 +180,7 @@ NeoBundleLazy 'taichouchou2/vim-endwise.git', {
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'mattn/zencoding-vim'
 
 "unite.vim {{{
 	" The prefix key.
@@ -521,7 +529,6 @@ set infercase
 	" Use neocomplcache.
 	let g:neocomplcache_enable_at_startup = 1
 	" Use smartcase.
-	let g:neocomplcache_enable_smart_case = 1
     let g:neocomplcache_enable_smart_case = 1
     " Use camel case completion.
     let g:neocomplcache_enable_camel_case_completion = 1
@@ -531,12 +538,6 @@ set infercase
 	let g:neocomplcache_min_syntax_length = 3
     " buffer file name pattern that locks neocomplcache. e.g. ku.vim or fuzzyfinder
 	let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-	" Enable heavy features.
-	" Use camel case completion.
-	"let g:neocomplcache_enable_camel_case_completion = 1
-	" Use underbar completion.
-	"let g:neocomplcache_enable_underbar_completion = 1
 
 	" Define dictionary.
 	let g:neocomplcache_dictionary_filetype_lists = {
@@ -552,12 +553,14 @@ set infercase
 	let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 	" Plugin key-mappings.
+    imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+    smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 	inoremap <expr><C-g>     neocomplcache#undo_completion()
-	inoremap <expr><C-l>     neocomplcache#complete_common_string()
+    inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 	" Recommended key-mappings.
 	" <CR>: close popup and save indent.
-    inoremap <expr><CR>  neocomplcache#smart_close_popup( . "\<CR>")
+    inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 	" <TAB>: completion.
 	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 	" <C-h>, <BS>: close popup and delete backword char.
@@ -565,16 +568,6 @@ set infercase
 	inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 	inoremap <expr><C-y>  neocomplcache#close_popup()
 	inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-	" For cursor moving in insert mode(Not recommended)
-	"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-	"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-	"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-	"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
-	" Or set this.
-	"let g:neocomplcache_enable_cursor_hold_i = 1
-	" Or set this.
-	"let g:neocomplcache_enable_insert_char_pre = 1
 
 	" AutoComplPop like behavior.
 	"let g:neocomplcache_enable_auto_select = 1
@@ -596,27 +589,16 @@ set infercase
 	if !exists('g:neocomplcache_omni_patterns')
 	  let g:neocomplcache_omni_patterns = {}
 	endif
-	let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+    let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 	"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-	let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-	let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-	let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-	" For perlomni.vim setting.
-	" https://github.com/c9s/perlomni.vim
-	let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+    let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+    let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
 "------------------------------------
 " neosnippet
 "------------------------------------
 " neosnippet "{{{
- 
-" snippetを保存するディレクトリを設定してください
-" example
-" let s:default_snippet = neobundle#get_neobundle_dir() . '/neosnippet/autoload/neosnippet/snippets' " 本体に入っているsnippet
-" let s:my_snippet = '~/snippet' " 自分のsnippet
-" let g:neosnippet#snippets_directory = s:my_snippet
-" let g:neosnippet#snippets_directory = s:default_snippet . ',' . s:my_snippet
 
     " Plugin key-mappings.
     imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -635,7 +617,7 @@ set infercase
 "------------------------------------
 " vim-rails
 "------------------------------------
-""{{{
+"{{{
 "有効化
 let g:rails_default_file='config/database.yml'
 let g:rails_level = 4
@@ -759,7 +741,8 @@ NeoBundle 'w0ng/vim-hybrid'
 
 " neocomplcache-rsense {{{
     " Set $RSENSE_HOME path.
-    let g:neocomplcache#sources#rsense#home_directory = '/usr/local/Cellar/rsense/'
+    " '/opt/rsense' is linked to '/usr/local/Cellar/rsense'
+    let g:neocomplcache#sources#rsense#home_directory ='/opt/rsense'
     let g:rsenseUseOmniFunc = 1
     if !exists('g:neocomplcache_omni_patterns')
         let g:neocomplcache_omni_patterns = {}
