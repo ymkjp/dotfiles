@@ -18,6 +18,15 @@ set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 
+" mouse mode ON
+set mouse=a
+" xterm screen
+set ttymouse=xterm2
+" マウスの移動でフォーカスを自動的に切替えない (mousefocus:切替る)
+set nomousefocus
+" 入力時にマウスポインタを隠す (nomousehide:隠さない)
+set mousehide
+
 "カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
 "日本語の行の連結時には空白を入力しない。
@@ -94,7 +103,7 @@ colorscheme hybrid
 function! ZenkakuSpace()
   highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
 endfunction
- 
+
 if has('syntax')
   augroup ZenkakuSpace
     autocmd!
