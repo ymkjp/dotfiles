@@ -47,6 +47,7 @@
     lp = log --oneline -n 20 -p
     ls = log --stat --abbrev-commit -n 1 # display previous log
     s = status --short --branch
+    sb = show-branch
     st = status 
     su = submodule update
 

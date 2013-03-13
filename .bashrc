@@ -19,38 +19,18 @@ eval "$(rbenv init -)"
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
 # Auto start tmux
-# http://d.hatena.ne.jp/tyru/20100828/run_tmux_or_screen_at_shell_startup
-is_screen_running() {
-    # tscreen also uses this varariable.
-    [ ! -z "$WINDOW" ]
-}
-is_tmux_runnning() {
-    [ ! -z "$TMUX" ]
-}
-is_screen_or_tmux_running() {
-    is_screen_running || is_tmux_runnning
-}
-shell_has_started_interactively() {
-    [ ! -z "$PS1" ]
-}
-resolve_alias() {
-    cmd="$1"
-    while \
-        whence "$cmd" >/dev/null 2>/dev/null \
-        && [ "$(whence "$cmd")" != "$cmd" ]
-    do
-        cmd=$(whence "$cmd")
-    done
-    echo "$cmd"
-}
-
-if ! is_screen_or_tmux_running && shell_has_started_interactively; then
-    for cmd in tmux tscreen screen; do
-        if whence $cmd >/dev/null 2>/dev/null; then
-            $(resolve_alias "$cmd")
-            break
+if [ -z "$TMUX" -a -z "$STY" ]; then
+    if type tmuxx >/dev/null 2>&1; then
+        tmuxx
+    elif type tmux >/dev/null 2>&1; then
+        if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
+            tmux attach && echo "tmux attached session "
+        else
+            tmux new-session && echo "tmux created new session"
         fi
-    done
+    elif type screen >/dev/null 2>&1; then
+        screen -rx || screen -D -RR
+    fi
 fi
 #}}}
 
