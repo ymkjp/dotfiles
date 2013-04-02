@@ -18,12 +18,12 @@ eval "$(rbenv init -)"
 # To show the current branch by tmux
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
-# Auto start tmux
+# Auto start
 if [ -z "$TMUX" -a -z "$STY" ]; then
     if type tmuxx >/dev/null 2>&1; then
         tmuxx
     elif type tmux >/dev/null 2>&1; then
-        if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
+        if tmux has-session && tmux list-sessions | /bin/grep -qE '.*]$'; then
             tmux attach && echo "tmux attached session "
         else
             tmux new-session && echo "tmux created new session"
