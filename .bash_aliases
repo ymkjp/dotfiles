@@ -14,9 +14,7 @@ alias grep='grep --color'
 
 # Vim
 vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
-if [ -f /usr/share/vim/vim${vim_version}/macros/less.sh ] ; then
-    alias less="/usr/share/vim/vim${vim_version}/macros/less.sh"
-fi
+[ -f /usr/share/vim/vim${vim_version}/macros/less.sh ] && alias less="/usr/share/vim/vim${vim_version}/macros/less.sh"
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
