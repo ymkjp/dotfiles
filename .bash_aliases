@@ -9,7 +9,7 @@ alias la='ls -CFal'
 alias cp='cp -iv'
 alias rm='rm -iv'
 alias mv='mv -iv'
-alias sc='screen'
+alias sc='screen -D -RR'
 alias grep='grep --color'
 
 # Vim
