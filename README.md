@@ -6,4 +6,4 @@ dotfiles
 
 Memo
 ========
-    ln -Fins [source] (dest)
+    ln -Fins ~/dotfiles/.screenrc ~/
