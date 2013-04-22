@@ -15,6 +15,7 @@
 !/.gitconfig
 !/.gitconfig.local
 !/.gitmodules
+!/.screenrc
 !/.tmux.conf
 !/.tmux-powerlinerc
 !/tmux-powerline/
