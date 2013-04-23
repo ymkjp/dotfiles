@@ -19,6 +19,11 @@ fi
 # set prompt
 PS1="\u@\h:\W\\$ "
 
+# nvm{{{
+. ~/.nvm/nvm.sh
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+#}}}
+
 # tmux{{{
 # To show the current branch by tmux
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
