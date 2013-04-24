@@ -1,3 +1,7 @@
+# test -s has over 0 size
+# test -r is able to read
+# test -e is to exist
+
 # Color
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
@@ -20,7 +24,7 @@ fi
 PS1="\u@\h:\W\\$ "
 
 # nvm{{{
-. ~/.nvm/nvm.sh
+[[ -s $NVM_DIR/bash_completion ]] && . ~/.nvm/nvm.sh
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 #}}}
 
