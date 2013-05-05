@@ -1,7 +1,5 @@
 " ========== First to do ==========
 " :NeoBundleInstall
-" vimproc
-" neocomplcache-rsense
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -226,12 +224,6 @@ if v:version > 702
     endfunction "}}}
     "bundle"{{{
     " その他 {{{
-    NeoBundle 'Shougo/vimproc', {
-                \ 'build' : {
-                \     'mac' : 'make -f make_mac.mak',
-                \     'unix' : 'make -f make_unix.mak',
-                \    },
-                \ }
     NeoBundleLazy 'taichouchou2/vim-endwise.git', {
                 \ 'autoload' : {
                 \   'insert' : 1,
@@ -239,7 +231,6 @@ if v:version > 702
     " }}}
 
     "basic" {{{
-    NeoBundle 'Shougo/vimshell'
     NeoBundle 'Shougo/unite.vim'
     NeoBundle 'scrooloose/nerdtree'
     NeoBundle 'mattn/zencoding-vim'
@@ -360,60 +351,6 @@ if v:version > 702
     au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
     " }}}
 
-    "vimshell" {{{
-    let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-    "let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
-    let g:vimshell_enable_smart_case = 1
-
-    if has('win32') || has('win64')
-        " Display user name on Windows.
-        let g:vimshell_prompt = $USERNAME."% "
-    else
-        " Display user name on Linux.
-        let g:vimshell_prompt = $USER."% "
-
-        call vimshell#set_execute_file('bmp,jpg,png,gif', 'gexe eog')
-        call vimshell#set_execute_file('mp3,m4a,ogg', 'gexe amarok')
-        let g:vimshell_execute_file_list['zip'] = 'zipinfo'
-        call vimshell#set_execute_file('tgz,gz', 'gzcat')
-        call vimshell#set_execute_file('tbz,bz2', 'bzcat')
-    endif
-
-    " Initialize execute file list.
-    let g:vimshell_execute_file_list = {}
-    call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
-    let g:vimshell_execute_file_list['rb'] = 'ruby'
-    let g:vimshell_execute_file_list['pl'] = 'perl'
-    let g:vimshell_execute_file_list['py'] = 'python'
-    call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
-
-    autocmd FileType vimshell
-                \ call vimshell#altercmd#define('g', 'git')
-                \| call vimshell#altercmd#define('i', 'iexe')
-                \| call vimshell#altercmd#define('l', 'll')
-                \| call vimshell#altercmd#define('ll', 'ls -l')
-                \| call vimshell#hook#add('chpwd', 'my_chpwd', 'g:my_chpwd')
-
-    function! g:my_chpwd(args, context)
-        call vimshell#execute('ls')
-    endfunction
-
-    autocmd FileType int-* call s:interactive_settings()
-    function! s:interactive_settings()
-    endfunction
-
-    " ,is: シェルを起動
-    nnoremap <silent> ,is :VimShell<CR>
-    " ,ipy: pythonを非同期で起動
-    nnoremap <silent> ,ipy :VimShellInteractive python<CR>
-    " ,irb: irbを非同期で起動
-    nnoremap <silent> ,irb :VimShellInteractive pry<CR>
-    " ,ss: 非同期で開いたインタプリタに現在の行を評価させる
-    vmap <silent> ,ss :VimShellSendString<CR>
-    " 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
-    nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
-    " }}}
-
     "NERDTree" {{{
     autocmd vimenter * if !argc() | NERDTree | endif
     nnoremap <C-n> :NERDTreeToggle<CR>
@@ -430,14 +367,6 @@ if v:version > 702
                 \ 'autoload' : {
                 \   'insert' : 1,
                 \ }}
-    NeoBundle 'Shougo/neocomplcache-rsense', {
-                \ 'depends': 'Shougo/neocomplcache',
-                \ 'autoload': { 'filetypes': 'ruby' }}
-    NeoBundleLazy 'taichouchou2/rsense-0.3', {
-                \ 'build' : {
-                \    'mac': 'ruby etc/config.rb > ~/.rsense',
-                \    'unix': 'ruby etc/config.rb > ~/.rsense',
-                \ } }
     " }}}
 
     " 便利 {{{
@@ -548,7 +477,6 @@ if v:version > 702
     " Define dictionary.
     let g:neocomplcache_dictionary_filetype_lists = {
                 \ 'default' : '',
-                \ 'vimshell' : $HOME.'/.vimshell_hist',
                 \ 'scheme' : $HOME.'/.gosh_completions'
                 \ }
 
@@ -810,17 +738,6 @@ if v:version > 702
 
     " ColorScheme {{{
     NeoBundle 'w0ng/vim-hybrid'
-    " }}}
-
-    " neocomplcache-rsense {{{
-    " Set $RSENSE_HOME path.
-    " '/opt/rsense' is linked to '/usr/local/Cellar/rsense'
-    let g:neocomplcache#sources#rsense#home_directory ='/opt/rsense'
-    let g:rsenseUseOmniFunc = 1
-    if !exists('g:neocomplcache_omni_patterns')
-        let g:neocomplcache_omni_patterns = {}
-    endif
-    let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
     " }}}
 
 endif
