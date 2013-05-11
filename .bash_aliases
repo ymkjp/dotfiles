@@ -10,6 +10,7 @@ alias cp='cp -iv'
 alias rm='rm -iv'
 alias mv='mv -iv'
 alias tree='tree -CFa'
+alias diff='diff -bB'
 alias sc='screen -D -RR'
 alias grep='grep --color'
 
