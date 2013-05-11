@@ -6,6 +6,9 @@
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
 
+# Not to override files
+set -o noclobber
+
 # Language
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
