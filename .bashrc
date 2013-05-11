@@ -1,13 +1,18 @@
-# test -s has over 0 size
-# test -r is able to read
-# test -e is to exist
-
 # Color
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
 
 # Not to override files
 set -o noclobber
+
+# History
+HISTSIZE=10000
+export HISTCONTROL=ignoreboth
+export HISTIGNORE=?:??:???:exit
+
+# AUTOJUMP
+export AUTOJUMP_IGNORE_CASE=1
+export AUTOJUMP_AUTOCOMPLETE_CMDS='cp vim'
 
 # Language
 export LANG=ja_JP.UTF-8
@@ -24,7 +29,7 @@ fi
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
 
 # set prompt
-PS1="\u@\h:\W\\$ "
+PS1="\u@\h:\W\$(__git_ps1)\$ "
 
 # nvm{{{
 [[ -s $NVM_DIR/bash_completion ]] && . ~/.nvm/nvm.sh
