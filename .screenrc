@@ -7,8 +7,8 @@ encoding utf-8 utf-8
 # C-lをscreen用に確保する
 escape ^l^l
 
-# zshを使う
-shell zsh
+# select shell
+shell bash
 
 # 最終行にそのとき開いてるウィンドウ一覧が出る
 hardstatus on

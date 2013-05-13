@@ -11,6 +11,7 @@ alias rm='rm -iv'
 alias mv='mv -iv'
 alias tree='tree -CFa'
 alias sc='screen -D -RR'
+alias tm='tmux a'
 alias grep='grep --color'
 
 # Vim

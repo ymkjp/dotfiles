@@ -12,6 +12,8 @@ export LESSCHARSET=utf-8
 export LC_MESSAGES='ja_JP.UTF-8'
 export LC_ALL='ja_JP.UTF-8'
 
+stty stop undef
+
 # http://qiita.com/items/9dd797f42e7bea674705
 if [ -e ~/.rbenv ] ; then
     export PATH="$HOME/.rbenv/bin:$PATH"
@@ -34,3 +36,4 @@ PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -
 
 #}}}
 
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
