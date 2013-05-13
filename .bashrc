@@ -1,10 +1,26 @@
-# test -s has over 0 size
-# test -r is able to read
-# test -e is to exist
-
 # Color
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
+
+# Not to override files
+set -o noclobber
+
+# History
+HISTSIZE=10000
+export HISTCONTROL=ignoreboth
+export HISTIGNORE=?:??:???:exit
+
+# AUTOJUMP
+export AUTOJUMP_IGNORE_CASE=1
+export AUTOJUMP_AUTOCOMPLETE_CMDS='cp vim'
+
+# set prompt
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWUPSTREAM=auto
+#PS1="\u@\h:\W\$(__git_ps1)\$ "
+PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 
 # Language
 export LANG=ja_JP.UTF-8
@@ -21,9 +37,6 @@ if [ -e ~/.rbenv ] ; then
 fi
 
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
-
-# set prompt
-PS1="\u@\h:\W\\$ "
 
 # nvm{{{
 [[ -s $NVM_DIR/bash_completion ]] && . ~/.nvm/nvm.sh
