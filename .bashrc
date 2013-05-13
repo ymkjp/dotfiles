@@ -6,7 +6,8 @@ export LSCOLORS=DxGxcxdxCxegedabagacad
 set -o noclobber
 
 # History
-HISTSIZE=10000
+HISTSIZE=99999
+HISTFILESIZE=99999999
 export HISTCONTROL=ignoreboth
 export HISTIGNORE=?:??:???:exit
 
