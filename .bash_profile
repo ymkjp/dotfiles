@@ -15,6 +15,5 @@
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
-# [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-[[ -f $(brew --prefix)/etc/autojump.bash ]] && . $(brew --prefix)/etc/autojump.bash
+ [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
