@@ -4,6 +4,8 @@ export LSCOLORS=DxGxcxdxCxegedabagacad
 
 # Not to override files
 set -o noclobber
+# Autofix typo
+shopt -s cdspell
 
 # History
 HISTSIZE=99999
