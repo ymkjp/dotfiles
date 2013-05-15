@@ -2,7 +2,7 @@
 # https://gist.github.com/4117588
 # =====
 [user]
-	name = Kenta YAMAMOTO
+	name = kenta-ky-yamamoto
 	email = kenta.ky.yamamoto@gree.net
 [include]
             path = ~/.gitconfig.local
