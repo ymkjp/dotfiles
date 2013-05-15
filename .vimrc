@@ -224,6 +224,12 @@ if v:version > 702
     endfunction "}}}
     "bundle"{{{
     " その他 {{{
+    NeoBundle 'Shougo/vimproc', {
+                \ 'build' : {
+                \     'mac' : 'make -f make_mac.mak',
+                \     'unix' : 'make -f make_unix.mak',
+                \    },
+                \ }
     NeoBundleLazy 'taichouchou2/vim-endwise.git', {
                 \ 'autoload' : {
                 \   'insert' : 1,
