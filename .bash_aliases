@@ -4,7 +4,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias ls='ls -CFh'
+alias ls='ls -CFha'
 alias la='ls -CFal'
 alias cp='cp -iv'
 alias rm='rm -iv'
