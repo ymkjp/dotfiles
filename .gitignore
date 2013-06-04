@@ -19,6 +19,6 @@
 !/.tmux.conf
 !/.tmux-powerlinerc
 !/tmux-powerline/
-!/dotfiles.sh
+!/.vimrc.plugin
 
 /.vim/backups/
