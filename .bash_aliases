@@ -13,6 +13,7 @@ alias tree='tree -CFa'
 alias diff='diff -bB'
 alias sc='screen -D -RR'
 alias grep='grep --color'
+alias type='type -a'
 
 # Vim
 vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`

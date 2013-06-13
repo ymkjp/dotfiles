@@ -6,7 +6,7 @@
 set nocompatible
 
 " ========== General Config =========="{{{
-set title
+set notitle
 set number
 set modeline
 set history=1000                "Store lots of :cmdline history
