@@ -1,7 +1,6 @@
 " ========== First to do ==========
 " :NeoBundleInstall
 
-
 "neobundle"{{{
 filetype plugin indent off     " required!
 
@@ -15,7 +14,6 @@ if has('vim_starting')
     exe 'set runtimepath+='.bundle_dir.'/neobundle.vim'
     call neobundle#rc(bundle_dir)
 endif
-
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -35,26 +33,23 @@ function! BundleWithCmd(bundle_names, cmd) "{{{
         execute a:cmd
     endif
 endfunction "}}}
-"bundle"{{{
-" その他 {{{
+"bundle {{{
+" {{{
 NeoBundle 'Shougo/vimproc', {
             \ 'build' : {
             \     'mac' : 'make -f make_mac.mak',
             \     'unix' : 'make -f make_unix.mak',
             \    },
             \ }
-NeoBundleLazy 'taichouchou2/vim-endwise.git', {
-            \ 'autoload' : {
-            \   'insert' : 1,
-            \ } }
 " }}}
 
-"basic" {{{
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'mattn/zencoding-vim'
+" =====================
+" Filer" {{{
+" =====================
 
 "unite.vim {{{
+NeoBundle 'Shougo/unite.vim'
+
 " The prefix key.
 nnoremap    [unite]   <Nop>
 nmap    f [unite]
@@ -170,117 +165,29 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 " }}}
 
-"NERDTree" {{{
-autocmd vimenter * if !argc() | NERDTree | endif
-nnoremap <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" vimfiler {{{
+NeoBundle 'Shougo/vimfiler'
+let g:vimfiler_as_default_explorer = 1
+"現在開いているバッファのディレクトリを開く
+nnoremap <silent> <Leader>fe :<C-u>VimFilerBufferDir -quit<CR>
+"現在開いているバッファをIDE風に開く
+nnoremap <silent> <Leader>fi :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
 " }}}
-" Basic }}}
+
 
 " ====================
+" completion {{{
+" ====================
 
-"powerline" {{{
-NeoBundle 'taichouchou2/alpaca_powertabline'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
-" }}}
-
-" 補完 {{{
 NeoBundleLazy 'Shougo/neocomplcache', {
             \ 'autoload' : {
             \   'insert' : 1,
             \ }}
-NeoBundleLazy 'Shougo/neosnippet', {
-            \ 'autoload' : {
-            \   'insert' : 1,
-            \ }}
-" }}}
+NeoBundle 'mattn/zencoding-vim'
 
-" 便利 {{{
-" 範囲指定のコマンドが使えないので、tcommentのLazy化はNeoBundleのアップデートを待ちましょう...
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundleLazy 'tpope/vim-surround', {
-            \ 'autoload' : {
-            \   'mappings' : [
-            \     ['nx', '<Plug>Dsurround'], ['nx', '<Plug>Csurround'],
-            \     ['nx', '<Plug>Ysurround'], ['nx', '<Plug>YSurround'],
-            \     ['nx', '<Plug>Yssurround'], ['nx', '<Plug>YSsurround'],
-            \     ['nx', '<Plug>YSsurround'], ['vx', '<Plug>VgSurround'],
-            \     ['vx', '<Plug>VSurround']
-            \ ]}}
-" }}}
 
-" ruby / railsサポート {{{
-NeoBundle 'tpope/vim-rails'
-NeoBundleLazy 'ujihisa/unite-rake', {
-            \ 'depends' : 'Shougo/unite.vim' }
-NeoBundleLazy 'basyura/unite-rails', {
-            \ 'depends' : 'Shjkougo/unite.vim' }
-NeoBundleLazy 'taichouchou2/unite-rails_best_practices', {
-            \ 'depends' : 'Shougo/unite.vim',
-            \ 'build' : {
-            \    'mac': 'gem install rails_best_practices',
-            \    'unix': 'gem install rails_best_practices',
-            \   }
-            \ }
-NeoBundleLazy 'taichouchou2/unite-reek', {
-            \ 'build' : {
-            \    'mac': 'gem install reek',
-            \    'unix': 'gem install reek',
-            \ },
-            \ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] },
-            \ 'depends' : 'Shougo/unite.vim' }
-
-let s:bundle_rails = 'unite-rails unite-rails_best_practices unite-rake'
-
-function! s:bundleLoadDepends(bundle_names) "{{{
-    " bundleの読み込み
-    execute 'NeoBundleSource '.a:bundle_names
-    au! MyAutoCmd
-endfunction"}}}
-aug MyAutoCmd
-    au User Rails call <SID>bundleLoadDepends(s:bundle_rails)
-aug END
-
-" reference環境
-NeoBundleLazy 'vim-ruby/vim-ruby', {
-            \ 'autoload' : { 'filetypes': ['ruby', 'eruby', 'haml'] } }
-NeoBundleLazy 'taka84u9/vim-ref-ri', {
-            \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
-            \ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] } }
-NeoBundleLazy 'skwp/vim-rspec', {
-            \ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] } }
-NeoBundleLazy 'ruby-matchit', {
-            \ 'autoload' : { 'filetypes': ['ruby', 'eruby', 'haml'] } }
-" }}}
-
-" Installation check. "{{{
-if neobundle#exists_not_installed_bundles()
-    echomsg 'Not installed bundles : ' .
-                \ string(neobundle#get_not_installed_bundle_names())
-    echomsg 'Install Plugins'
-    NeoBundleInstall
-endif
-"}}}
-filetype plugin indent on   " Required!
-"}}}
-
-" plugin settings"{{{
-"
-" Brief help
-" :NeoBundleList          - list configured bundles
-" :NeoBundleInstall(!)    - install(update) bundles
-" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-
-" Installation check.
-NeoBundleCheck
-
-"------------------------------------
-" neocomplcache
-"------------------------------------
-" 補完・履歴 neocomplcache "{{{
+" neocomplcache {{{
 set infercase
-
-"----------------------------------------
 
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
@@ -298,17 +205,17 @@ let g:neocomplcache_min_syntax_length = 3
 " buffer file name pattern that locks neocomplcache. e.g. ku.vim or fuzzyfinder
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-            \ 'default' : '',
-            \ 'scheme' : $HOME.'/.gosh_completions'
-            \ }
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+" " Define dictionary.
+" let g:neocomplcache_dictionary_filetype_lists = {
+"             \ 'default' : '',
+"             \ 'scheme' : $HOME.'/.gosh_completions'
+"             \ }
+" 
+" " Define keyword.
+" if !exists('g:neocomplcache_keyword_patterns')
+"     let g:neocomplcache_keyword_patterns = {}
+" endif
+" let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neocomplcache_snippets_expand)
@@ -336,194 +243,54 @@ inoremap <expr><C-l>     neocomplcache#complete_common_string()
 "let g:neocomplcache_disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
-" Enable omni completion.
+" " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" }}}
 
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
-"------------------------------------
-" neosnippet
-"------------------------------------
-" neosnippet "{{{
-
+" neosnippet {{{
+NeoBundleLazy 'Shougo/neosnippet', {
+            \ 'autoload' : {
+            \   'insert' : 1,
+            \ }}
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
 " For snippet_complete marker.
 if has('conceal')
     set conceallevel=2 concealcursor=i
 endif
-"}}}
-
-"------------------------------------
-" endwise.vim
-"------------------------------------
-"{{{
-let g:endwise_no_mappings=1
-"}}}
-
-"------------------------------------
-" vim-surround
-"------------------------------------
-" {{{
-nmap ds  <Plug>Dsurround
-nmap cs  <Plug>Csurround
-nmap ys  <Plug>Ysurround
-nmap yS  <Plug>YSurround
-nmap yss <Plug>Yssurround
-nmap ySs <Plug>YSsurround
-nmap ySS <Plug>YSsurround
-xmap S   <Plug>VSurround
-xmap gS  <Plug>VgSurround
-vmap s   <Plug>VSurround
-
-" surround_custom_mappings.vim"{{{
-let g:surround_custom_mapping = {}
-let g:surround_custom_mapping._ = {
-            \ 'p':  "<pre> \r </pre>",
-            \ 'w':  "%w(\r)",
-            \ }
-let g:surround_custom_mapping.help = {
-            \ 'p':  "> \r <",
-            \ }
-let g:surround_custom_mapping.ruby = {
-            \ '-':  "<% \r %>",
-            \ '=':  "<%= \r %>",
-            \ '9':  "(\r)",
-            \ '5':  "%(\r)",
-            \ '%':  "%(\r)",
-            \ 'w':  "%w(\r)",
-            \ '#':  "#{\r}",
-            \ '3':  "#{\r}",
-            \ 'e':  "begin \r end",
-            \ 'E':  "<<EOS \r EOS",
-            \ 'i':  "if \1if\1 \r end",
-            \ 'u':  "unless \1unless\1 \r end",
-            \ 'c':  "class \1class\1 \r end",
-            \ 'm':  "module \1module\1 \r end",
-            \ 'd':  "def \1def\1\2args\r..*\r(&)\2 \r end",
-            \ 'p':  "\1method\1 do \2args\r..*\r|&| \2\r end",
-            \ 'P':  "\1method\1 {\2args\r..*\r|&|\2 \r }",
-            \ }
-let g:surround_custom_mapping.javascript = {
-            \ 'f':  "function(){ \r }"
-            \ }
-let g:surround_custom_mapping.lua = {
-            \ 'f':  "function(){ \r }"
-            \ }
-let g:surround_custom_mapping.python = {
-            \ 'p':  "print( \r)",
-            \ '[':  "[\r]",
-            \ }
-let g:surround_custom_mapping.vim= {
-            \'f':  "function! \r endfunction"
-            \ }
-"}}}
-"}}}
-
-
-"------------------------------------
-" vim-rails
-"------------------------------------
-"{{{
-"有効化
-let g:rails_default_file='config/database.yml'
-let g:rails_level = 4
-let g:rails_mappings=1
-let g:rails_modelines=0
-" let g:rails_some_option = 1
-" let g:rails_statusline = 1
-" let g:rails_subversion=0
-" let g:rails_syntax = 1
-" let g:rails_url='http://localhost:3000'
-" let g:rails_ctags_arguments='--languages=-javascript'
-" let g:rails_ctags_arguments = ''
-function! SetUpRailsSetting()
-    nnoremap <buffer><Space>r :R<CR>
-    nnoremap <buffer><Space>a :A<CR>
-    nnoremap <buffer><Space>m :Rmodel<Space>
-    nnoremap <buffer><Space>c :Rcontroller<Space>
-    nnoremap <buffer><Space>v :Rview<Space>
-    nnoremap <buffer><Space>p :Rpreview<CR>
-endfunction
-
-aug MyAutoCmd
-    au User Rails call SetUpRailsSetting()
-aug END
-
-aug RailsDictSetting
-    au!
-aug END
-"}}}
-
-"------------------------------------
-" Unite-rails.vim
-"------------------------------------
-"{{{
-function! UniteRailsSetting()
-    nnoremap <buffer><C-H><C-H><C-H>  :<C-U>Unite rails/view<CR>
-    nnoremap <buffer><C-H><C-H>       :<C-U>Unite rails/model<CR>
-    nnoremap <buffer><C-H>            :<C-U>Unite rails/controller<CR>
-
-    nnoremap <buffer><C-H>c           :<C-U>Unite rails/config<CR>
-    nnoremap <buffer><C-H>s           :<C-U>Unite rails/spec<CR>
-    nnoremap <buffer><C-H>m           :<C-U>Unite rails/db -input=migrate<CR>
-    nnoremap <buffer><C-H>l           :<C-U>Unite rails/lib<CR>
-    nnoremap <buffer><expr><C-H>g     ':e '.b:rails_root.'/Gemfile<CR>'
-    nnoremap <buffer><expr><C-H>r     ':e '.b:rails_root.'/config/routes.rb<CR>'
-    nnoremap <buffer><expr><C-H>se    ':e '.b:rails_root.'/db/seeds.rb<CR>'
-    nnoremap <buffer><C-H>ra          :<C-U>Unite rails/rake<CR>
-    nnoremap <buffer><C-H>h           :<C-U>Unite rails/heroku<CR>
-endfunction
-aug MyAutoCmd
-    au User Rails call UniteRailsSetting()
-aug END
-"}}}
-
-"----------------------------------------
-" vim-ref
-"----------------------------------------
-"{{{
-let g:ref_open                    = 'split'
-let g:ref_refe_cmd                = expand('~/.vim/ref/ruby-ref1.9.2/refe-1_9_2')
-
-nnoremap rr :<C-U>Unite ref/refe     -default-action=split -input=
-nnoremap ri :<C-U>Unite ref/ri       -default-action=split -input=
-
-aug MyAutoCmd
-    au FileType ruby,eruby,ruby.rspec nnoremap <silent><buffer>KK :<C-U>Unite -no-start-insert ref/ri   -input=<C-R><C-W><CR>
-    au FileType ruby,eruby,ruby.rspec nnoremap <silent><buffer>K  :<C-U>Unite -no-start-insert ref/refe -input=<C-R><C-W><CR>
-aug END
-"}}}
-
-"------------------------------------
-" Unite-reek, Unite-rails_best_practices
-"------------------------------------
-" {{{
-nnoremap <silent> [unite]<C-R>      :<C-u>Unite -no-quit reek<CR>
-nnoremap <silent> [unite]<C-R><C-R> :<C-u>Unite -no-quit rails_best_practices<CR>
 " }}}
-"}}}
 
 
+" }}}
+
+" ===============================
+" Ruby {{{
+" ===============================
+" vim-endwise: For Ruby's end {{{
+" To run by ".e ."
+NeoBundleLazy 'taichouchou2/vim-endwise.git', {
+            \ 'autoload' : {
+            \   'insert' : 1,
+            \ } }
+let g:endwise_no_mappings=1
+" }}}
+
+" For rails {{{
+NeoBundle 'tpope/vim-rails'
+" }}}
+
+" ===============================
 " JavaScript {{{
+" ===============================
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jiangmiao/simple-javascript-indenter'
 NeoBundle 'jpalardy/vim-slime'
@@ -541,26 +308,54 @@ let g:SimpleJsIndenter_BriefMode = 1
 let g:SimpleJsIndenter_CaseIndentLevel = -1
 " }}}
 
-" vim-coffee-script {{{
-nnoremap <silent> <C-C> :CoffeeCompile watch vert<CR>
-" }}}
-
 " jscomplete-vim {{{
 autocmd FileType javascript
             \ :setl omnifunc=jscomplete#CompleteJS
 let g:jscomplete_use = ['dom', 'moz', 'es6th']
 " }}}
 
-" syntastic {{{
-let g:syntastic_javascript_checker = "jshint"
-" ,scで構文チェック
-nnoremap ,sc :<C-u>SyntasticCheck<CR>
 " }}}
 
-" }}}
 
+" ===============================
+" Visual
+" ===============================
+"powerline {{{
+NeoBundle 'taichouchou2/alpaca_powertabline'
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+" }}}
 
 " ColorScheme {{{
 NeoBundle 'w0ng/vim-hybrid'
 " }}}
 
+
+" ==========
+" LazyLoad of Neobundle
+" ==========
+let s:bundle_rails = 'unite-rails'
+function! s:bundleLoadDepends(bundle_names) "{{{
+    " bundleの読み込み
+    execute 'NeoBundleSource '.a:bundle_names
+    au! MyAutoCmd
+endfunction"}}}
+aug MyAutoCmd
+    au User Rails call <SID>bundleLoadDepends(s:bundle_rails)
+aug END
+
+" Installation check. "{{{
+if neobundle#exists_not_installed_bundles()
+    echomsg 'Not installed bundles : ' .
+                \ string(neobundle#get_not_installed_bundle_names())
+    echomsg 'Install Plugins'
+    NeoBundleInstall
+endif
+"}}}
+filetype plugin indent on   " Required!
+" Brief help
+" :NeoBundleList          - list configured bundles
+" :NeoBundleInstall(!)    - install(update) bundles
+" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+
+" Installation check.
+NeoBundleCheck
