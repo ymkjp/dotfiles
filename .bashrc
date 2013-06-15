@@ -17,13 +17,7 @@ export HISTIGNORE=?:??:???:exit
 export AUTOJUMP_IGNORE_CASE=1
 export AUTOJUMP_AUTOCOMPLETE_CMDS='cp vim'
 
-# set prompt
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWSTASHSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-GIT_PS1_SHOWUPSTREAM=auto
-#PS1="\u@\h:\W\$(__git_ps1)\$ "
-PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+PS1="\u@\h:\W\$(__git_ps1)\$ "
 
 # Language
 export LANG=ja_JP.UTF-8
