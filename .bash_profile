@@ -11,4 +11,5 @@
 [ -f ~/.bashrc ] && . ~/.bashrc
 
 # Source environment specific
-[ -f ~/.bash_private ] && . ~/.bash_private
+[ -f ~/.bash_sec ] && . ~/.bash_sec
+[ -f ~/.bash_dep ] && . ~/.bash_dep

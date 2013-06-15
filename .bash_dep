@@ -1,0 +1,52 @@
+# Environmentally-dependent settings
+
+# ========== Depend on MacOS ==========
+if [ `uname` = "Darwin" ]; then
+    export PATH=/Applications/MacVim.app/Contents/MacOS:/usr/X11/bin:/usr/local/bin:/usr/local/share/npm/bin:$PATH
+    export PATH="$(brew --prefix josegonzalez/php/php53)/bin:$PATH"
+    
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
+    
+    # set prompt
+    GIT_PS1_SHOWDIRTYSTATE=true
+    GIT_PS1_SHOWSTASHSTATE=true
+    GIT_PS1_SHOWUNTRACKEDFILES=true
+    GIT_PS1_SHOWUPSTREAM=auto
+    PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+    
+    [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+    
+    # MacVim
+    alias vi='mvim --remote-tab-silent'
+    alias ctags='/Applications/MacVim.app/Contents/MacOS/ctags "$@"'
+    
+    # Skype
+    alias skype2='su guest -c /Applications/Skype.app/Contents/MacOS/Skype'
+    
+    # XAMP
+    alias xamp='cd /Applications/XAMPP/htdocs/'
+    
+    # tmux
+    # http://yonchu.hatenablog.com/entry/20120514/1337026014
+    alias tm='/usr/local/bin/tmuxx'
+    # Auto start
+    if [ -z "$TMUX" -a -z "$STY" ]; then
+        if type tmuxx >/dev/null 2>&1; then
+            tmuxx
+        elif type tmux >/dev/null 2>&1; then
+            if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
+                tmux attach && echo "tmux attached session "
+            else
+                tmux new-session && echo "tmux created new session"
+            fi
+        elif type screen >/dev/null 2>&1; then
+            screen -rx || screen -D -RR
+        fi
+    fi
+
+# ========== Depend on Linux ==========
+#elif [ `uname` = "Linux" ]; then
+
+fi
