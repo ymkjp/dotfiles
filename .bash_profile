@@ -6,15 +6,10 @@
 # Source global definitions
 [ -f /etc/bashrc ] && . /etc/bashrc
 
-# Source environment specific
-[ -f ~/.bash_private ] && . ~/.bash_private
-
 # Source user specific
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 [ -f ~/.bashrc ] && . ~/.bashrc
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
-
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+# Source environment specific
+[ -f ~/.bash_sec ] && . ~/.bash_sec
+[ -f ~/.bash_dep ] && . ~/.bash_dep

@@ -4,7 +4,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias ls='ls -CFh'
+alias ls='ls -CFha'
 alias la='ls -CFal'
 alias cp='cp -iv'
 alias rm='rm -iv'
@@ -14,6 +14,7 @@ alias diff='diff -bB'
 alias sc='screen -D -RR'
 alias tm='tmux a'
 alias grep='grep --color'
+alias type='type -a'
 
 # Vim
 vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`

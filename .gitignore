@@ -7,6 +7,7 @@
 !/.bash_aliases
 !/.bash_profile
 !/.bashrc
+!/.bash_dep
 !/.vimrc
 !/.gvimrc
 !/.vim
@@ -19,6 +20,6 @@
 !/.tmux.conf
 !/.tmux-powerlinerc
 !/tmux-powerline/
-!/dotfiles.sh
+!/.vimrc.plugin
 
 /.vim/backups/
