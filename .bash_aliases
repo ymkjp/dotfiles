@@ -14,6 +14,8 @@ alias diff='diff -bB'
 alias sc='screen -D -RR'
 alias grep='grep --color'
 alias type='type -a'
+alias ag='ag -S'
+alias rol='ruby -pe'
 
 # Vim
 vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
