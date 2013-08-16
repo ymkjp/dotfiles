@@ -182,8 +182,9 @@ execute "set colorcolumn=" . join(range(81, 9999), ',')
 noremap ; :
 
 " ========== Abbreviations ==========
-ab #l ----------
-ab #L ==========
+ab #l ------------
+ab #L ============
+
 
 "}}}
 

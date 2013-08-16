@@ -185,7 +185,6 @@ NeoBundleLazy 'Shougo/neocomplcache', {
             \ }}
 NeoBundle 'mattn/zencoding-vim'
 
-
 " neocomplcache {{{
 set infercase
 
@@ -251,26 +250,39 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " }}}
 
+"" neosnippet {{{
+"NeoBundleLazy 'Shougo/neosnippet', {
+"            \ 'autoload' : {
+"            \   'insert' : 1,
+"            \ }}
+"" Plugin key-mappings.
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
+"" SuperTab like snippets behavior.
+"imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"" For snippet_complete marker.
+"if has('conceal')
+"    set conceallevel=2 concealcursor=i
+"endif
+"" Enable snipMate compatibility feature.
+"let g:neosnippet#enable_snipmate_compatibility = 1
+"" Tell Neosnippet about the other snippets
+"let g:neosnippet#snippets_directory='~/.vim/snippets'
+"" }}}
 
-" neosnippet {{{
-NeoBundleLazy 'Shougo/neosnippet', {
-            \ 'autoload' : {
-            \   'insert' : 1,
-            \ }}
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" For snippet_complete marker.
-if has('conceal')
-    set conceallevel=2 concealcursor=i
-endif
-" }}}
+" completion }}}
 
 
-" }}}
+" ===============================
+" Xdebug {{{
+" ===============================
+NeoBundle 'joonty/vdebug.git'
+let g:vdebug_options = {
+            \    "break_on_open" : 0,
+            \    "continuous_mode"  : 1,
+            \}
 
 " ===============================
 " Ruby {{{
@@ -321,8 +333,8 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
 " Visual
 " ===============================
 "powerline {{{
-NeoBundle 'taichouchou2/alpaca_powertabline'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+" NeoBundle 'taichouchou2/alpaca_powertabline'
+" NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 " }}}
 
 " ColorScheme {{{

@@ -5,7 +5,7 @@
 	name = Kenta YAMAMOTO
 	email = kenta.ky.yamamoto@gree.net
 [include]
-            path = ~/.gitconfig.local
+    path = ~/.gitconfig.local
 [core]
 	excludesfile = ~/.gitignore_global
     # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines

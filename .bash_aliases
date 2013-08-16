@@ -17,6 +17,10 @@ alias grep='grep --color'
 alias type='type -a'
 alias ag='ag -S'
 alias rol='ruby -pe'
+alias gr='ack-grep -ai'
+
+# IRC irssi
+alias irssi='env TERM=screen-256color irssi'
 
 # Vim
 vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
