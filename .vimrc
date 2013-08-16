@@ -175,6 +175,8 @@ hi clear CursorLine
 hi CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
+execute "set colorcolumn=" . join(range(81, 9999), ',')
+
 " ========== MAPS ==========
 " ;でコマンド入力
 noremap ; :

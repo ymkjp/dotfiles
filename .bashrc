@@ -28,8 +28,9 @@ export LC_ALL='ja_JP.UTF-8'
 stty stop undef
 
 # http://qiita.com/items/9dd797f42e7bea674705
+# use rbenv with tmux by loading .rbenv/shims
 if [ -e ~/.rbenv ] ; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
     eval "$(rbenv init -)"
 fi
 
