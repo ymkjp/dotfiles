@@ -22,6 +22,11 @@ alias gr='ack-grep -ai'
 # IRC irssi
 alias irssi='env TERM=screen-256color irssi'
 
+# My function
+mc () {
+    mkdir -p $1 && cd $1
+}
+
 # Vim
 vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
 [ -f /usr/share/vim/vim${vim_version}/macros/less.sh ] && alias less="/usr/share/vim/vim${vim_version}/macros/less.sh"

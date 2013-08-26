@@ -35,6 +35,7 @@ if [ -e ~/.rbenv ] ; then
 fi
 
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
+[[ -s "/usr/local/share/npm/bin" ]] && export PATH="/usr/local/share/npm/bin:$PATH"
 
 # nvm{{{
 [[ -s $NVM_DIR/bash_completion ]] && . ~/.nvm/nvm.sh
