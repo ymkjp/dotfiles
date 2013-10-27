@@ -7,4 +7,4 @@ dotfiles
 How to use
 ========
     
-    git clone git@github.com:ymkjp/dotfiles.git && sh dotfiles/setup.sh
+    git clone https://github.com/ymkjp/dotfiles.git && sh dotfiles/setup.sh
