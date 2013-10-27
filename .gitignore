@@ -4,7 +4,8 @@
 /.*
 
 # 無視したくないファイルを![filename]で指定
-# ここで指定したファイルが setup.sh の対象になります
+# この記法のものは setup.sh の対象になります (setup.sh 自身を除く)
+!/setup.sh
 !/.bash_aliases
 !/.bash_profile
 !/.bashrc

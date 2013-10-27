@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=`cat ${HOME}/dotfiles/.gitignore | awk '$1 ~ /^\!/ { print $1 }' | sed -e "s/\!\///g" | tr '\n' ' '`
+DOT_FILES=`cat ${HOME}/dotfiles/.gitignore | awk '$1 ~ /^\!/ { print $1 }' | sed -e "s/\!\///g" | sed -e "/setup.sh/d" | tr '\n' ' '`
 
 for FILE in ${DOT_FILES[@]}
 do
