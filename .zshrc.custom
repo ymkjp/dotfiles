@@ -1,0 +1,118 @@
+# === PATH ===
+#export PATH=$PATH:/usr/bin:/bin
+#export PATH=$PATH:/usr/sbin:/sbin
+#export PATH=$PATH:/usr/local/bin
+#export PATH=$PATH:/usr/local/git/bin
+
+# === Complement ===
+# zsh only used on tmux
+autoload -U compinit && compinit
+setopt auto_menu
+# Tiny list
+setopt list_packed
+setopt list_types
+# Find sub directories by command with /
+setopt path_dirs
+setopt numeric_glob_sort
+# Don't ignore dot-atom
+setopt globdots
+# auto input blankets
+setopt auto_param_keys
+setopt mark_dirs
+
+zstyle ':completion:*:default' menu select
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:sudo:*' command-path \
+    /usr/local/sbin /usr/local/bin \
+    /usr/sbin /usr/bin /sbin /bin
+# Ignore current directory after ../
+zstyle ':completion:*' ignore-parents parent pwd ..
+
+# Language
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
+setopt print_eight_bit
+
+# Ignore commands after hash
+setopt interactive_comments
+
+setopt noautoremoveslash
+setopt nobeep
+setopt long_list_jobs
+# Change directory without cd
+setopt auto_cd
+setopt correct
+
+# Vim like
+bindkey -v
+
+# === Color ===
+autoload -Uz colors && colors
+case "${TERM}" in
+kterm*|xterm*)
+    export LSCOLORS=exfxcxdxbxegedabagacad
+    export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+    zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
+    ;;
+cons25)
+    unset LANG
+    export LSCOLORS=ExFxCxdxBxegedabagacad
+    export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+    zstyle ':completion:*' list-colors 'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
+    ;;
+esac
+
+# === Prompt ===
+setopt prompt_subst
+setopt transient_rprompt
+unsetopt promptcr
+
+
+# === History ===
+# http://news.mynavi.jp/column/zsh/003/index.html
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+# share command history data
+setopt share_history
+# Ignore history command
+setopt hist_no_store
+bindkey "^R" history-incremental-search-backward
+
+# z like autojump
+. `brew --prefix`/etc/profile.d/z.sh
+
+# use rbenv with tmux by loading .rbenv/shims
+if [ -e ~/.rbenv ] ; then
+    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+    eval "$(rbenv init -)"
+fi
+
+[[ -s $(brew --prefix josegonzalez/php/php53)/bin ]] && export PATH="$(brew --prefix josegonzalez/php/php53)/bin:$PATH"
+[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
+
+# nvm{{{
+[[ -s $NVM_DIR/bash_completion ]] && . ~/.nvm/nvm.sh
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+#}}}
+
+# alias
+setopt complete_aliases
+[ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+
+case "${OSTYPE}" in
+# MacOSX
+darwin*)
+    [ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx
+    ;;
+# Linux
+linux*)
+    [ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux
+    ;;
+esac
+
+# Local specific
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# vim:set ft=zsh:

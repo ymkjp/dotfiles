@@ -1,0 +1,20 @@
+
+
+#export PATH=$PATH:/opt/X11/bin
+export PATH=$PATH:/usr/local/share/npm/bin
+export PATH=$PATH:/opt/local/bin
+export PATH=$PATH:/opt/local/sbin
+export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS
+
+# MacVim
+alias vi='mvim --remote-tab-silent'
+alias ctags='/Applications/MacVim.app/Contents/MacOS/ctags "$@"'
+
+# Skype
+alias skype2='su guest -c /Applications/Skype.app/Contents/MacOS/Skype'
+
+# tmux
+# http://yonchu.hatenablog.com/entry/20120514/1337026014
+alias tm='/usr/local/bin/tmuxx'
+
+# vim:set ft=zsh:

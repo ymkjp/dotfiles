@@ -1,0 +1,26 @@
+# User specific aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+alias ls='ls -GFa'
+alias la='ls -GFalh'
+alias cp='cp -iv'
+alias rm='rm -iv'
+alias mv='mv -iv'
+alias tree='tree -CFa'
+alias diff='diff -bB'
+alias tm='tmux a'
+alias sc='screen -D -RR'
+alias grep='grep --color'
+alias type='type -a'
+alias ag='ag -S'
+alias j='jobs -l'
+
+alias rol='ruby -pe'
+
+# IP addresses
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias localip='ipconfig getifaddr en1'
+alias ips='ifconfig -a'
