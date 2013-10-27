@@ -125,19 +125,19 @@ let g:unite_abbr_highlight = 'TabLine'
 " For optimize.
 let g:unite_source_file_mru_filename_format = ''
 
-if executable('jvgrep')
-    " For jvgrep.
-    let g:unite_source_grep_command = 'jvgrep'
-    let g:unite_source_grep_default_opts = '--exclude ''\.(git|svn|hg|bzr)'''
-    let g:unite_source_grep_recursive_opt = '-R'
-endif
-
-" For ack.
-if executable('ack-grep')
-    " let g:unite_source_grep_command = 'ack-grep'
-    " let g:unite_source_grep_default_opts = '--no-heading --no-color -a'
-    " let g:unite_source_grep_recursive_opt = ''
-endif
+"if executable('jvgrep')
+"    " For jvgrep.
+"    let g:unite_source_grep_command = 'jvgrep'
+"    let g:unite_source_grep_default_opts = '--exclude ''\.(git|svn|hg|bzr)'''
+"    let g:unite_source_grep_recursive_opt = '-R'
+"endif
+"
+"" For ack.
+"if executable('ack-grep')
+"    " let g:unite_source_grep_command = 'ack-grep'
+"    " let g:unite_source_grep_default_opts = '--no-heading --no-color -a'
+"    " let g:unite_source_grep_recursive_opt = ''
+"endif
 
 " 入力モードで開始する
 " let g:unite_enable_start_insert=1
@@ -183,7 +183,7 @@ NeoBundleLazy 'Shougo/neocomplcache', {
             \ 'autoload' : {
             \   'insert' : 1,
             \ }}
-NeoBundle 'mattn/zencoding-vim'
+"NeoBundle 'mattn/zencoding-vim'
 
 " neocomplcache {{{
 set infercase
@@ -307,9 +307,9 @@ NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jiangmiao/simple-javascript-indenter'
 NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'kchmck/vim-coffee-script'
+"NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'VimClojure'
-NeoBundle 'teramako/jscomplete-vim'
+"NeoBundle 'teramako/jscomplete-vim'
 
 " vim-javascript-syntax {{{
 au FileType javascript call JavaScriptFold()

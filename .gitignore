@@ -4,11 +4,13 @@
 /.*
 
 # 無視したくないファイルを![filename]で指定
+# ここで指定したファイルが setup.sh の対象になります
 !/.bash_aliases
 !/.bash_profile
 !/.bashrc
 !/.bash_dep
 !/.vimrc
+!/.vimrc.plugin
 !/.gvimrc
 !/.vim
 !/.gitignore
@@ -18,8 +20,11 @@
 !/.gitmodules
 !/.screenrc
 !/.tmux.conf
-!/.tmux-powerlinerc
-!/tmux-powerline/
-!/.vimrc.plugin
+!/.zshrc
+!/.zshrc.alias
+!/.zshrc.custom
+!/.zshrc.linux
+!/.zshrc.local
+!/.zshrc.osx
 
-/.vim/backups/
+.vim/backups/
