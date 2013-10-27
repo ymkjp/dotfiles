@@ -17,7 +17,6 @@
 !/.gitignore
 !/.gitignore_global
 !/.gitconfig
-!/.gitconfig.local
 !/.gitmodules
 !/.screenrc
 !/.tmux.conf
@@ -25,7 +24,6 @@
 !/.zshrc.alias
 !/.zshrc.custom
 !/.zshrc.linux
-!/.zshrc.local
 !/.zshrc.osx
 
 .vim/backups/
