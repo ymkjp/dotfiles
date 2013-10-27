@@ -4,6 +4,7 @@ dotfiles
 .bashrc, .vimrc, .gitconfg, ...etc
 
 
-Memo
+How to use
 ========
-    ln -Fins ~/dotfiles/.screenrc ~/
+    
+    git clone git@github.com:ymkjp/dotfiles.git && sh dotfiles/setup.sh
