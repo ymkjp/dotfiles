@@ -2,6 +2,7 @@
 # https://gist.github.com/4117588
 # =====
 [include]
+    # git version must be 1.7.10 or higher to use [include]
     path = ~/.gitconfig.local
 [core]
     excludesfile = ~/.gitignore_global
