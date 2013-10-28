@@ -17,7 +17,7 @@ export HISTIGNORE=?:??:???:exit
 export AUTOJUMP_IGNORE_CASE=1
 export AUTOJUMP_AUTOCOMPLETE_CMDS='cp vim'
 
-PS1="\u@\h:\W\$(__git_ps1)\$ "
+PS1="\u@\h:\W\$ "
 
 # Language
 export LANG=ja_JP.UTF-8
