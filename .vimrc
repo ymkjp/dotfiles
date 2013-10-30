@@ -160,21 +160,17 @@ if has('syntax')
   call ZenkakuSpace()
 endif
 
-" カーソル行をハイライト
+" === Cursol highlight ===
 set cursorline
-" カレントウィンドウにのみ罫線を引く
+"" カレントウィンドウにのみ罫線を引く
 augroup cch
     autocmd! cch
     autocmd WinLeave * set nocursorline
-    "autocmd WinLeave * set nocursorcolumn
     autocmd WinEnter,BufRead * set cursorline
-    "autocmd WinEnter,BufRead * set cursorcolumn
 augroup END
-
 hi clear CursorLine
 hi CursorLine gui=underline
-highlight CursorLine ctermbg=black guibg=black
-
+highlight CursorLine ctermbg=234 guibg=black
 execute "set colorcolumn=" . join(range(81, 9999), ',')
 
 " ========== MAPS ==========
