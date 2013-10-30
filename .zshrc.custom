@@ -44,8 +44,8 @@ setopt long_list_jobs
 setopt auto_cd
 setopt correct
 
-# Vim like
-bindkey -v
+# Emacs like
+bindkey -e
 
 # === Color ===
 autoload -Uz colors && colors
