@@ -1,10 +1,10 @@
 
+export PATH=/opt/X11/bin:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
 
-#export PATH=$PATH:/opt/X11/bin
-export PATH=$PATH:/usr/local/share/npm/bin
-export PATH=$PATH:/opt/local/bin
-export PATH=$PATH:/opt/local/sbin
-export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS
+alias tra='trash'
 
 # MacVim
 alias vi='mvim --remote-tab-silent'

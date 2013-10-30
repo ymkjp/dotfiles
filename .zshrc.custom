@@ -1,8 +1,6 @@
 # === PATH ===
-#export PATH=$PATH:/usr/bin:/bin
-#export PATH=$PATH:/usr/sbin:/sbin
-#export PATH=$PATH:/usr/local/bin
-#export PATH=$PATH:/usr/local/git/bin
+export PATH=$PATH:/usr/local/git/bin
+export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 
 # === Complement ===
 # zsh only used on tmux
@@ -114,5 +112,6 @@ esac
 
 # Local specific
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+typeset -U path
 
 # vim:set ft=zsh:
