@@ -17,7 +17,7 @@ alias grep='grep --color'
 alias type='type -a'
 alias ag='ag -S'
 alias gr='ack-grep -ai'
-alias j='jobs -l'
+alias jo='jobs -l'
 
 alias rol='ruby -pe'
 

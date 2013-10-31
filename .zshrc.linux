@@ -1,2 +1,5 @@
+# http://d.hatena.ne.jp/sugyan/20120301/1330575449
+# without --zsh option
+[[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && . ~/.autojump/etc/profile.d/autojump.zsh
 
 # vim:set ft=zsh:
