@@ -8,7 +8,7 @@ encoding utf-8 utf-8
 escape ^l^l
 
 # select shell
-shell bash
+shell zsh
 
 # 最終行にそのとき開いてるウィンドウ一覧が出る
 hardstatus on
