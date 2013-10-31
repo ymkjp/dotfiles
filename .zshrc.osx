@@ -4,6 +4,13 @@ export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
 
+
+# z like autojump
+_Z_CMD=j
+. `brew --prefix`/etc/profile.d/z.sh
+[[ -s $(brew --prefix josegonzalez/php/php53)/bin ]] && export PATH="$(brew --prefix josegonzalez/php/php53)/bin:$PATH"
+
+# OSX
 alias tra='trash'
 
 # MacVim

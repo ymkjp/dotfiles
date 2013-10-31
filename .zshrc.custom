@@ -78,16 +78,12 @@ setopt share_history
 setopt hist_no_store
 bindkey "^R" history-incremental-search-backward
 
-# z like autojump
-. `brew --prefix`/etc/profile.d/z.sh
-
 # use rbenv with tmux by loading .rbenv/shims
 if [ -e ~/.rbenv ] ; then
     export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
     eval "$(rbenv init -)"
 fi
 
-[[ -s $(brew --prefix josegonzalez/php/php53)/bin ]] && export PATH="$(brew --prefix josegonzalez/php/php53)/bin:$PATH"
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
 
 # nvm{{{
