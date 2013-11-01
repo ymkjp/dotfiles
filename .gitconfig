@@ -1,18 +1,16 @@
 # =====
 # https://gist.github.com/4117588
 # =====
-[user]
-	name = kenta-ky-yamamoto
-	email = kenta.ky.yamamoto@gree.net
 [include]
-            path = ~/.gitconfig.local
+    # git version must be 1.7.10 or higher to use [include]
+    path = ~/.gitconfig.local
 [core]
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore_global
     # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
     pager = less -r
     editor = vi
 [color]
-	ui = auto
+    ui = auto
 [push]
     # push only the current branch
     default = tracking
@@ -56,7 +54,12 @@
 # http://subtech.g.hatena.ne.jp/motemen/20120917/1347889804
 
 [browse-remote "github.com"]
-	rev = https://{host}/{path}/commit/{commit}
-	file = "https://{host}/{path}/blob/{short_rev}/{file}{line && \"#L%d\" % line}"
-	top = https://{host}/{path}
-	ref = https://{host}/{path}/tree/{short_ref}
+    rev = https://{host}/{path}/commit/{commit}
+    file = "https://{host}/{path}/blob/{short_rev}/{file}{line && \"#L%d\" % line}"
+    top = https://{host}/{path}
+    ref = https://{host}/{path}/tree/{short_ref}
+
+# http://yuroyoro.hatenablog.com/entry/20120211/1328930819
+[tig "bind"]
+    generic = g move-first-line
+    generic = G move-last-line

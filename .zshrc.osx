@@ -1,0 +1,27 @@
+
+export PATH=/opt/X11/bin:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
+
+
+# z like autojump
+_Z_CMD=j
+. `brew --prefix`/etc/profile.d/z.sh
+[[ -s $(brew --prefix josegonzalez/php/php53)/bin ]] && export PATH="$(brew --prefix josegonzalez/php/php53)/bin:$PATH"
+
+# OSX
+alias tra='trash'
+
+# MacVim
+alias vi='mvim --remote-tab-silent'
+alias ctags='/Applications/MacVim.app/Contents/MacOS/ctags "$@"'
+
+# Skype
+alias skype2='su guest -c /Applications/Skype.app/Contents/MacOS/Skype'
+
+# tmux
+# http://yonchu.hatenablog.com/entry/20120514/1337026014
+alias tm='/usr/local/bin/tmuxx'
+
+# vim:set ft=zsh:
