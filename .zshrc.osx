@@ -4,10 +4,16 @@ export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
 
+# brew update && brew upgrade
 
 # z like autojump
 _Z_CMD=j
 . `brew --prefix`/etc/profile.d/z.sh
+
+# http://tanakahisateru.hatenablog.jp/entry/20121001/1349093118
+#  brew unlink php53; brew link php55
+#  pear list-upgrades
+#  pear upgrade
 [[ -s $(brew --prefix josegonzalez/php/php53)/bin ]] && export PATH="$(brew --prefix josegonzalez/php/php53)/bin:$PATH"
 
 # OSX
