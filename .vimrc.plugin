@@ -1,10 +1,9 @@
 " ========== First to do ==========
 " :NeoBundleInstall
 
-"neobundle"{{{
+"neobundle {{{
 filetype plugin indent off     " required!
 
-"initialize"{{{
 if has('vim_starting')
     let bundle_dir = '~/.bundle'
     if !isdirectory(bundle_dir.'/neobundle.vim')
@@ -22,7 +21,6 @@ augroup MyNeobundle
     au!
     au Syntax vim syntax keyword vimCommand NeoBundle NeoBundleLazy NeoBundleSource NeoBundleFetch
 augroup END
-"}}}
 
 " コマンドを伴うやつの遅延読み込み
 function! BundleWithCmd(bundle_names, cmd) "{{{
@@ -32,19 +30,18 @@ function! BundleWithCmd(bundle_names, cmd) "{{{
     if !empty(a:cmd)
         execute a:cmd
     endif
-endfunction "}}}
-"bundle {{{
-" {{{
+endfunction
+"}}}
 NeoBundle 'Shougo/vimproc', {
             \ 'build' : {
             \     'mac' : 'make -f make_mac.mak',
             \     'unix' : 'make -f make_unix.mak',
             \    },
             \ }
-" }}}
+"}}}
 
 " =====================
-" Filer" {{{
+" Filer
 " =====================
 
 "unite.vim {{{
@@ -75,10 +72,6 @@ nnoremap <silent> [unite]s
             \ :<C-u>Unite -buffer-name=files -no-split
             \ jump_point file_point buffer_tab
             \ file_rec:! file file/new file_mru<CR>
-
-" Start insert.
-"let g:unite_enable_start_insert = 1
-"let g:unite_enable_short_source_names = 1
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
@@ -116,7 +109,8 @@ function! s:unite_my_settings()"{{{
     nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
     nnoremap <buffer><expr> S      unite#mappings#set_current_filters(
                 \ empty(unite#mappings#get_current_filters()) ? ['sorter_reverse'] : [])
-endfunction"}}}
+endfunction
+"}}}
 
 let g:unite_source_file_mru_limit = 200
 "let g:unite_abbr_highlight = 'StatusLine'
@@ -138,8 +132,26 @@ let g:unite_source_file_mru_filename_format = ''
 "    " let g:unite_source_grep_recursive_opt = ''
 "endif
 
-" 入力モードで開始する
-" let g:unite_enable_start_insert=1
+" 大文字小文字を区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+
+" grep検索
+nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+" カーソル位置の単語をgrep検索
+nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+
+" grep検索結果の再呼出
+nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+
+" unite grep に ag(The Silver Searcher) を使う
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
 " バッファ一覧
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 " ファイル一覧
@@ -172,12 +184,13 @@ let g:vimfiler_as_default_explorer = 1
 "現在開いているバッファのディレクトリを開く
 nnoremap <silent> <Leader>fe :<C-u>VimFilerBufferDir -quit<CR>
 "現在開いているバッファをIDE風に開く
+" Leader is alias to \fi
 nnoremap <silent> <Leader>fi :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
 " }}}
 
 
 " ====================
-" completion {{{
+" completion
 " ====================
 
 NeoBundleLazy 'Shougo/neocomplcache', {
@@ -206,11 +219,10 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " " Define dictionary.
-" let g:neocomplcache_dictionary_filetype_lists = {
-"             \ 'default' : '',
-"             \ 'scheme' : $HOME.'/.gosh_completions'
-"             \ }
-" 
+ let g:neocomplcache_dictionary_filetype_lists = {
+             \ 'default' : ''
+             \ }
+
 " " Define keyword.
 " if !exists('g:neocomplcache_keyword_patterns')
 "     let g:neocomplcache_keyword_patterns = {}
@@ -218,66 +230,79 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 " let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
-"   " Recommended key-mappings.
-"   " <CR>: close popup and save indent.
-"   inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-"   " <TAB>: completion.
-"   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"   " <C-h>, <BS>: close popup and delete backword char.
-"   inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-"   inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-"   inoremap <expr><C-y>  neocomplcache#close_popup()
-"   inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-" AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" " Enable omni completion.
+" Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+" For Ruby omni
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
 " }}}
 
 "" neosnippet {{{
-"NeoBundleLazy 'Shougo/neosnippet', {
-"            \ 'autoload' : {
-"            \   'insert' : 1,
-"            \ }}
-"" Plugin key-mappings.
-"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-k>     <Plug>(neosnippet_expand_target)
-"" SuperTab like snippets behavior.
-"imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-"" For snippet_complete marker.
-"if has('conceal')
-"    set conceallevel=2 concealcursor=i
-"endif
-"" Enable snipMate compatibility feature.
-"let g:neosnippet#enable_snipmate_compatibility = 1
-"" Tell Neosnippet about the other snippets
-"let g:neosnippet#snippets_directory='~/.vim/snippets'
-"" }}}
+NeoBundleLazy 'Shougo/neosnippet', {
+            \ 'autoload' : {
+            \   'insert' : 1,
+            \ }}
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" completion }}}
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+" }}}
+
+" ===============================
+" Tags
+" ===============================
+" vim-tags {{{
+NeoBundle 'szw/vim-tags'
+" http://qiita.com/soramugi/items/7014c866b705e2cd0b95
+" Regenerate tags :TagsGenerate
+" In your project root: $ ctags --languages=php -f ~/php.tags `pwd`
+au BufNewFile,BufRead *.php let g:vim_tags_project_tags_command = "ctags --languages=php -f ~/php.tags `pwd` 2>/dev/null &"
+nnoremap <C-]> g<C-]> 
+" }}}
 
 
 " ===============================
-" Xdebug {{{
+" Xdebug
 " ===============================
 NeoBundle 'joonty/vdebug.git'
 let g:vdebug_options = {
@@ -286,10 +311,9 @@ let g:vdebug_options = {
             \}
 
 " ===============================
-" Ruby {{{
+" Ruby
 " ===============================
 " vim-endwise: For Ruby's end {{{
-" To run by ".e ."
 NeoBundleLazy 'taichouchou2/vim-endwise.git', {
             \ 'autoload' : {
             \   'insert' : 1,
@@ -297,12 +321,12 @@ NeoBundleLazy 'taichouchou2/vim-endwise.git', {
 let g:endwise_no_mappings=1
 " }}}
 
-" For rails {{{
+" vim-rails {{{
 NeoBundle 'tpope/vim-rails'
 " }}}
 
 " ===============================
-" JavaScript {{{
+" JavaScript
 " ===============================
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jiangmiao/simple-javascript-indenter'
@@ -327,17 +351,9 @@ autocmd FileType javascript
 let g:jscomplete_use = ['dom', 'moz', 'es6th']
 " }}}
 
-" }}}
-
-
 " ===============================
 " Visual
 " ===============================
-"powerline {{{
-" NeoBundle 'taichouchou2/alpaca_powertabline'
-" NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
-" }}}
-
 " ColorScheme {{{
 NeoBundle 'w0ng/vim-hybrid'
 " }}}
@@ -351,7 +367,7 @@ function! s:bundleLoadDepends(bundle_names) "{{{
     " bundleの読み込み
     execute 'NeoBundleSource '.a:bundle_names
     au! MyAutoCmd
-endfunction"}}}
+endfunction "}}}
 aug MyAutoCmd
     au User Rails call <SID>bundleLoadDepends(s:bundle_rails)
 aug END

@@ -10,6 +10,7 @@
 !/.bash_profile
 !/.bashrc
 !/.bash_dep
+!/.ctags
 !/.vimrc
 !/.vimrc.plugin
 !/.gvimrc
