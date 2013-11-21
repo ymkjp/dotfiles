@@ -304,11 +304,11 @@ nnoremap <C-]> g<C-]>
 " ===============================
 " Xdebug
 " ===============================
-NeoBundle 'joonty/vdebug.git'
-let g:vdebug_options = {
-            \    "break_on_open" : 0,
-            \    "continuous_mode"  : 1,
-            \}
+"   NeoBundle 'joonty/vdebug.git'
+"   let g:vdebug_options = {
+"               \    "break_on_open" : 0,
+"               \    "continuous_mode"  : 1,
+"               \}
 
 " ===============================
 " Ruby
