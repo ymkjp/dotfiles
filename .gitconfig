@@ -9,6 +9,12 @@
     # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
     pager = less -r
     editor = vi
+[pager]
+    log = diff-highlight | less -r
+    show = diff-highlight | less -r
+    diff = diff-highlight | less -r
+    # highlight
+    # https://github.com/git/git/tree/master/contrib/vim
 [color]
     ui = auto
 [push]
