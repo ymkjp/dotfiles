@@ -1,6 +1,5 @@
 dotfiles
 ========
-
 .bashrc, .vimrc, .gitconfg, ...etc
 
 
@@ -19,5 +18,4 @@ Local settings
 
 How to use
 ========
-    
     cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && sh dotfiles/setup.sh
