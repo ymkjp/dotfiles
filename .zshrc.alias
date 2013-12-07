@@ -8,18 +8,26 @@ alias ls='ls -GFa'
 alias la='ls -GFalh'
 alias cp='cp -iv'
 alias rm='rm -iv'
+alias rr="command rm -rf"
 alias mv='mv -iv'
 alias tree='tree -CFa'
 alias diff='diff -bB'
 alias tm='tmux a'
 alias sc='screen -D -RR'
-alias grep='grep --color'
 alias type='type -a'
 alias ag='ag -S'
 alias gr='ack-grep -ai'
-alias jo='jobs -l'
+alias po="popd"
 
 alias rol='ruby -pe'
+
+alias -g L="|& $PAGER"
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+alias -g W='| wc'
+alias -g S='| sed'
+alias -g A='| awk'
 
 # IRC irssi
 alias irssi='env TERM=screen-256color irssi'
@@ -33,3 +41,36 @@ mc () {
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias localip='ipconfig getifaddr en1'
 alias ips='ifconfig -a'
+
+# alias -s (suffix)
+# http://d.hatena.ne.jp/itchyny/20130227/1361933011
+alias -s py=python
+alias -s rb=ruby
+if [ `uname` = "Darwin" ]; then
+  alias eog='open -a Preview'
+fi
+# Open image file by `./test.jpg` from shell
+# eog is image viewer of Ubuntu
+alias -s {png,jpg,bmp,PNG,JPG,BMP}=eog
+
+if [ `uname` = "Darwin" ]; then
+  alias google-chrome='open -a Google\ Chrome'
+fi
+alias chrome='google-chrome'
+# Open html file by `./index.html` from shell
+alias -s html=chrome
+
+# atool (aunpack, apack, als, acat, adiff, arepack)
+## brew install atool
+## aptitude install atool
+# Open compressed file by `./test.tar.gz`
+alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=aunpack
+
+# Run c, ccp file without typing compiler command
+function runcpp () {
+    _TARGET="$1" && g++ -O2 -o "$_TARGET.out" $TARGET && shift && ./"$_TARGET.out" $@
+}
+# Run like `./test.c -a -b someoption zsh is the supreme shell`
+alias -s {c,cpp}=runcpp
+
+# vim:set ft=zsh:

@@ -1,33 +1,59 @@
+# man zshoptions
+
 # === PATH ===
+# -x: export SUDO_PATH, too
+# -T: Synchronize SUDO_PATH and sudo_path
+typeset -xT SUDO_PATH sudo_path
+# Ignore duplicated path
+typeset -U sudo_path
+# (N-/): Ignore directory doesn't exist
+#    PATH(...): Remain path match to ...
+#            N: Set NULL_GLOB option, ignore path no glob mach, not exist
+#            -: Ignore all except symlink
+#            /: Ignore all except directory
+sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
+
 export PATH=$PATH:/usr/local/git/bin
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 
 # === Complement ===
-# zsh only used on tmux
 autoload -U compinit && compinit
 setopt auto_menu
 # Tiny list
 setopt list_packed
 setopt list_types
+setopt no_list_beep
+setopt long_list_jobs
 # Find sub directories by command with /
 setopt path_dirs
+# Arranged in numberical order, not dictionary order
 setopt numeric_glob_sort
 # Don't ignore dot-atom
 setopt globdots
 # auto input blankets
 setopt auto_param_keys
 setopt mark_dirs
+# Complete as cursol postion
+setopt complete_in_word
+# Auto expand history
+setopt hist_expand
 
-zstyle ':completion:*:default' menu select
+# http://www.clear-code.com/blog/2011/9/5.html
+zstyle ':completion:*' format '%B%d%b'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*:default' list-colors ""
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
+zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' verbose yes
+
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-zstyle ':completion:*:sudo:*' command-path \
-    /usr/local/sbin /usr/local/bin \
-    /usr/sbin /usr/bin /sbin /bin
+zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 # Ignore current directory after ../
 zstyle ':completion:*' ignore-parents parent pwd ..
 
 # Language
+# =====
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export LC_ALL='ja_JP.UTF-8'
@@ -38,10 +64,25 @@ setopt interactive_comments
 
 setopt noautoremoveslash
 setopt nobeep
+# Show PID with jobs command
 setopt long_list_jobs
+
+# Directory
+# =====
 # Change directory without cd
 setopt auto_cd
+# Add to directory stack by cd like pushd
+setopt auto_pushd
+setopt pushd_ignore_dups
+# If there are no given directory, find from ~
+cdpath=(~)
+# Show directory stack after changed directory
+chpwd_functions=($chpwd_functions dirs)
+
+# Automatic correction
 setopt correct
+# To all params
+setopt CORRECT_ALL
 
 # Emacs like
 bindkey -e
@@ -75,9 +116,15 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 # share command history data
 setopt share_history
-# Ignore history command
-setopt hist_no_store
-bindkey "^R" history-incremental-search-backward
+# Ignore duplicated command
+setopt hist_ignore_dups
+# Ignore command start with space
+setopt hist_ignore_space
+# History search
+bindkey '^p' history-beginning-search-backward
+bindkey '^n' history-beginning-search-forward
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^S' history-incremental-pattern-search-forward
 
 # use rbenv with tmux by loading .rbenv/shims
 if [ -e ~/.rbenv ] ; then
@@ -91,6 +138,50 @@ fi
 [[ -s $NVM_DIR/bash_completion ]] && . ~/.nvm/nvm.sh
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 #}}}
+
+# PAGER, grep, vim
+# http://www.clear-code.com/blog/2011/9/5.html
+
+# PAGER
+# ===
+if [ "$PAGER" = "lv" ]; then
+    export LV="-c -l"
+else
+    alias lv="$PAGER"
+fi
+
+# grep
+# ===
+## Use GNU grep first
+if type ggrep > /dev/null 2>&1; then
+    alias grep=ggrep
+fi
+## Set default options
+export GREP_OPTIONS
+### Ignore binary files
+GREP_OPTIONS="--binary-files=without-match"
+### Use recursive mode when directory is given
+GREP_OPTIONS="--directories=recurse $GREP_OPTIONS"
+### Ignore file has .tmp extension
+GREP_OPTIONS="--exclude=\*.tmp $GREP_OPTIONS"
+## Ignore VCS
+if grep --help | grep -q -- --exclude-dir; then
+    GREP_OPTIONS="--exclude-dir=.svn $GREP_OPTIONS"
+    GREP_OPTIONS="--exclude-dir=.git $GREP_OPTIONS"
+    GREP_OPTIONS="--exclude-dir=.deps $GREP_OPTIONS"
+    GREP_OPTIONS="--exclude-dir=.libs $GREP_OPTIONS"
+fi
+### Put color if possible
+if grep --help | grep -q -- --color; then
+    GREP_OPTIONS="--color=auto $GREP_OPTIONS"
+fi
+
+## Use vim as editor
+export EDITOR=vim
+## Use vi if vim does't exist
+if ! type vim > /dev/null 2>&1; then
+    alias vim=vi
+fi
 
 # alias
 setopt complete_aliases
@@ -109,6 +200,8 @@ esac
 
 # Local specific
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# Unique path
 typeset -U path
 
 # vim:set ft=zsh:
