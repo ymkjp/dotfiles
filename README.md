@@ -10,6 +10,13 @@ Support environment
 * Mac OSX
 
 
+Local settings
+===
+* You can add local settings depends on your specific environment
+ * `.zshrc.local`
+ * `.gitconfig.local`
+
+
 How to use
 ========
     
