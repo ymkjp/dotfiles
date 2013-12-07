@@ -4,6 +4,12 @@ dotfiles
 .bashrc, .vimrc, .gitconfg, ...etc
 
 
+Support environment
+========
+* GNU/Linux
+* Mac OSX
+
+
 How to use
 ========
     
