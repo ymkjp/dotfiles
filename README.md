@@ -20,4 +20,4 @@ Local settings
 How to use
 ========
     
-    git clone https://github.com/ymkjp/dotfiles.git && sh dotfiles/setup.sh
+    cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && sh dotfiles/setup.sh
