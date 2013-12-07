@@ -15,6 +15,9 @@ do
     ln -is ${DOT_FILES_PATH}/${FILE} ${HOME}
 done
 
-# Install oh-my-zsh
-[ ! -d ~/.oh-my-zsh ] && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-. ${DOT_FILES_PATH}/.zshrc
+if type zsh > /dev/null 2>&1; then
+    # Install oh-my-zsh
+    [[ ! -d ~/.oh-my-zsh ]] && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+    . ${DOT_FILES_PATH}/.zshrc
+fi
+
