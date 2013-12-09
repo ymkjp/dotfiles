@@ -151,6 +151,7 @@ else
 fi
 
 # grep
+# brew tap homebrew/dupes && brew install grep --default-names
 # ===
 ## Use GNU grep first
 if type ggrep > /dev/null 2>&1; then
