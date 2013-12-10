@@ -2,4 +2,11 @@
 # without --zsh option
 [[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && . ~/.autojump/etc/profile.d/autojump.zsh
 
+# use rbenv with tmux by loading .rbenv/shims
+if [ -e ~/.rbenv ] ; then
+    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+    eval "$(rbenv init -)"
+fi
+
+
 # vim:set ft=zsh:

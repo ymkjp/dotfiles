@@ -10,6 +10,11 @@ export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
 _Z_CMD=j
 . `brew --prefix`/etc/profile.d/z.sh
 
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then
+    eval "$(rbenv init -)"
+fi
+
 # http://tanakahisateru.hatenablog.jp/entry/20121001/1349093118
 #  brew unlink php53; brew link php55
 #  pear list-upgrades

@@ -61,3 +61,5 @@ PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -
 #}}}
 
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
