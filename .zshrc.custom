@@ -107,6 +107,10 @@ esac
 setopt prompt_subst
 setopt transient_rprompt
 unsetopt promptcr
+# Override gentoo
+function prompt_char {
+    if [ $UID -eq 0 ]; then echo "\n#"; else echo "\n$"; fi
+}
 
 
 # === History ===
@@ -135,6 +139,7 @@ bindkey '^S' history-incremental-pattern-search-forward
 
 # PAGER, grep, vim
 # http://www.clear-code.com/blog/2011/9/5.html
+# $ brew tap homebrew/dupes && brew install grep --default-names
 
 # PAGER
 # ===
