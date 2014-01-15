@@ -5,8 +5,14 @@ dotfiles
 
 Support environment
 ========
-* GNU/Linux
+* Debian GNU/Linux, CentOS
 * Mac OSX
+
+
+Dependency
+========
+* Git version 1.8 or newer
+* Add PATH git/contrib/diff-highlight/diff-highlight
 
 
 Local settings
@@ -19,3 +25,10 @@ Local settings
 How to use
 ========
     cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && . dotfiles/setup.sh
+
+Add .gitlocal
+```
+[user]
+    name  = YOUR_NAME
+    email = example@example.com
+```

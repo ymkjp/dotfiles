@@ -18,6 +18,5 @@ done
 if type zsh > /dev/null 2>&1; then
     # Install oh-my-zsh
     [[ ! -d ~/.oh-my-zsh ]] && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-    . ${DOT_FILES_PATH}/.zshrc
 fi
 
