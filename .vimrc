@@ -172,7 +172,7 @@ augroup END
 hi clear CursorLine
 hi CursorLine gui=underline
 highlight CursorLine ctermbg=234 guibg=black
-execute "set colorcolumn=" . join(range(81, 9999), ',')
+execute "set colorcolumn=" . join(range(121, 9999), ',')
 
 " ========== MAPS ==========
 " ;でコマンド入力
