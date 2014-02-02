@@ -8,7 +8,7 @@
     excludesfile = ~/.gitignore_global
     # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
     pager = less -r
-    editor = vi
+	editor = vim
 [pager]
     log = diff-highlight | less -r
     show = diff-highlight | less -r

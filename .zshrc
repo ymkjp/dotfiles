@@ -46,5 +46,3 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 source $HOME/.zshrc.custom
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
