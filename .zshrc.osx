@@ -1,3 +1,6 @@
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+plugins=(osx brew)
 
 export PATH=/opt/X11/bin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
