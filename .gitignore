@@ -26,5 +26,6 @@
 !/.zshrc.custom
 !/.zshrc.linux
 !/.zshrc.osx
+!/.pryrc
 
 .vim/backups/
