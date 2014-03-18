@@ -133,8 +133,7 @@ bindkey '^S' history-incremental-pattern-search-forward
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
 
 # nvm{{{
-[[ -s $NVM_DIR/bash_completion ]] && . ~/.nvm/nvm.sh
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 #}}}
 
 # PAGER, grep, vim

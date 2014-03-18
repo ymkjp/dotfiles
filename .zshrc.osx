@@ -6,6 +6,7 @@ export PATH=/opt/X11/bin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
+export PATH=~/.cabal/bin:$PATH
 
 # brew update && brew upgrade
 

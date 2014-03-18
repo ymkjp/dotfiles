@@ -26,6 +26,17 @@
 !/.zshrc.custom
 !/.zshrc.linux
 !/.zshrc.osx
-!/.pryrc
 
+# Ruby
+!/.pryrc
+!/.gemrc
+
+# Haskell
+!/.ghci
+
+# JavaScript
+!/.jshintrc
+!/.jslintrc
+
+# Ignore
 .vim/backups/
