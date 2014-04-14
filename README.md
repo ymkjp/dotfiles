@@ -24,9 +24,9 @@ Local settings
 
 How to use
 ========
-    cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && . dotfiles/setup.sh
+    cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && sh dotfiles/setup.sh
 
-Add .gitlocal
+Add ~/.gitlocal
 ```
 [user]
     name  = YOUR_NAME
