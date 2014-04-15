@@ -23,7 +23,6 @@ setopt auto_menu
 setopt list_packed
 setopt list_types
 setopt no_list_beep
-setopt long_list_jobs
 # Find sub directories by command with /
 setopt path_dirs
 # Arranged in numberical order, not dictionary order
@@ -47,7 +46,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' verbose yes
 
-zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*' completer _expand _complete _match _prefix _list _history
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 # Ignore current directory after ../
 zstyle ':completion:*' ignore-parents parent pwd ..
