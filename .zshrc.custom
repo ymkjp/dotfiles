@@ -1,4 +1,5 @@
 # man zshoptions
+autoload -Uz is-at-least
 
 # === PATH ===
 # -x: export SUDO_PATH, too
