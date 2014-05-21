@@ -4,8 +4,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias ls='ls -GFa'
-alias la='ls -GFalh'
+alias ls='ls -Fa'
+alias la='ls -Falh'
 alias cp='cp -iv'
 alias rm='rm -iv'
 alias rr="command rm -rf"
