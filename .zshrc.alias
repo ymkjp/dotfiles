@@ -17,8 +17,6 @@ alias sc='screen -D -RR'
 alias type='type -a'
 alias ag='ag -S'
 alias gr='ack-grep -ai'
-alias po="popd"
-
 alias rol='ruby -pe'
 
 alias -g L="|& $PAGER"
