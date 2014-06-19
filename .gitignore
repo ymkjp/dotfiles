@@ -28,6 +28,7 @@
 !/.zshrc.osx
 
 # Ruby
+!/Gemfile
 !/.pryrc
 !/.gemrc
 
