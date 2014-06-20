@@ -9,5 +9,9 @@ if [ -e ~/.rbenv ] ; then
     eval "$(rbenv init -)"
 fi
 
+# Ubuntu
+# git clone https://github.com/rupa/z.git ~/.zsh.d/z
+_Z_CMD=j
+[[ -f $HOME/.zsh.d/z/z.sh ]] && . $HOME/.zsh.d/z/z.sh
 
 # vim:set ft=zsh:
