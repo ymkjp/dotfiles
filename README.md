@@ -3,14 +3,15 @@ dotfiles
 .bashrc, .vimrc, .gitconfg, ...etc
 
 
-## Support environment
+## Support environments
 * Debian GNU/Linux, Ubuntu, CentOS
 * Mac OSX
 
 
 ## Main Dependency
+* zsh
 * Git version 1.8 or newer
-* Add PATH git/contrib/diff-highlight/diff-highlight
+ * Add PATH git/contrib/diff-highlight/diff-highlight
 * Vim version 7.3 or newer
 
 
