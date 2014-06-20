@@ -26,6 +26,7 @@
 !/.zshrc.custom
 !/.zshrc.linux
 !/.zshrc.osx
+!/.Xmodmap
 
 # Ruby
 !/Gemfile

@@ -1,0 +1,4 @@
+clear mod4
+keycode 133 = Mode_switch
+keycode  54 = c C XF86_Copy c
+keycode  55 = v V XF86_Paste v
