@@ -3,30 +3,27 @@ dotfiles
 .bashrc, .vimrc, .gitconfg, ...etc
 
 
-Support environment
-========
-* Debian GNU/Linux, CentOS
+## Support environment
+* Debian GNU/Linux, Ubuntu, CentOS
 * Mac OSX
 
 
-Dependency
-========
+## Main Dependency
 * Git version 1.8 or newer
 * Add PATH git/contrib/diff-highlight/diff-highlight
+* Vim version 7.3 or newer
 
 
-Local settings
-===
-* You can add local settings depends on your specific environment
+## Usage
+```
+cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && bash dotfiles/setup.sh
+```
+
+## Local settings
+#### Add local settings for specific environment
  * `.zshrc.local`
  * `.gitconfig.local`
 
-
-How to use
-========
-    cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && sh dotfiles/setup.sh
-
-Add ~/.gitlocal
 ```
 [user]
     name  = YOUR_NAME
