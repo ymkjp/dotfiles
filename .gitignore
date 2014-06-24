@@ -6,27 +6,41 @@
 # 無視したくないファイルを![filename]で指定
 # この記法のものは setup.sh の対象になります (setup.sh 自身を除く)
 !/setup.sh
+
+!/.Xmodmap
+!/.ctags
+
+# bash
 !/.bash_aliases
 !/.bash_profile
 !/.bashrc
 !/.bash_dep
-!/.ctags
-!/.vimrc
-!/.vimrc.plugin
-!/.gvimrc
-!/.vim
-!/.gitignore
-!/.gitignore_global
-!/.gitconfig
-!/.gitmodules
-!/.screenrc
-!/.tmux.conf
+
+# Zsh
 !/.zshrc
 !/.zshrc.alias
 !/.zshrc.custom
 !/.zshrc.linux
 !/.zshrc.osx
-!/.Xmodmap
+
+# vim
+!/.vimrc
+!/.vimrc.plugin
+!/.gvimrc
+!/.vim
+
+# git
+!/.gitignore
+!/.gitignore_global
+!/.gitconfig
+!/.gitmodules
+
+# screen
+!/.screenrc
+!/.tmux.conf
+
+# git hooks
+!/git_hooks/
 
 # Ruby
 !/Gemfile
