@@ -47,6 +47,9 @@
 !/.pryrc
 !/.gemrc
 
+# PHP
+!/composer.json
+
 # Haskell
 !/.ghci
 
