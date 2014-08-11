@@ -39,4 +39,8 @@ alias skype2='su guest -c /Applications/Skype.app/Contents/MacOS/Skype'
 # http://yonchu.hatenablog.com/entry/20120514/1337026014
 alias tm='/usr/local/bin/tmuxx'
 
+# use SQuirreL SQL to query Hive in Java 7
+alias jdk7home="export JAVA_HOME=$(/usr/libexec/java_home)"
+alias jdk6home="export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/"
+
 # vim:set ft=zsh:
