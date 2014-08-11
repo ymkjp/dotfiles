@@ -1,6 +1,7 @@
 # http://d.hatena.ne.jp/sugyan/20120301/1330575449
 # without --zsh option
 # If you are on tmux, relogin
+_Z_CMD=j
 [[ -f ~/.autojump/etc/profile.d/autojump.zsh ]] && . ~/.autojump/etc/profile.d/autojump.zsh
 
 # use rbenv with tmux by loading .rbenv/shims
@@ -8,5 +9,9 @@ if [ -e ~/.rbenv ] ; then
     export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
     eval "$(rbenv init -)"
 fi
+
+# Ubuntu
+# git clone https://github.com/rupa/z.git ~/.zsh.d/z
+#[[ -f $HOME/.zsh.d/z/z.sh ]] && . $HOME/.zsh.d/z/z.sh
 
 # vim:set ft=zsh:
