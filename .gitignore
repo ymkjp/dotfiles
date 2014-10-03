@@ -6,6 +6,8 @@
 # 無視したくないファイルを![filename]で指定
 # この記法のものは setup.sh の対象になります (setup.sh 自身を除く)
 !/setup.sh
+!/osx_bundle.sh
+
 
 !/.Xmodmap
 !/.ctags
