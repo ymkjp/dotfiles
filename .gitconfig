@@ -34,7 +34,7 @@
     # http://oli.jp/2012/git-powerup/
     # http://blog.blindgaenger.net/advanced_git_aliases.html
     alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
-    b = branch -a
+    b = branch
     br = browse-remote
     ci = commit
     co = checkout
