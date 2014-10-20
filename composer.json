@@ -1,6 +1,17 @@
 {
-    "require": {
-        "squizlabs/php_codesniffer": "1.*",
-        "phpunit/php-timer": "*"
+    "repositories": [
+    {
+        "type": "pear",
+            "url": "http://pear.php.net/"
     }
+    ],
+        "require": {
+            "pear-pear.php.net/PEAR" : "*",
+            "pear-pear.php.net/DB" : "*",
+            "pear-pear.php.net/Log" : "*",
+            "pear-pear.php.net/Benchmark" : "*",
+            "pear-pear.php.net/Mail" : "*",
+            "pear-pear.php.net/Mail_MimeDecode" : "*",
+            "smarty/smarty": "dev-trunk"
+        }
 }
