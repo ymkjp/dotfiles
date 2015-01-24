@@ -11,7 +11,9 @@ if has('vim_starting')
     endif
 
     exe 'set runtimepath+='.bundle_dir.'/neobundle.vim'
-    call neobundle#rc(bundle_dir)
+    call neobundle#begin(expand('~/.vim/bundle/'))
+    NeoBundleFetch 'Shougo/neobundle.vim'
+    call neobundle#end()
 endif
 
 " Let NeoBundle manage NeoBundle
