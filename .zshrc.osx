@@ -60,4 +60,10 @@ if which boot2docker > /dev/null; then
     export DOCKER_TLS_VERIFY=1
     eval "$(boot2docker shellinit)" > /dev/null;
 fi
-# vim:set ft=zsh:
+
+# PhantomJS
+phantomjs="/usr/local/lib/node_modules/casperjs/node_modules/phantomjs/bin"
+[ -d "$phantomjs" ] && export PATH=$phantomjs:$PATH && [ ! -x "$phantomjs/phantomjs" ] && chmod +x "$phantomjs/phantomjs"
+
+#vim:set ft=zsh:
+
