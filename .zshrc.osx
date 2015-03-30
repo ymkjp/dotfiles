@@ -43,11 +43,18 @@ alias tm='/usr/local/bin/tmuxx'
 alias jdk7home="export JAVA_HOME=$(/usr/libexec/java_home)"
 alias jdk6home="export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/"
 
-# git clone https://github.com/yyuu/pyenv-pip-rehash.git ~/.pyenv/plugins/pyenv-pip-rehash
-export PYENV_ROOT=/usr/local/opt/pyenv
-if [ -d $HOME/.pyenv ]; then
-   export PATH="${HOME}/.pyenv/shims:$PATH"
-   eval "$(pyenv init -)"
-fi
+# Python
+# brew install pyenv-virtualenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
-#vim:set ft=zsh:
+# Node
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+
+# Docker on OSX
+if which boot2docker > /dev/null; then
+    export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
+    export DOCKER_CERT_PATH=${HOME}/.boot2docker/certs/boot2docker-vm
+    export DOCKER_TLS_VERIFY=1
+fi
+# vim:set ft=zsh:
