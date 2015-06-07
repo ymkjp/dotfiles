@@ -17,6 +17,9 @@ export PATH=${HOME}/bin:$PATH
 _Z_CMD=j
 . `brew --prefix`/etc/profile.d/z.sh
 
+# Ruby
+# RubyGems >= 2.2.0
+export RUBYGEMS_GEMDEPS=-
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then
     eval "$(rbenv init -)"
@@ -50,11 +53,11 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 # Node
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-
 # Docker on OSX
 if which boot2docker > /dev/null; then
     export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
     export DOCKER_CERT_PATH=${HOME}/.boot2docker/certs/boot2docker-vm
     export DOCKER_TLS_VERIFY=1
+    eval "$(boot2docker shellinit)" > /dev/null;
 fi
 # vim:set ft=zsh:
