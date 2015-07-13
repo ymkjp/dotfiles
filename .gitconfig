@@ -20,7 +20,7 @@
 [color]
     ui = auto
 [push]
-    default = simple
+    default = tracking
 [branch]
     autosetuprebase = always
 [merge]
