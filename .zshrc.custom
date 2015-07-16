@@ -16,6 +16,7 @@ sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
 
 export PATH=/usr/local/git/bin:$PATH
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
+export PATH=${HOME}/bin:$PATH
 
 # === Complement ===
 autoload -U compinit && compinit
@@ -44,10 +45,10 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*:default' list-colors ""
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
-zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' verbose yes
+#zstyle ':completion:*' use-cache yes
+#zstyle ':completion:*' verbose yes
 
-zstyle ':completion:*' completer _expand _complete _match _prefix _list _history
+zstyle ':completion:*' completer _complete _match _prefix _list
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 # Ignore current directory after ../
 zstyle ':completion:*' ignore-parents parent pwd ..

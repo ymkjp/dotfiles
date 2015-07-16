@@ -1,48 +1,35 @@
 " ========== Usage ==========
-" 1. Do :NeoBundleInstall
+" $ mkdir -p ~/.vim/bundle
+" $ git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+
+" Brief help
+" :NeoBundleList          - list configured bundles
+" :NeoBundleInstall(!)    - install(update) bundles
+" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
 "neobundle {{{
-filetype plugin indent off     " required!
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
 
 if has('vim_starting')
-    let bundle_dir = '~/.bundle'
-    if !isdirectory(bundle_dir.'/neobundle.vim')
-        call system( 'git clone https://github.com/Shougo/neobundle.vim.git '.bundle_dir.'/neobundle.vim')
-    endif
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
 
-    exe 'set runtimepath+='.bundle_dir.'/neobundle.vim'
-    call neobundle#rc(expand('~/.vim/bundle/'))
-    "call neobundle#begin(expand('~/.vim/bundle/'))
-    "NeoBundleFetch 'Shougo/neobundle.vim'
-    "call neobundle#end()
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
 " Let NeoBundle manage NeoBundle
+" Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-augroup MyNeobundle
-    au!
-    au Syntax vim syntax keyword vimCommand NeoBundle NeoBundleLazy NeoBundleSource NeoBundleFetch
-augroup END
-
-" コマンドを伴うやつの遅延読み込み
-function! BundleWithCmd(bundle_names, cmd) "{{{
-    call BundleLoadDepends(a:bundle_names)
-
-    " コマンドの実行
-    if !empty(a:cmd)
-        execute a:cmd
-    endif
-endfunction
-"}}}
-NeoBundle 'Shougo/vimproc', {
-            \ 'build' : {
-            \     'mac' : 'make -f make_mac.mak',
-            \     'unix' : 'make -f make_unix.mak',
-            \    },
-            \ }
-"}}}
-
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
 " =====================
 " Filer
 " =====================
@@ -50,10 +37,10 @@ NeoBundle 'Shougo/vimproc', {
 "unite.vim {{{
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
-
 " The prefix key.
 nnoremap    [unite]   <Nop>
 nmap    f [unite]
+ 
 
 nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir
             \ -buffer-name=files buffer file_mru bookmark file<CR>
@@ -227,7 +214,7 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
  let g:neocomplcache_dictionary_filetype_lists = {
              \ 'default' : ''
              \ }
-
+  
 " " Define keyword.
 " if !exists('g:neocomplcache_keyword_patterns')
 "     let g:neocomplcache_keyword_patterns = {}
@@ -238,34 +225,34 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-" For Ruby omni
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"" Recommended key-mappings.
+"" <CR>: close popup and save indent.
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+"  return neocomplcache#smart_close_popup() . "\<CR>"
+"  " For no inserting <CR> key.
+"  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+"endfunction
+"" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y>  neocomplcache#close_popup()
+"inoremap <expr><C-e>  neocomplcache#cancel_popup()
+"
+"" Enable omni completion.
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+"" For Ruby omni
+"autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+"autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+"autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+"autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+"" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " }}}
 
@@ -385,11 +372,13 @@ if neobundle#exists_not_installed_bundles()
     NeoBundleInstall
 endif
 "}}}
-filetype plugin indent on   " Required!
-" Brief help
-" :NeoBundleList          - list configured bundles
-" :NeoBundleInstall(!)    - install(update) bundles
-" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
-" Installation check.
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+" If there are uninstalled bundles found on startup,0" this will conveniently
+" prompt you to install them.
 NeoBundleCheck
+"}}}
+

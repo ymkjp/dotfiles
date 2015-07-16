@@ -9,7 +9,6 @@ export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
 export PATH=${HOME}/.cabal/bin:$PATH
 
 # ln -s /Applications/Sublime Text.app/Contents/SharedSupport/bin/subl ~/bin
-export PATH=${HOME}/bin:$PATH
 
 # brew update && brew upgrade
 
