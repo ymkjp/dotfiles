@@ -3,6 +3,7 @@
 # If you are on tmux, relogin
 _Z_CMD=j
 [[ -f ~/.autojump/etc/profile.d/autojump.zsh ]] && . ~/.autojump/etc/profile.d/autojump.zsh
+[[ -f /usr/share/autojump/autojump.sh ]] && . /usr/share/autojump/autojump.sh
 
 # use rbenv with tmux by loading .rbenv/shims
 if [ -e ~/.rbenv ] ; then

@@ -18,6 +18,8 @@ alias type='type -a'
 alias ag='ag -S'
 alias gr='ack-grep -ai'
 alias rol='ruby -pe'
+alias phpinfo='php -r "echo phpinfo();"'
+
 
 alias -g L="|& $PAGER"
 alias -g H='| head'

@@ -19,6 +19,8 @@ export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=${HOME}/bin:$PATH
 
 # === Complement ===
+# Git completion http://blog.qnyp.com/2013/05/14/zsh-git-completion/
+fpath=(~/.zsh/completion $fpath)
 autoload -U compinit && compinit
 setopt auto_menu
 # Tiny list
