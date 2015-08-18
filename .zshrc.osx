@@ -55,12 +55,9 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # Docker on OSX
-alias b2dinit='boot2docker start && boot2docker shellinit'
-if which boot2docker > /dev/null; then
-    export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
-    export DOCKER_CERT_PATH=${HOME}/.boot2docker/certs/boot2docker-vm
-    export DOCKER_TLS_VERIFY=1
-fi
+# $ docker-machine start default
+# $ docker-machine ssh default
+eval "$(docker-machine env default)"
 
 # PhantomJS
 phantomjs="/usr/local/lib/node_modules/casperjs/node_modules/phantomjs/bin"
