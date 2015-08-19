@@ -350,6 +350,8 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
 NeoBundle 'w0ng/vim-hybrid'
 " }}}
 
+" https://wakatime.com/help/plugins/vim
+NeoBundle 'wakatime/vim-wakatime'
 
 " ==========
 " LazyLoad of Neobundle
