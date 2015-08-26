@@ -55,9 +55,8 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # Docker on OSX
-# $ docker-machine start default
 # $ docker-machine ssh default
-eval "$(docker-machine env default)"
+alias docker-start="docker-machine start default && docker-machine env default"
 
 # PhantomJS
 phantomjs="/usr/local/lib/node_modules/casperjs/node_modules/phantomjs/bin"
