@@ -63,6 +63,7 @@ $RECYCLE.BIN/
 !.gitmodules
 !.gitkeep
 *~
+*.orig
 
 # Global/vim.gitignore #
 ########################

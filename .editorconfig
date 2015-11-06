@@ -11,17 +11,14 @@ max_line_length = 120
 
 [*.php]
 charset = euc-jp
-indent_style = tab
 indent_size = 4
 
 [*.php5]
 charset = euc-jp
-indent_style = tab
 indent_size = 4
 
 [*.tpl]
 charset = euc-jp
-indent_style = tab
 
 [*.py]
 indent_size = 4
