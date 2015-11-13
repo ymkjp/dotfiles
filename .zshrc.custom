@@ -18,6 +18,10 @@ export PATH=/usr/local/git/bin:$PATH
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=${HOME}/bin:$PATH
 
+# Golang
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
+
 # === Complement ===
 # Git completion http://blog.qnyp.com/2013/05/14/zsh-git-completion/
 fpath=(~/.zsh/completion $fpath)
