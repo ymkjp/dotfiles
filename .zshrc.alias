@@ -38,6 +38,11 @@ mc () {
     mkdir -p $1 && cd $1
 }
 
+# https://github.com/mollifier/anyframe
+bindkey '^x^k' anyframe-widget-checkout-git-branch
+bindkey '^x^r' anyframe-widget-execute-history
+bindkey '^x^j' anyframe-widget-insert-git-branch
+
 # Networks
 alias troute='traceroute -P icmp -S'
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'

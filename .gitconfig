@@ -38,6 +38,7 @@
     br = browse-remote
     ci = commit
     co = checkout
+    cb = checkout -b
     col = checkout @{-1}
     d = diff
     dc = diff --cached

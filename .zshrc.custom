@@ -1,6 +1,12 @@
 # man zshoptions
 autoload -Uz is-at-least
 
+if [[ -f ~/.zsh/antigen/antigen.zsh ]]; then
+    source ~/.zsh/antigen/antigen.zsh
+    antigen bundle mollifier/anyframe
+    antigen apply
+fi
+
 # === PATH ===
 # -x: export SUDO_PATH, too
 # -T: Synchronize SUDO_PATH and sudo_path
