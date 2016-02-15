@@ -49,13 +49,6 @@ alias tm='/usr/local/bin/tmuxx'
 alias jdk7home="export JAVA_HOME=$(/usr/libexec/java_home)"
 alias jdk6home="export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/"
 
-# Python
-# brew install pyenv-virtualenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
-# Node
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 # Docker on OSX
 # $ docker-machine ssh default
 alias docker-start="docker-machine start default && docker-machine env default"
@@ -65,4 +58,3 @@ phantomjs="/usr/local/lib/node_modules/casperjs/node_modules/phantomjs/bin"
 [ -d "$phantomjs" ] && export PATH=$phantomjs:$PATH && [ ! -x "$phantomjs/phantomjs" ] && chmod +x "$phantomjs/phantomjs"
 
 #vim:set ft=zsh:
-
