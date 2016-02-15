@@ -1,13 +1,13 @@
-# 全ファイルを一度無視
+# Ignore all
 /*
-# さらにdotfileを無視
+# Ignore all dotfiles
 /.*
 
-# 無視したくないファイルを![filename]で指定
-# この記法のものは setup.sh の対象になります (setup.sh 自身を除く)
+# Do not ignore
 !/setup.sh
-!/osx_bundle.sh
 
+# setup.sh handle files with !-prefix
+!/osx_bundle.sh
 
 !/.Xmodmap
 !/.ctags
@@ -64,3 +64,4 @@
 
 # Ignore
 .vim/backups/
+.vim/bundle/
