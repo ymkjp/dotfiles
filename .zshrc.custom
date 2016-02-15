@@ -7,7 +7,9 @@ if [[ -f ~/.zsh/antigen/antigen.zsh ]]; then
     antigen apply
 fi
 
+# Tokens
 [[ -f ~/.ATLAS_TOKEN ]] && . ~/.ATLAS_TOKEN
+[[ -f ~/.HOMEBREW_GITHUB_API_TOKEN ]] && . ~/.HOMEBREW_GITHUB_API_TOKEN
 
 # === PATH ===
 # -x: export SUDO_PATH, too
