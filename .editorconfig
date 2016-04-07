@@ -9,27 +9,16 @@ insert_final_newline = true
 trim_trailing_whitespace  = true
 max_line_length = 120
 
-[*.php]
-charset = euc-jp
-indent_size = 4
-
-[*.php5]
+[*.{php,php5}]
 charset = euc-jp
 indent_size = 4
 
 [*.tpl]
 charset = euc-jp
-indent_size = 2
 
 [*.py]
 indent_size = 4
 
-[*.json]
-indent_size = 2
-
-[*.html]
-indent_size = 2
-
 [*.md]
 trim_trailing_whitespace = false
-indent_size = 2
+
