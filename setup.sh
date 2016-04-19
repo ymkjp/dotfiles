@@ -64,6 +64,7 @@ done
 if type zsh > /dev/null 2>&1; then
     # Install oh-my-zsh
     [[ ! -d ~/.oh-my-zsh ]] && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+    [[ ! -d ~/.zsh/antigen ]] && git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
     # Create symlink for tmux
     [[ ! -s ~/bin/zsh ]] && ln -s "$(which zsh)" ~/bin/zsh
 fi
