@@ -19,8 +19,6 @@
     # ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin/
 [color]
     ui = auto
-[push]
-    default = simple
 [branch]
     autosetuprebase = always
 [merge]
