@@ -152,17 +152,14 @@ else
     bindkey '^S' history-incremental-search-forward
 fi
 
-# http://qiita.com/sonots/items/2d7950a68da0a02ba7e4
-_SSH_AGENT="$HOME/.ssh/agent"
-if [ -S "$SSH_AUTH_SOCK" ]; then
-    case $SSH_AUTH_SOCK in
-    /tmp/*/agent.[0-9]*)
-        ln -snf "$SSH_AUTH_SOCK" $_SSH_AGENT && export SSH_AUTH_SOCK=$_SSH_AGENT
-    esac
-elif [ -S $_SSH_AGENT ]; then
-    export SSH_AUTH_SOCK=$_SSH_AGENT
-else
-    echo "No ssh-agent."
+# http://mokokko.hatenablog.com/entry/2013/03/14/133850
+_SSH_AGENT="$HOME/.ssh/$(whoami)-agent"
+if [ -S "$_SSH_AGENT" ]; then
+  export SSH_AUTH_SOCK=$_SSH_AGENT
+elif [ ! -S "$SSH_AUTH_SOCK" ]; then
+  export SSH_AUTH_SOCK=$_SSH_AGENT
+elif [ ! -L "$SSH_AUTH_SOCK" ]; then
+  ln -snf "$SSH_AUTH_SOCK" $_SSH_AGENT && export SSH_AUTH_SOCK=$_SSH_AGENT
 fi
 
 # Python
