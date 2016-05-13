@@ -3,6 +3,8 @@
 # test -e is to exist
 # test -r is able to read
 
+# [ -f ~/dotfiles/.bashrc ] && . ~/dotfiles/.bashrc
+
 # Source user specific
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
@@ -38,6 +40,16 @@ export LC_MESSAGES='ja_JP.UTF-8'
 export LC_ALL='ja_JP.UTF-8'
 
 stty stop undef
+
+# http://mokokko.hatenablog.com/entry/2013/03/14/133850
+_SSH_AGENT="$HOME/.ssh/agent-$(whoami)@$(hostname)"
+if [ -S "$_SSH_AGENT" ]; then
+  export SSH_AUTH_SOCK=$_SSH_AGENT
+elif [ ! -S "$SSH_AUTH_SOCK" ]; then
+  export SSH_AUTH_SOCK=$_SSH_AGENT
+elif [ ! -L "$SSH_AUTH_SOCK" ]; then
+  ln -snf "$SSH_AUTH_SOCK" $_SSH_AGENT && export SSH_AUTH_SOCK=$_SSH_AGENT
+fi
 
 # http://qiita.com/items/9dd797f42e7bea674705
 # use rbenv with tmux by loading .rbenv/shims
