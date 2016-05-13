@@ -153,7 +153,7 @@ else
 fi
 
 # http://mokokko.hatenablog.com/entry/2013/03/14/133850
-_SSH_AGENT="$HOME/.ssh/$(whoami)-agent"
+_SSH_AGENT="$HOME/.ssh/agent-$(whoami)@$(hostname)"
 if [ -S "$_SSH_AGENT" ]; then
   export SSH_AUTH_SOCK=$_SSH_AGENT
 elif [ ! -S "$SSH_AUTH_SOCK" ]; then
