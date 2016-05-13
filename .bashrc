@@ -34,10 +34,9 @@ export AUTOJUMP_AUTOCOMPLETE_CMDS='cp vim'
 PS1="\u@\h:\W\$ "
 
 # Language
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 export LESSCHARSET=utf-8
-export LC_MESSAGES='ja_JP.UTF-8'
-export LC_ALL='ja_JP.UTF-8'
+export LC_ALL='en_US.UTF-8'
 
 stty stop undef
 
