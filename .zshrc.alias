@@ -38,6 +38,10 @@ mc () {
     mkdir -p $1 && cd $1
 }
 
+s () {
+    ssh -t $@ "tmux attach || tmux new";
+}
+
 # https://github.com/mollifier/anyframe
 bindkey '^x^k' anyframe-widget-checkout-git-branch
 bindkey '^x^r' anyframe-widget-execute-history
