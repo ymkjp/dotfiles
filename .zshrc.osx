@@ -35,7 +35,7 @@ alias T='trash'
 alias sl='subl'
 
 # MacVim
-alias vi='mvim --remote-tab-silent'
+alias mvi='mvim --remote-tab-silent'
 alias ctags='/Applications/MacVim.app/Contents/MacOS/ctags "$@"'
 
 # Skype
