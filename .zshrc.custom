@@ -171,6 +171,10 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 #}}}
 
+# CafeOBJ
+# ln -s ~/local/cafeobj-1.5.6b8-sbcl-x64Darwin ~/bin/cafeobj
+[[ -e "$HOME/bin/cafeobj/bin" ]] && PATH=$HOME/bin/cafeobj/bin:$PATH
+
 # PAGER, grep, vim
 # http://www.clear-code.com/blog/2011/9/5.html
 # $ brew tap homebrew/dupes && brew install grep --default-names
