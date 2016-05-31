@@ -152,6 +152,16 @@ else
     bindkey '^S' history-incremental-search-forward
 fi
 
+# http://mokokko.hatenablog.com/entry/2013/03/14/133850
+_SSH_AGENT="$HOME/.ssh/agent-$(whoami)@$(hostname)"
+if [ -S "$_SSH_AGENT" ]; then
+  export SSH_AUTH_SOCK=$_SSH_AGENT
+elif [ ! -S "$SSH_AUTH_SOCK" ]; then
+  export SSH_AUTH_SOCK=$_SSH_AGENT
+elif [ ! -L "$SSH_AUTH_SOCK" ]; then
+  ln -snf "$SSH_AUTH_SOCK" $_SSH_AGENT && export SSH_AUTH_SOCK=$_SSH_AGENT
+fi
+
 # Python
 [[ -e "$HOME/.pyenv/bin" ]] && PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)"
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
