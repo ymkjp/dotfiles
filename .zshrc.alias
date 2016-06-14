@@ -42,6 +42,9 @@ s () {
     ssh -t $@ "tmux attach || tmux new";
 }
 
+# npm install -g git-grep-edit
+if which git-grep-edit > /dev/null; then alias gg='git-grep-edit'; fi
+
 # https://github.com/mollifier/anyframe
 bindkey '^x^k' anyframe-widget-checkout-git-branch
 bindkey '^x^r' anyframe-widget-execute-history
