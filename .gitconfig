@@ -17,6 +17,8 @@
     # https://github.com/git/git/tree/master/contrib/vim
     # OSX homebrew
     # ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin/
+[diff]
+  compactionHeuristic = true
 [color]
     ui = auto
 [branch]
@@ -51,7 +53,7 @@
     ls = log --stat --abbrev-commit -n 1 # display previous log
     s = status --short --branch
     sb = show-branch
-    st = status 
+    st = status
     su = submodule update --init --recursive
     sp = git submodule foreach 'git checkout master && git pull origin master'
 
