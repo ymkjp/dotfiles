@@ -187,6 +187,12 @@ else
     alias lv="$PAGER"
 fi
 
+if which vim > /dev/null; then
+  export EDITOR="vim"
+elif which vi > /dev/null;
+  export EDITOR="vi"
+fi
+
 # alias
 setopt complete_aliases
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
