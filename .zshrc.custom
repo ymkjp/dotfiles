@@ -189,7 +189,7 @@ fi
 
 if which vim > /dev/null; then
   export EDITOR="vim"
-elif which vi > /dev/null;
+elif which vi > /dev/null; then
   export EDITOR="vi"
 fi
 
