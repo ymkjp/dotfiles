@@ -24,13 +24,6 @@ if [ `uname` = "Darwin" ]; then
     
     # Skype
     alias skype2='su guest -c /Applications/Skype.app/Contents/MacOS/Skype'
-    
-    # XAMP
-    alias xamp='cd /Applications/XAMPP/htdocs/'
-    
-    # tmux
-    # http://yonchu.hatenablog.com/entry/20120514/1337026014
-    alias tm='/usr/local/bin/tmuxx'
 
 # ========== Depend on Linux ==========
 elif [ `uname` = "Linux" ]; then
