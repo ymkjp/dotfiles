@@ -30,7 +30,6 @@ fi
 
 # OSX
 alias T='trash'
-
 # Sublime
 alias sl='subl'
 
@@ -53,4 +52,7 @@ alias docker-start="docker-machine start default && docker-machine env default"
 phantomjs="/usr/local/lib/node_modules/casperjs/node_modules/phantomjs/bin"
 [ -d "$phantomjs" ] && export PATH=$phantomjs:$PATH && [ ! -x "$phantomjs/phantomjs" ] && chmod +x "$phantomjs/phantomjs"
 
+if which brew > /dev/null; then
+    . `brew --prefix`/etc/profile.d/z.sh
+fi
 #vim:set ft=zsh:
