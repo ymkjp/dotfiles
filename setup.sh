@@ -28,6 +28,11 @@ function installPecoDarwin
     brew install peco
 }
 
+function createDirsAndFiles
+{
+  touch .gitconfig.local .zshrc.local
+}
+
 function installNeobundleVim
 {
     NEOBUNDLE_INSTALL_URL="https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh"
