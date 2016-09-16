@@ -7,6 +7,8 @@ die() {
 xcode-select --install || die
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
+defaults write com.apple.finder AppleShowAllFiles -boolean true
+
 brew update || die
 brew upgrade || die
 
