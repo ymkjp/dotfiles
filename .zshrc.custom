@@ -32,6 +32,9 @@ export PATH=${HOME}/bin:$PATH
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 
+# Java
+export JAVA_HOME="$(which java)"
+
 # === Complement ===
 # Git completion http://blog.qnyp.com/2013/05/14/zsh-git-completion/
 fpath=(~/.zsh/completion $fpath)
