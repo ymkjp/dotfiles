@@ -33,7 +33,7 @@ export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 
 # Java
-export JAVA_HOME="$(which java)"
+[[ -f /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # === Complement ===
 # Git completion http://blog.qnyp.com/2013/05/14/zsh-git-completion/
