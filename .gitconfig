@@ -5,7 +5,7 @@
     # git version must be 1.7.10 or higher to use [include]
     path = ~/.gitconfig.local
 [core]
-    excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore_global
     # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
     pager = less -r
 	editor = vim
@@ -78,3 +78,14 @@
 	required = true
 [rebase]
 	autosquash = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = Kenta Yamamoto
+	email = kyamamoto@atlassian.com
+[commit]
+	template = /Users/kyamamoto/.stCommitMsg
