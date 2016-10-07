@@ -45,6 +45,12 @@ alias skype2='su guest -c /Applications/Skype.app/Contents/MacOS/Skype'
 # alias jdk7home="export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)"
 alias jdk8home="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
 
+# Node
+if [[ -e $HOME/.nvm ]] ; then
+  export NVM_DIR="$HOME/.nvm"
+  . "$(brew --prefix nvm)/nvm.sh"
+fi
+
 # Docker on OSX
 # $ docker-machine ssh default
 alias docker-start="docker-machine start default && docker-machine env default"
