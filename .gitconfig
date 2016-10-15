@@ -1,9 +1,6 @@
 # =====
 # https://gist.github.com/4117588
 # =====
-[include]
-    # git version must be 1.7.10 or higher to use [include]
-    path = ~/.gitconfig.local
 [core]
 	excludesfile = ~/.gitignore_global
     # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
@@ -89,3 +86,6 @@
 	email = kyamamoto@atlassian.com
 [commit]
 	template = /Users/kyamamoto/.stCommitMsg
+[include]
+    # git version must be 1.7.10 or higher to use [include]
+    path = ~/.gitconfig.local
