@@ -49,8 +49,12 @@ fi
 [[ -s "/usr/local/share/npm/bin" ]] && export PATH="/usr/local/share/npm/bin:$PATH"
 
 # nvm{{{
-[[ -s $NVM_DIR/bash_completion ]] && . ~/.nvm/nvm.sh
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+if [ type brew &> /dev/null ] ; then
+  #export NODE_EXECUTABLE="/Users/kyamamoto/.nvm/versions/node/v4.6.0/bin"
+  export NVM_DIR="$HOME/.nvm"
+  . "$(brew --prefix nvm)/nvm.sh"
+  [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+fi
 #}}}
 
 # tmux{{{
@@ -59,6 +63,6 @@ PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -
 
 #}}}
 
-[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+#   [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
