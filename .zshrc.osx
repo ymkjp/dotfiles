@@ -47,11 +47,6 @@ alias skype2='su guest -c /Applications/Skype.app/Contents/MacOS/Skype'
 # alias jdk7home="export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)"
 alias jdk8home="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
 
-# Node
-if [[ -e $HOME/.nvm ]] ; then
-  export NVM_DIR="$HOME/.nvm"
-  . "$(brew --prefix nvm)/nvm.sh"
-fi
 
 # Docker on OSX
 # $ docker-machine ssh default
@@ -61,7 +56,18 @@ alias docker-start="docker-machine start default && docker-machine env default"
 phantomjs="/usr/local/lib/node_modules/casperjs/node_modules/phantomjs/bin"
 [ -d "$phantomjs" ] && export PATH=$phantomjs:$PATH && [ ! -x "$phantomjs/phantomjs" ] && chmod +x "$phantomjs/phantomjs"
 
+# Homebrew
 if which brew > /dev/null; then
+    # Jump
     . `brew --prefix`/etc/profile.d/z.sh
+
+    # Node
+    if [[ -e $HOME/.nvm ]] ; then
+      export NVM_DIR="$HOME/.nvm"
+      . "$(brew --prefix nvm)/nvm.sh"
+    fi
 fi
+
+export MAVEN_OPTS="-Xmx2g -XX:MaxMetaspaceSize=512m"
+
 #vim:set ft=zsh:
