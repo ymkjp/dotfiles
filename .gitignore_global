@@ -56,15 +56,6 @@ $RECYCLE.BIN/
 # https://github.com/github/gitignore
 # =====
 
-# Global/Linux.gitignore #
-##########################
-.*
-!.gitignore
-!.gitmodules
-!.gitkeep
-*~
-*.orig
-
 # Global/vim.gitignore #
 ########################
 .*.sw[a-z]
@@ -94,3 +85,15 @@ TAGS
 !TAGS/
 tags
 !tags/
+
+# =====
+# Mine #
+# =====
+.*
+!.gitignore
+!.gitmodules
+!.gitkeep
+!.gitattributes
+!.editorconfig
+*~
+*.orig
