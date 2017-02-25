@@ -39,6 +39,14 @@ s () {
     ssh -t $@ "tmux attach || tmux new";
 }
 
+xgrep () {
+  QUERY=$1
+  DIR=${2:-'.'}
+  NAME=${3:-'*'}
+  find "${DIR}" -type f -name "${NAME}" ! -path '*/.*/*' -print0 | xargs -0 \
+  grep --ignore-case --line-number "${QUERY}"
+}
+
 # npm install -g git-grep-edit
 if which git-grep-edit > /dev/null; then alias gg='git-grep-edit'; fi
 
