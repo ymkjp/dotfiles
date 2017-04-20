@@ -43,10 +43,12 @@ alias skype2='su guest -c /Applications/Skype.app/Contents/MacOS/Skype'
 # alias jdk7home="export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)"
 alias jdk8home="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
 
-
 # Docker on OSX
 # $ docker-machine ssh default
 alias docker-start="docker-machine start default && docker-machine env default"
+
+# GOROOT-based install location
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # PhantomJS
 phantomjs="/usr/local/lib/node_modules/casperjs/node_modules/phantomjs/bin"
