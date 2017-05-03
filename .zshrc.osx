@@ -50,9 +50,10 @@ alias docker-start="docker-machine start default && docker-machine env default"
 # GOROOT-based install location
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
-# PhantomJS
-phantomjs="/usr/local/lib/node_modules/casperjs/node_modules/phantomjs/bin"
-[ -d "$phantomjs" ] && export PATH=$phantomjs:$PATH && [ ! -x "$phantomjs/phantomjs" ] && chmod +x "$phantomjs/phantomjs"
+# Headless Chrome https://developers.google.com/web/updates/2017/04/headless-chrome
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 
 # Homebrew
 if which brew > /dev/null; then
