@@ -30,3 +30,12 @@ cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && bash dotfiles/s
     name  = YOUR_NAME
     email = example@example.com
 ```
+
+# OS Sierra settings
+Install Karabinar from https://github.com/wwwjfy/Karabiner-Elements/releases
+
+```
+# Requires restart
+defaults write NSGlobalDomain InitialKeyRepeat -int 12
+defaults write NSGlobalDomain KeyRepeat -int 1
+```
