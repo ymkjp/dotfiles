@@ -8,19 +8,20 @@ dotfiles
 * Debian GNU/Linux, Ubuntu, CentOS
 
 ## Dependencies
-* Zsh
-* Git version 1.8 or newer
- * Add PATH git/contrib/diff-highlight/diff-highlight
-* Vim version 7.3 or newer
+* `xcode-select --install`
 * [Homebrew](http://brew.sh/) 
 
 ## Usage
 ```
-cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && bash dotfiles/setup.sh
+git clone https://github.com/ymkjp/dotfiles.git ${HOME}
+bash ${HOME}/dotfiles/setup.sh
+
+# [Mac] Reboot to apply OS settings
+shutdown -r now "Rebooting for $0"
 ```
 
 ## Local settings
-#### Add local settings for specific environment
+Set up local settings for your own
  * `.zshrc.local`
  * `.gitconfig.local`
 
@@ -28,17 +29,4 @@ cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && bash dotfiles/s
 [user]
     name  = YOUR_NAME
     email = example@example.com
-```
-
-# macOS (Sierra or newer) settings
-
-```
-# Install dependencies
-xcode-select --install
-brew install caskroom/cask/karabiner-elements
-brew install --with-default-name coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt
-
-# Requires restart
-defaults write NSGlobalDomain InitialKeyRepeat -int 12
-defaults write NSGlobalDomain KeyRepeat -int 1
 ```

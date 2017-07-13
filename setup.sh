@@ -1,13 +1,60 @@
 #!/bin/bash
 
-ROOT_PATH="${HOME}/dotfiles"
-DOT_FILES=$(find ${ROOT_PATH} -name "*" ! -name '*.sh' ! -path '*/.git/*' ! -path '*/.vim/backups/*' ! -path '*/.vim/bundle/*' ! -path '*/.config/karabiner/assets/*')
-LOCAL_DOT_FILES=$(find ${ROOT_PATH} -maxdepth 1 -name '*.local')
-
-function message
+function main
 {
-    echo -e "\n[Recommended tools]"
-    echo -e "autojump"
+  set -eu
+  [[ ! -d ~/bin ]] && mkdir -p ~/bin
+  [[ ! -d ~/tmp ]] && mkdir -m 777 -p ~/tmp
+
+  deployDotfiles
+
+  case "${OSTYPE}" in
+  # MacOSX
+  darwin*)
+      checkDarwinDependencies
+      installBrewKegs
+      # Requires restart
+      defaults write NSGlobalDomain InitialKeyRepeat -int 12
+      defaults write NSGlobalDomain KeyRepeat -int 1
+      defaults write com.apple.finder AppleShowAllFiles -boolean true
+      ;;
+  # Linux
+  linux*)
+      installPecoLinux
+      ;;
+  esac
+
+  setupShell
+  installGitContrib
+  installNeobundleVim
+}
+
+function deployDotfiles
+{
+  ROOT_PATH="${HOME}/dotfiles"
+  DOT_FILES=$(find ${ROOT_PATH} -name "*" ! -name '*.sh' ! -path '*/.git/*' ! -path '*/.vim/backups/*' ! -path '*/.vim/bundle/*' ! -path '*/.config/karabiner/assets/*')
+  LOCAL_DOT_FILES=$(find ${ROOT_PATH} -maxdepth 1 -name '*.local')
+
+  for FILE in ${DOT_FILES[@]}
+  do
+      ln -is ${FILE} ${HOME}
+  done
+
+  for FILE in ${LOCAL_DOT_FILES[@]}
+  do
+      TARGET=$(basename ${FILE})
+      [[ ! -e "${HOME}/${TARGET}" ]] && cp ${FILE} ${HOME}
+  done
+}
+
+function checkDarwinDependencies
+{
+  if which brew > /dev/null; then
+    brew --version
+  else
+    echo 'Install Homebrew at http://brew.sh/'
+    exit 1
+  fi
 }
 
 function installPecoLinux
@@ -22,14 +69,27 @@ function installPecoLinux
     fi
 }
 
-function installPecoDarwin
+function installBrewKegs
 {
-    brew install peco
+  brew install --with-default-name coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt
+
+  brew install zsh vim jq nkf tmux reattach-to-user-namespace wget z ssh-copy-id \
+    gibo tcptraceroute peco
+
+  brew cask install \
+    karabiner-elements iterm2 bettertouchtool vagrant google-chrome dropbox \
+    visual-studio-code charles imageoptim docker bartender
 }
 
-function createDirsAndFiles
+function setupShell
 {
-  touch .gitconfig.local .zshrc.local
+    if type zsh > /dev/null 2>&1; then
+      # Install oh-my-zsh
+      [[ ! -d ~/.oh-my-zsh ]] && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+      [[ ! -d ~/.zsh/antigen ]] && git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
+      # Create symlink for tmux
+      [[ ! -s ~/bin/zsh ]] && ln -s "$(which zsh)" ~/bin/zsh
+  fi
 }
 
 function installNeobundleVim
@@ -51,44 +111,4 @@ function installGitContrib
     fi
 }
 
-[[ ! -d ~/bin ]] && mkdir -p ~/bin
-[[ ! -d ~/tmp ]] && mkdir -m 777 -p ~/tmp
-
-for FILE in ${DOT_FILES[@]}
-do
-    ln -is ${FILE} ${HOME}
-done
-
-for FILE in ${LOCAL_DOT_FILES[@]}
-do
-    TARGET=$(basename ${FILE})
-    [[ ! -e "${HOME}/${TARGET}" ]] && cp ${FILE} ${HOME}
-done
-
-if type zsh > /dev/null 2>&1; then
-    # Install oh-my-zsh
-    [[ ! -d ~/.oh-my-zsh ]] && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-    [[ ! -d ~/.zsh/antigen ]] && git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
-    # Create symlink for tmux
-    [[ ! -s ~/bin/zsh ]] && ln -s "$(which zsh)" ~/bin/zsh
-fi
-
-case "${OSTYPE}" in
-# MacOSX
-darwin*)
-    installPecoDarwin
-    ;;
-# Linux
-linux*)
-    installPecoLinux
-    ;;
-esac
-
-installGitContrib
-installNeobundleVim
-message
-
-# Delete trailing whitespace by git pre-commit hooks
-# http://qiita.com/k0kubun/items/8f6d7eded1d833187449
-# In .git/hooks/pre-commit
-# . .git_hooks/delete_trailing_whitespace
+main
