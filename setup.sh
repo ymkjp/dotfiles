@@ -1,9 +1,8 @@
 #!/bin/bash
 
 ROOT_PATH="${HOME}/dotfiles"
-DOT_FILES=`cat ${ROOT_PATH}/.gitignore | awk '$1 ~ /^\!/ { print $1 }' | sed -e "s/\!\///g"`
-TARGET_FILES=`echo -e "${DOT_FILES}" | sed -e "/setup.sh/d" -e "/git_hooks/d" | tr '\n' ' '`
-LOCAL_DOT_FILES=".zshrc.local .gitconfig.local"
+DOT_FILES=$(find ${ROOT_PATH} -name "*" ! -name '*.sh' ! -path '*/.git/*' ! -path '*/.vim/backups/*' ! -path '*/.vim/bundle/*' ! -path '*/.config/karabiner/assets/*')
+LOCAL_DOT_FILES=$(find ${ROOT_PATH} -maxdepth 1 -name '*.local')
 
 function message
 {
@@ -55,15 +54,15 @@ function installGitContrib
 [[ ! -d ~/bin ]] && mkdir -p ~/bin
 [[ ! -d ~/tmp ]] && mkdir -m 777 -p ~/tmp
 
-for FILE in ${TARGET_FILES[@]}
+for FILE in ${DOT_FILES[@]}
 do
-    ln -is ${ROOT_PATH}/${FILE} ${HOME}
+    ln -is ${FILE} ${HOME}
 done
 
 for FILE in ${LOCAL_DOT_FILES[@]}
 do
-    [[ ! -e ${ROOT_PATH}/${FILE} ]] && touch ${ROOT_PATH}/${FILE}
-    ln -is ${ROOT_PATH}/${FILE} ${HOME}
+    TARGET=$(basename ${FILE})
+    [[ ! -e "${HOME}/${TARGET}" ]] && cp ${FILE} ${HOME}
 done
 
 if type zsh > /dev/null 2>&1; then

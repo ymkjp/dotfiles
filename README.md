@@ -35,7 +35,8 @@ cd ${HOME} && git clone https://github.com/ymkjp/dotfiles.git && bash dotfiles/s
 ```
 # Install dependencies
 xcode-select --install
-brew install caskroom/cask/karabiner-elements caskroom/cask/hammerspoon
+brew install caskroom/cask/karabiner-elements
+brew install --with-default-name coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt
 
 # Requires restart
 defaults write NSGlobalDomain InitialKeyRepeat -int 12
