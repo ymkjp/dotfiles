@@ -3,13 +3,11 @@ dotfiles
 .bashrc, .vimrc, .gitconfg, ...etc
 
 
-## Supported OS
+## Supported OS and Dependencies
 * Mac OSX
+** `xcode-select --install`
+** [Homebrew](http://brew.sh/) 
 * Debian GNU/Linux, Ubuntu, CentOS
-
-## Dependencies
-* `xcode-select --install`
-* [Homebrew](http://brew.sh/) 
 
 ## Usage
 ```
