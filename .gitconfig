@@ -7,9 +7,9 @@
     pager = less -r
 	editor = vim
 [pager]
-    log = diff-highlight | less -r
-    show = diff-highlight | less -r
-    diff = diff-highlight | less -r
+    log = diff-highlight | less -R
+    show = diff-highlight | less -R
+    diff = diff-highlight | less -R
     # highlight
     # https://github.com/git/git/tree/master/contrib/vim
     # OSX homebrew
