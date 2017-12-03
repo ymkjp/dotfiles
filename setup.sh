@@ -17,6 +17,7 @@ function main
       defaults write NSGlobalDomain InitialKeyRepeat -int 12
       defaults write NSGlobalDomain KeyRepeat -int 1
       defaults write com.apple.finder AppleShowAllFiles -boolean true
+      defaults write com.apple.desktopservices DSDontWriteNetworkStores true
       ;;
   # Linux
   linux*)
