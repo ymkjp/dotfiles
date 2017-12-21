@@ -177,6 +177,10 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 # Others `/usr/libexec/java_home -V`
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
+# Gradle
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -f "$HOME/.sdkman/bin/sdkman-init.sh" ]] && . "$HOME/.sdkman/bin/sdkman-init.sh"
+
 # CafeOBJ
 # ln -s ~/local/cafeobj-1.5.5-sbcl-x64Darwin ~/bin/cafeobj
 [[ -e "$HOME/bin/cafeobj/bin" ]] && PATH=$HOME/bin/cafeobj/bin:$PATH

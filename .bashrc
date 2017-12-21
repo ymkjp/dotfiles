@@ -66,3 +66,7 @@ PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -
 #   [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/ymkjp/.sdkman"
+[[ -s "/Users/ymkjp/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ymkjp/.sdkman/bin/sdkman-init.sh"
