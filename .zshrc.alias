@@ -11,7 +11,6 @@ alias rm='rm -i'
 alias rr="command rm -r"
 alias tree='tree -CFa'
 alias diff='diff -bB'
-alias tm='tmux'
 alias sc='screen -D -RR'
 alias type='type -a'
 alias rol='ruby -pe'
@@ -34,7 +33,7 @@ mc () {
     mkdir -p $1 && cd $1
 }
 
-s () {
+tm () {
     ssh -t $@ "tmux attach || tmux new";
 }
 
