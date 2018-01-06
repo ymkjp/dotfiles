@@ -82,18 +82,4 @@ function runcpp () {
 # Run like `./test.c -a -b someoption zsh is the supreme shell`
 alias -s {c,cpp}=runcpp
 
-# Python
-[[ -e "$HOME/.pyenv/bin" ]] && PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)"
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
-# Java
-# Add JDKs by `jenv add $(/usr/libexec/java_home)`
-# Others `/usr/libexec/java_home -V`
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-
-# Gradle
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -f "$HOME/.sdkman/bin/sdkman-init.sh" ]] && . "$HOME/.sdkman/bin/sdkman-init.sh"
-
 # vim:set ft=zsh:

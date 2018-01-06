@@ -12,10 +12,6 @@ export PATH=${HOME}/Library/Android/sdk/platform-tools:${PATH}
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
-# ln -s /Applications/Sublime Text.app/Contents/SharedSupport/bin/subl ~/bin
-
-# brew update && brew upgrade
-
 # z like autojump
 _Z_CMD=j
 . `brew --prefix`/etc/profile.d/z.sh
@@ -67,6 +63,21 @@ if which brew > /dev/null; then
       . "$(brew --prefix nvm)/nvm.sh"
     fi
 fi
+
+# Python
+[[ -e "$HOME/.pyenv/bin" ]] && PATH="$HOME/.pyenv/bin:$PATH" && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)"
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+# Java
+# Add JDKs by `jenv add $(/usr/libexec/java_home)`
+# Others `/usr/libexec/java_home -V`
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+
+# Gradle
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -f "$HOME/.sdkman/bin/sdkman-init.sh" ]] && . "$HOME/.sdkman/bin/sdkman-init.sh"
+alias sp="${SDKMAN_DIR}/candidates/springboot/current/bin/spring"
 
 export MAVEN_OPTS="-Xmx2g -XX:MaxMetaspaceSize=512m"
 
