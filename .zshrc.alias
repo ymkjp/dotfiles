@@ -34,7 +34,11 @@ mc () {
 }
 
 tm () {
+  if [[ $# = 0 ]]; then
+    tmux attach || tmux new
+  else
     ssh -t $@ "tmux attach || tmux new";
+  fi
 }
 
 # npm install -g git-grep-edit

@@ -38,35 +38,8 @@ export LC_ALL='en_US.UTF-8'
 
 stty stop undef
 
-# http://qiita.com/items/9dd797f42e7bea674705
-# use rbenv with tmux by loading .rbenv/shims
-if [ -e ~/.rbenv ] ; then
-    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-    eval "$(rbenv init -)"
-fi
-
-[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
-[[ -s "/usr/local/share/npm/bin" ]] && export PATH="/usr/local/share/npm/bin:$PATH"
-
-# nvm{{{
-if [ type brew &> /dev/null ] ; then
-  #export NODE_EXECUTABLE="/Users/kyamamoto/.nvm/versions/node/v4.6.0/bin"
-  export NVM_DIR="$HOME/.nvm"
-  . "$(brew --prefix nvm)/nvm.sh"
-  [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
-fi
-#}}}
-
-# tmux{{{
+# tmux
 # To show the current branch by tmux
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
-#}}}
-
-#   [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/ymkjp/.sdkman"
-[[ -s "/Users/ymkjp/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ymkjp/.sdkman/bin/sdkman-init.sh"
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh

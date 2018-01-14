@@ -1,4 +1,4 @@
-# User specific aliases 
+# User specific aliases
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -9,22 +9,22 @@ alias la='ls -CFal'
 alias cp='cp -iv'
 alias rm='rm -iv'
 alias mv='mv -iv'
-alias tree='tree -CFa'
-alias diff='diff -bB'
 alias sc='screen -D -RR'
-alias tm='tmux a'
-alias grep='grep --color'
-alias type='type -a'
-alias ag='ag -S'
-alias rol='ruby -pe'
-alias gr='ack-grep -ai'
 
 # IRC irssi
 alias irssi='env TERM=screen-256color irssi'
 
-# My function
+# Functions
 mc () {
     mkdir -p $1 && cd $1
+}
+
+tm () {
+  if [[ $# = 0 ]]; then
+    tmux attach || tmux new
+  else
+    ssh -t $@ "tmux attach || tmux new";
+  fi
 }
 
 # Vim
