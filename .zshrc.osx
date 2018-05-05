@@ -5,7 +5,6 @@ plugins=(osx brew)
 export PATH=/opt/X11/bin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
 export PATH=${HOME}/.cabal/bin:$PATH
 export PATH=${HOME}/Library/Android/sdk/platform-tools:${PATH}
