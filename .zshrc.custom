@@ -171,6 +171,9 @@ fi
 # ln -s ~/local/cafeobj-1.5.5-sbcl-x64Darwin ~/bin/cafeobj
 [[ -e "$HOME/bin/cafeobj/bin" ]] && PATH=$HOME/bin/cafeobj/bin:$PATH
 
+# Atlassian Products
+[[ -e "$HOME/bin/aget" ]] && PATH=$HOME/bin/aget:$PATH
+
 # PAGER, grep, vim
 # http://www.clear-code.com/blog/2011/9/5.html
 # $ brew tap homebrew/dupes && brew install grep --default-names
