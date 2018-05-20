@@ -90,7 +90,8 @@
     cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
 [user]
 	name = Kenta Yamamoto
-	email = kyamamoto@atlassian.com
+	email = lq33xxx@gmail.com
+	signingkey = 0D082C85EFA5691B
 [commit]
 	template = /Users/kyamamoto/.stCommitMsg
 [include]
