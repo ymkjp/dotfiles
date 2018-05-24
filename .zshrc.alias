@@ -41,6 +41,14 @@ tm () {
   fi
 }
 
+jj () {
+  if [ $# = 0 ]; then
+    ghq look "$(ghq list | peco)"
+  else
+    ghq look "$(ghq list | peco --query "$1")"
+  fi
+}
+
 # npm install -g git-grep-edit
 if which git-grep-edit > /dev/null; then alias gg='git-grep-edit'; fi
 
