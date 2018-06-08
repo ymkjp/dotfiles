@@ -49,6 +49,16 @@ jj () {
   fi
 }
 
+da () {
+  if ! [ -x "$(command -v docker)" ]; then
+    error 'docker is not installed. Visit https://docs.docker.com/docker-for-mac/install/ and install it.'
+  fi
+  if ! [ -x "$(command -v peco)" ]; then
+    error 'peco is not installed. Visit https://github.com/peco/peco#installation and install it.'
+  fi
+  docker exec -it "$(docker ps --format '{{.ID}}\t{{.Image}}\t{{.Command}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}' | peco | awk '{print $1}')" sh
+}
+
 # npm install -g git-grep-edit
 if which git-grep-edit > /dev/null; then alias gg='git-grep-edit'; fi
 
