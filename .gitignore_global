@@ -89,11 +89,5 @@ tags
 # =====
 # Mine #
 # =====
-.*
-!.gitignore
-!.gitmodules
-!.gitkeep
-!.gitattributes
-!.editorconfig
 *~
 *.orig
