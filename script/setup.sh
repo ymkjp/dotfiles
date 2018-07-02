@@ -4,7 +4,7 @@ function main
 {
   set -eu
   [[ ! -d ~/bin ]] && mkdir -p ~/bin
-  [[ ! -d ~/tmp ]] && mkdir -m 777 -p ~/tmp
+  [[ ! -d ~/tmp ]] && mkdir -p ~/tmp
 
   deployDotfiles
 
@@ -14,10 +14,14 @@ function main
       checkDarwinDependencies
       installBrewKegs
       # Requires restart
-      defaults write NSGlobalDomain InitialKeyRepeat -int 12
-      defaults write NSGlobalDomain KeyRepeat -int 1
+      # defaults delete -g KeyRepeat
+      # defaults delete -g InitialKeyRepeat
+#      defaults write NSGlobalDomain InitialKeyRepeat -int 12
+#      defaults write NSGlobalDomain KeyRepeat -int 1
+      defaults write NSGlobalDomain AppleShowAllExtensions -bool true
       defaults write com.apple.finder AppleShowAllFiles -boolean true
       defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+      defaults write com.apple.ImageCapture disableHotPlug -bool NO
       ;;
   # Linux
   linux*)
@@ -33,18 +37,18 @@ function main
 function deployDotfiles
 {
   ROOT_PATH="${HOME}/dotfiles"
-  DOT_FILES=$(find ${ROOT_PATH} -name "*" ! -name '*.sh' ! -path '*/.git/*' ! -path '*/.vim/backups/*' ! -path '*/.vim/bundle/*' ! -path '*/.config/karabiner/assets/*')
-  LOCAL_DOT_FILES=$(find ${ROOT_PATH} -maxdepth 1 -name '*.local')
+  DOT_FILES=$(find "${ROOT_PATH}" -name "*" ! -name '*.sh' ! -path '*/.git/*' ! -path '*/.vim/backups/*' ! -path '*/.vim/bundle/*' ! -path '*/.config/karabiner/assets/*')
+  LOCAL_DOT_FILES=$(find "${ROOT_PATH}" -maxdepth 1 -name '*.local')
 
-  for FILE in ${DOT_FILES[@]}
+  for FILE in "${DOT_FILES[@]}"
   do
-      ln -is ${FILE} ${HOME}
+      ln -is "${FILE}" "${HOME}"
   done
 
-  for FILE in ${LOCAL_DOT_FILES[@]}
+  for FILE in "${LOCAL_DOT_FILES[@]}"
   do
-      TARGET=$(basename ${FILE})
-      [[ ! -e "${HOME}/${TARGET}" ]] && cp ${FILE} ${HOME}
+      TARGET="$(basename "${FILE}")"
+      [[ ! -e "${HOME}/${TARGET}" ]] && cp "${FILE}" "${HOME}"
   done
 }
 
@@ -61,12 +65,12 @@ function checkDarwinDependencies
 function installPecoLinux
 {
     PECO_BIN_URL="https://github.com/peco/peco/releases/download/v0.3.5/peco_linux_386.tar.gz"
-    PECO_ROOT_DIR="~/bin/peco_linux_386"
+    PECO_ROOT_DIR="${HOME}/bin/peco_linux_386"
     if type peco > /dev/null 2>&1; then
         return 0
     else
-        curl -SL ${PECO_BIN_URL} | tar xvz -C ~/bin \
-            && ln -s ${PECO_ROOT_DIR}/peco ~/bin
+        curl -SL "${PECO_BIN_URL}" | tar xvz -C ~/bin \
+            && ln -s "${PECO_ROOT_DIR}/peco" ~/bin
     fi
 }
 
@@ -107,8 +111,8 @@ function installGitContrib
     if type diff-highlight > /dev/null 2>&1; then
         return 0
     else
-        curl -LS "${GIT_CONTRIB_URL}" -o ${GIT_CONTRIB_BIN} \
-            && chmod +x ${GIT_CONTRIB_BIN}
+        curl -LS "${GIT_CONTRIB_URL}" -o "${GIT_CONTRIB_BIN}" \
+            && chmod +x "${GIT_CONTRIB_BIN}"
     fi
 }
 

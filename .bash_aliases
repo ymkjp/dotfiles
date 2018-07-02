@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # User specific aliases
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -16,20 +18,16 @@ alias irssi='env TERM=screen-256color irssi'
 
 # Functions
 mc () {
-    mkdir -p $1 && cd $1
+    mkdir -p "$1" && cd "$1" || return
 }
 
 tm () {
   if [[ $# = 0 ]]; then
     tmux attach || tmux new
   else
-    ssh -t $@ "tmux attach || tmux new";
+    ssh -t "$@" "tmux attach || tmux new";
   fi
 }
-
-# Vim
-vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
-[ -f /usr/share/vim/vim${vim_version}/macros/less.sh ] && alias less="/usr/share/vim/vim${vim_version}/macros/less.sh"
 
 # IP addresses
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'

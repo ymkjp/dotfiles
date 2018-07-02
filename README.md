@@ -1,12 +1,12 @@
 dotfiles
 ========
-.bashrc, .vimrc, .gitconfg, ...etc
+[![Build Status](https://travis-ci.org/ymkjp/dotfiles.svg?branch=master)](https://travis-ci.org/ymkjp/dotfiles)
 
 
 ## Supported OS and Dependencies
 * Mac OSX
-** `xcode-select --install`
-** [Homebrew](http://brew.sh/) 
+  * `xcode-select --install`
+  * [Homebrew](http://brew.sh/) 
 * Debian GNU/Linux, Ubuntu, CentOS
 
 ## Usage

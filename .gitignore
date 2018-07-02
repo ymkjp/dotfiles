@@ -1,17 +1,15 @@
 # Ignore all
 /*
 # Ignore all dotfiles
-/.*
 
 # Do not ignore
-!README.md
-!/setup.sh
+!/.travis.yml
+!/d
+!/README.md
+!/script
 !/.config
-!/.hammerspoon
 
-# setup.sh handle files with !-prefix
-!/osx_bundle.sh
-
+# etc
 !/.Xmodmap
 !/.ctags
 
@@ -52,15 +50,8 @@
 !/.pryrc
 !/.gemrc
 
-# PHP
-!/composer.json
-
 # Haskell
 !/.ghci
-
-# JavaScript
-!/.jshintrc
-!/.jslintrc
 
 # EditorConfig
 !/.editorconfig
@@ -68,4 +59,3 @@
 # Ignore
 .vim/backups/
 .vim/bundle/
-.vim/bundle/neomru.vim

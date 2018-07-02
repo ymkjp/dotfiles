@@ -1,16 +1,10 @@
+#!/usr/bin/env bash
 
-die() {
-    if [ $? != 0] ; then
-        echo -e "Failed to execute!\n" 1>&2; exit 1
-    fi
-}
-xcode-select --install || die
+xcode-select --install || exit 1
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
-defaults write com.apple.finder AppleShowAllFiles -boolean true
-
-brew update || die
-brew upgrade || die
+brew update || exit 1
+brew upgrade || exit 1
 
 brew install apple-gcc42
 brew install atool
@@ -101,7 +95,7 @@ brew install zlib
 brew install zsh
 
 # cask
-brew install caskroom/cask/brew-cask || die
+brew install caskroom/cask/brew-cask || exit 1
 brew cask install alfred
 brew cask install iterm2
 brew cask install java

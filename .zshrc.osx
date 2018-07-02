@@ -17,9 +17,9 @@ _Z_CMD=j
 . `brew --prefix`/etc/profile.d/z.sh
 
 # Ruby
-if which gem > /dev/null; then
+# if which gem > /dev/null; then
     # [[ `gem --version` > "2.2.0" ]] && export RUBYGEMS_GEMDEPS=-
-fi
+# fi
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then
     eval "$(rbenv init -)"
