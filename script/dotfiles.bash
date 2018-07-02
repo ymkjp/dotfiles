@@ -8,10 +8,10 @@ dotfiles () {
   }
 
   lint-shell () {
-    docker run --rm -v "$(pwd):/mnt" koalaman/shellcheck:stable \
+    docker run --rm -v "$(pwd):/mnt" koalaman/shellcheck:v0.5.0 \
     --exclude=SC1090,SC1091 \
     script/*.*sh \
-    && docker run --rm -v "$(pwd):/mnt" koalaman/shellcheck:stable \
+    && docker run --rm -v "$(pwd):/mnt" koalaman/shellcheck:v0.5.0 \
     --exclude=SC1090,SC1091,SC2148 \
     .bash_*
   }
@@ -30,8 +30,8 @@ dotfiles () {
   usage () {
     readonly SCRIPT_NAME=$(basename "$0")
     echo -e "${SCRIPT_NAME} -- dotfiles
-    \nUsage: ${SCRIPT_NAME} [arguments]
-    \nArguments:"
+    \\nUsage: ${SCRIPT_NAME} [arguments]
+    \\nArguments:"
     declare -F | awk '{print "\t" $3}' | grep -v "${SCRIPT_NAME}"
   }
 

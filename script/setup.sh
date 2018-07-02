@@ -54,7 +54,7 @@ function deployDotfiles
 
 function checkDarwinDependencies
 {
-  if which brew > /dev/null; then
+  if command -v brew > /dev/null; then
     brew --version
   else
     echo 'Install Homebrew at http://brew.sh/'
@@ -93,7 +93,7 @@ function setupShell
       [[ ! -d ~/.oh-my-zsh ]] && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
       [[ ! -d ~/.zsh/antigen ]] && git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
       # Create symlink for tmux
-      [[ ! -s ~/bin/zsh ]] && ln -s "$(which zsh)" ~/bin/zsh
+      [[ ! -s ~/bin/zsh ]] && ln -s "$(command -v zsh)" ~/bin/zsh
   fi
 }
 
