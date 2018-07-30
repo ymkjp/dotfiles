@@ -24,6 +24,9 @@ export HISTIGNORE=?:??:???:exit
 
 PS1="\u@\h:\W\$ "
 
+# PATH
+export PATH="${HOME}/bin:${PATH}"
+
 # Language
 export LANG=en_US.UTF-8
 export LESSCHARSET=utf-8
