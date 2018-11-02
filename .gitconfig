@@ -67,6 +67,11 @@
 [tig "bind"]
     generic = g move-first-line
     generic = G move-last-line
+[ghq "github.com"]
+  vcs = git
+[ghq "bitbucket.org"]
+  vcs = git
+
 [credential]
 	helper = osxkeychain
 [filter "lfs"]
