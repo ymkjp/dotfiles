@@ -69,7 +69,7 @@
     generic = G move-last-line
 [ghq "github.com"]
   vcs = git
-[ghq "bitbucket.org"]
+[ghq "ssh://git@bitbucket.org"]
   vcs = git
 
 [credential]
