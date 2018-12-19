@@ -41,8 +41,32 @@ alias skype2='su guest -c /Applications/Skype.app/Contents/MacOS/Skype'
 alias jdk8home="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
 
 # Docker on OSX
-# $ docker-machine ssh default
-alias docker-start="docker-machine start default && docker-machine env default"
+docker () {
+  DOCKER_COMMAND="/usr/local/bin/docker"
+  DOCKER_DESKTOP="/Applications/Docker.app"
+  retry () {
+    QUOTA=10
+    while [[ "${QUOTA}" -ge 0 ]]; do
+      echo "[docker] Waiting for docker's running. Remaining quota: ${QUOTA}" >&2
+      "${DOCKER_COMMAND}" ps > /dev/null
+      if [[ $? -le 0 ]]; then
+        "$DOCKER_COMMAND" "$@"
+        break
+      fi
+      ((QUOTA-=1))
+      sleep 10
+    done
+  }
+  fallback-docker-command () {
+    echo "[docker] Opening ${DOCKER_DESKTOP}..." >&2
+    open "${DOCKER_DESKTOP}" && retry
+  }
+  "${DOCKER_COMMAND}" ps > /dev/null
+  if [[ $? -gt 0 ]]; then
+    fallback-docker-command "$@"
+  fi
+  "${DOCKER_COMMAND}" "$@"
+}
 
 # GOROOT-based install location
 export PATH=$PATH:/usr/local/opt/go/libexec/bin

@@ -2,9 +2,9 @@
 # https://gist.github.com/4117588
 # =====
 [core]
-	excludesfile = ~/.gitignore_global
-    # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
-    pager = less -r
+	excludesfile = /Users/kyamamoto/.gitignore_global
+  # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
+  pager = less -r
 	editor = vim
 [pager]
     log = diff-highlight | less -R
@@ -96,8 +96,8 @@
 [difftool "idea"]
     cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
 [user]
-	name = Kenta Yamamoto
-	email = lq33xxx@gmail.com
+	name =
+	email =
 	signingkey = 0D082C85EFA5691B
 [commit]
 	template = /Users/kyamamoto/.stCommitMsg
