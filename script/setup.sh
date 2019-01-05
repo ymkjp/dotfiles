@@ -80,6 +80,10 @@ __setup () {
       # Create symlink for tmux
       [[ ! -s ~/bin/zsh ]] && ln -s "$(command -v zsh)" ~/bin/zsh
     fi
+    if type tmux > /dev/null 2>&1; then
+      git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
+
   }
 
   function installNeobundleVim
