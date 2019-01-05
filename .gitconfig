@@ -10,10 +10,7 @@
     log = diff-highlight | less -R
     show = diff-highlight | less -R
     diff = diff-highlight | less -R
-    # highlight
-    # https://github.com/git/git/tree/master/contrib/vim
-    # OSX homebrew
-    # ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin/
+
 [diff]
   compactionHeuristic = true
 [color]
