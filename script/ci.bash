@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dotfiles () {
+__ci () {
   set -u
 
   lint () {
@@ -16,32 +16,32 @@ dotfiles () {
     .bash_*
   }
 
-  info () {
+  @info () {
     MESSAGE="${1:-''}"
     echo "[$(basename "$0")] INFO: ${MESSAGE}"
   }
 
-  error () {
+  @error () {
     MESSAGE="${1:-'Something went wrong.'}"
     echo "[$(basename "$0")] ERROR: ${MESSAGE}" >&2
     exit 1
   }
 
-  usage () {
+  @usage () {
     readonly SCRIPT_NAME=$(basename "$0")
     echo -e "${SCRIPT_NAME} -- dotfiles
     \\nUsage: ${SCRIPT_NAME} [arguments]
     \\nArguments:"
-    declare -F | awk '{print "\t" $3}' | grep -v "${SCRIPT_NAME}"
+    declare -F | awk '{print "\t" $3}' | grep -v "@" | grep -v "__"
   }
 
   if [ $# = 0 ]; then
-    usage
+    @usage
   elif [ "$(type -t "$1")" = "function" ]; then
     $1
   else
-    usage && error "Command '$1' not found."
+    @usage && @error "Command '$1' not found."
   fi
 }
 
-dotfiles "$@"
+__ci "$@"

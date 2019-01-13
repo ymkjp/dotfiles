@@ -15,4 +15,10 @@ fi
 # git clone https://github.com/rupa/z.git ~/.zsh.d/z
 #[[ -f $HOME/.zsh.d/z/z.sh ]] && . $HOME/.zsh.d/z/z.sh
 
+# https://wiki.archlinux.org/index.php/keyboard_backlight
+setKbdLight () {
+    dbus-send --system --type=method_call  --dest="org.freedesktop.UPower" "/org/freedesktop/UPower/KbdBacklight" "org.freedesktop.UPower.KbdBacklight.SetBrightness" int32:${1-0}
+}
+[[ "$(hostname)" = "t480"* ]] && setKbdLight 1
+
 # vim:set ft=zsh:

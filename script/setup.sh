@@ -12,6 +12,7 @@ __setup () {
     ROOT_PATH="${PWD}"
     DOT_FILES=$(find "${ROOT_PATH}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' !   -name '.gitignore')
     LOCAL_DOT_FILES=$(find "${ROOT_PATH}" -type f -name '*.local')
+    DOT_DIRS=$(find "${ROOT_PATH}" -type d -name '.*' ! -name '.' ! -name '.git')
 
     for FILE in ${DOT_FILES[@]}
     do

@@ -1,12 +1,6 @@
 # man zshoptions
 autoload -Uz is-at-least
 
-if [[ -f ~/.zsh/antigen/antigen.zsh ]]; then
-    source ~/.zsh/antigen/antigen.zsh
-    antigen bundle mollifier/anyframe
-    antigen apply
-fi
-
 # Tokens
 [[ -f ~/.ATLAS_TOKEN ]] && . ~/.ATLAS_TOKEN
 [[ -f ~/.HOMEBREW_GITHUB_API_TOKEN ]] && . ~/.HOMEBREW_GITHUB_API_TOKEN
@@ -19,7 +13,7 @@ typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
 # (N-/): Ignore directory doesn't exist
 #    PATH(...): Remain path match to ...
-#            N: Set NULL_GLOB option, ignore path no glob mach, not exist
+#            N: Set NULL_GLOB optigroup on, ignore path no glob mach, not exist
 #            -: Ignore all except symlink
 #            /: Ignore all except directory
 sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
@@ -173,10 +167,6 @@ fi
 # Atlassian Products
 [[ -e "$HOME/bin/aget" ]] && PATH=$HOME/bin/aget:$PATH
 
-# PAGER, grep, vim
-# http://www.clear-code.com/blog/2011/9/5.html
-# $ brew tap homebrew/dupes && brew install grep --default-names
-
 # PAGER
 # ===
 if [ "$PAGER" = "lv" ]; then
@@ -194,20 +184,20 @@ fi
 case "${OSTYPE}" in
 # MacOSX
 darwin*)
-    [ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx
+    [ -f ~/.zshrc.osx ] && . ~/.zshrc.osx
     ;;
 # Linux
 linux*)
-    [ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux
+    [ -f ~/.zshrc.linux ] && . ~/.zshrc.linux
     ;;
 esac
 
 # alias
 setopt complete_aliases
-[ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+[ -f ~/.zshrc.alias ] && . ~/.zshrc.alias
 
 # Local specific
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f ~/.zshrc.local ] && . ~/.zshrc.local
 
 # Unique path
 typeset -U path
