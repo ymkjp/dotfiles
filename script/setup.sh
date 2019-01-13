@@ -9,10 +9,9 @@ __setup () {
 
   function deployDotfiles
   {
-    ROOT_PATH="${PWD}"
-    DOT_FILES=$(find "${ROOT_PATH}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' !   -name '.gitignore')
-    LOCAL_DOT_FILES=$(find "${ROOT_PATH}" -type f -name '*.local')
-    DOT_DIRS=$(find "${ROOT_PATH}" -type d -name '.*' ! -name '.' ! -name '.git')
+    DOT_FILES=$(find "${PWD}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' !   -name '.gitignore')
+    LOCAL_DOT_FILES=$(find "${PWD}" -type f -name '*.local')
+    DOT_DIRS=$(find "${PWD}" -type d -name '.*' ! -name '.' ! -name '.git')
 
     for FILE in ${DOT_FILES[@]}
     do
@@ -23,6 +22,12 @@ __setup () {
     do
         TARGET="$(basename "${FILE}")"
         [[ ! -e "${HOME}/${TARGET}" ]] && cp "${FILE}" "${HOME}"
+    done
+
+    for DIR in ${DOT_DIRS[@]}
+    do
+        TARGET="$(basename "${DIR}")"
+        [[ ! -e "${HOME}/${TARGET}" ]] && ln -is "${DIR}" "${HOME}"
     done
   }
 
