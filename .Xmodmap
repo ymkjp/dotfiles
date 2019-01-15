@@ -2,5 +2,5 @@
 ! https://wiki.archlinux.org/index.php/xmodmap#Turn_CapsLock_into_Control
 clear lock
 clear control
-keycode 66 = Control_L
+keycode 66 = Control_L Eisu_toggle
 add control = Control_L Control_R
