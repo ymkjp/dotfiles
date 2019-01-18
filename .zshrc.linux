@@ -11,6 +11,15 @@ if [ -e ~/.rbenv ] ; then
     eval "$(rbenv init -)"
 fi
 
+# Node
+[[ -z "$NVM_DIR" ]] && export NVM_DIR="$HOME/.nvm"
+if [[ -d "/usr/share/nvm" ]]; then
+  . /usr/share/nvm/nvm.sh
+  . /usr/share/nvm/bash_completion
+  . /usr/share/nvm/install-nvm-exec
+fi
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 # Ubuntu
 # git clone https://github.com/rupa/z.git ~/.zsh.d/z
 #[[ -f $HOME/.zsh.d/z/z.sh ]] && . $HOME/.zsh.d/z/z.sh
@@ -20,6 +29,9 @@ setKbdLight () {
     dbus-send --system --type=method_call  --dest="org.freedesktop.UPower" "/org/freedesktop/UPower/KbdBacklight" "org.freedesktop.UPower.KbdBacklight.SetBrightness" int32:${1-0}
 }
 if [[ "$(hostname)" = "t480"* ]]; then
+  export GTK_IM_MODULE=ibus
+  export XMODIFIERS=@im=ibus
+  export QT_IM_MODULE=ibus
   setKbdLight 1
   [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 fi
