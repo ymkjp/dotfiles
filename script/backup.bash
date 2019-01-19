@@ -18,7 +18,7 @@ _backup () {
   status () {
   if [[ -f "${PID_FILE}" ]]; then
       PID="$(cat ${PID_FILE})"
-      watch ps -u --pid "${PID}"
+      watch --beep ps -u --pid "${PID}"
     else
       _error "${PID_FILE} was not found"
     fi
