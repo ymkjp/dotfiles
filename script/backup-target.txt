@@ -16,6 +16,7 @@
 # Exclude user files
 - /home/*/.local/share/Trash/**
 - /home/*/.cache/**
+- /home/*/.ssh/**
 - /home/*/Dropbox/**
 - /home/*/.dropbox/**
 - /home/*/tmp/**
