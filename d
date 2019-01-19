@@ -1,1 +1,1 @@
-script/dotfiles.bash
+script/ci.bash
