@@ -9,8 +9,8 @@ _backup () {
   # @TODO rename "mine:backup" to "mine:backup-$(hostname)"
   start () {
     CURRENT_TIME="$(date +'%s')"
-    BACKUP_TARGET="$(dirname $0)/backup-target.txt"
-    LOG_FILE="$(dirname $0)/../log/backup-${CURRENT_TIME}.log"
+    BACKUP_TARGET="$(dirname "$0")/backup-target.txt"
+    LOG_FILE="$(dirname "$0")/../log/backup-${CURRENT_TIME}.log"
     nohup rclone sync --filter-from "${BACKUP_TARGET}" / mine:backup >> "${LOG_FILE}" 2>&1 &
     echo $! > "${PID_FILE}"
   }
@@ -27,14 +27,14 @@ _backup () {
   stop () {
     if [[ -f "${PID_FILE}" ]]; then
       PID="$(cat ${PID_FILE})"
-      kill "${PID}" && rm -f "${PID_FILE}" || _error
+      kill "${PID}" && rm -f "${PID_FILE}"
     else
       _error "${PID_FILE} was not found"
     fi
   }
 
   log () {
-    tail -f "$(dirname $0)/../log/backup-"*".log"
+    tail -f "$(dirname "$0")/../log/backup-"*".log"
   }
 
   _info () {
