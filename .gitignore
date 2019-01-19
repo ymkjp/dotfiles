@@ -1,3 +1,7 @@
 # Ignore
-.vim/backups/
-.vim/bundle/
+/.vim/backups/
+/.vim/bundle/
+/log/*
+!/log/.gitkeep
+/*.out
+/*.pid

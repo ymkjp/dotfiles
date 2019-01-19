@@ -2,7 +2,6 @@ dotfiles
 ========
 [![Build Status](https://travis-ci.org/ymkjp/dotfiles.svg?branch=master)](https://travis-ci.org/ymkjp/dotfiles)
 
-
 ## Supported OS and Dependencies
 * Mac OSX
   * `xcode-select --install`
@@ -16,6 +15,13 @@ bash ${HOME}/dotfiles/setup.sh
 
 # [Mac] Reboot to apply OS settings
 shutdown -r now "Rebooting for $0"
+```
+
+Backup:
+
+```bash
+sudo bash ./script/backup.bash start
+sudo bash ./script/backup.bash stop
 ```
 
 ## Local settings

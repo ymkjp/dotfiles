@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-__setup () {
+_setup () {
   set -u
 
   init () {
@@ -9,22 +9,18 @@ __setup () {
 
   function deployDotfiles
   {
-    DOT_FILES=$(find "${PWD}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' !   -name '.gitignore')
-    LOCAL_DOT_FILES=$(find "${PWD}" -type f -name '*.local')
-    DOT_DIRS=$(find "${PWD}" -type d -name '.*' ! -name '.' ! -name '.git')
-
-    for FILE in ${DOT_FILES[@]}
+    for FILE in $(find "${PWD}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' !   -name '.gitignore')
     do
         ln -is "${FILE}" "${HOME}"
     done
 
-    for FILE in ${LOCAL_DOT_FILES[@]}
+    for FILE in $(find "${PWD}" -type f -name '*.local')
     do
         TARGET="$(basename "${FILE}")"
         [[ ! -e "${HOME}/${TARGET}" ]] && cp "${FILE}" "${HOME}"
     done
 
-    for DIR in ${DOT_DIRS[@]}
+    for DIR in $(find "${PWD}" -type d -name '.*' ! -name '.' ! -name '.git')
     do
         TARGET="$(basename "${DIR}")"
         [[ ! -e "${HOME}/${TARGET}" ]] && ln -is "${DIR}" "${HOME}"
@@ -53,18 +49,6 @@ __setup () {
     fi
   }
 
-  function installPecoLinux
-  {
-    PECO_BIN_URL="https://github.com/peco/peco/releases/download/v0.3.5/peco_linux_386.tar.gz"
-    PECO_ROOT_DIR="${HOME}/bin/peco_linux_386"
-    if type peco > /dev/null 2>&1; then
-        return 0
-    else
-        curl -SL "${PECO_BIN_URL}" | tar xvz -C ~/bin \
-            && ln -s "${PECO_ROOT_DIR}/peco" ~/bin
-    fi
-  }
-
   function installBrewKegs
   {
     brew install --with-default-name coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt
@@ -89,14 +73,6 @@ __setup () {
     if type tmux > /dev/null 2>&1; then
       git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     fi
-
-  }
-
-  function installNeobundleVim
-  {
-    NEOBUNDLE_INSTALL_URL="https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh"
-    NEOBUNDLE_ROOT_DIR="${HOME}/.vim/bundle/neobundle.vim"
-    [[ ! -d "${NEOBUNDLE_ROOT_DIR}" ]] && curl -LS ${NEOBUNDLE_INSTALL_URL} | sh > /dev/null
   }
 
   function installGitContrib
@@ -111,32 +87,32 @@ __setup () {
     fi
   }
 
-  @info () {
+  _info () {
     MESSAGE="${1:-''}"
     echo "[$(basename "$0")] INFO: ${MESSAGE}"
   }
 
-  @error () {
+  _error () {
     MESSAGE="${1:-'Something went wrong.'}"
     echo "[$(basename "$0")] ERROR: ${MESSAGE}" >&2
     exit 1
   }
 
-  @usage () {
+  _usage () {
     readonly SCRIPT_NAME=$(basename "$0")
     echo -e "${SCRIPT_NAME} -- dotfiles
     \\nUsage: ${SCRIPT_NAME} [arguments]
     \\nArguments:"
-    declare -F | awk '{print "\t" $3}' | grep -v "${SCRIPT_NAME}"
+    declare -F | awk '{print "\t" $3}' | grep -v $'^\t_'
   }
 
-  if [ $# = 0 ]; then
-    @usage
-  elif [ "$(type -t "$1")" = "function" ]; then
+  if [[ $# = 0 ]]; then
+    _usage
+  elif [[ "$(type -t "$1")" = "function" ]]; then
     $1
   else
-    @usage && @error "Command '$1' not found."
+    _usage && _error "Command '$1' not found."
   fi
 }
 
-__setup "$@"
+_setup "$@"

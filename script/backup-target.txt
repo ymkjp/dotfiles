@@ -1,0 +1,21 @@
+# https://rclone.org/filtering/
++ /
+- /dev/**
+- /proc/**
+- /sys/**
+- /tmp/**
+- /run/**
+- /mnt/**
+- /media/**
+- /lost+found
+
+# Exclude cache and temporary files
+- /var/cache/**
+- /var/tmp/**
+
+# Exclude user files
+- /home/*/.local/share/Trash/**
+- /home/*/.cache/**
+- /home/*/Dropbox/**
+- /home/*/.dropbox/**
+- /home/*/tmp/**
