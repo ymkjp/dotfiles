@@ -11,14 +11,14 @@ _backup () {
     CURRENT_TIME="$(date +'%s')"
     BACKUP_TARGET="$(dirname $0)/backup-target.txt"
     LOG_FILE="$(dirname $0)/../log/backup-${CURRENT_TIME}.log"
-    nohup rclone copy --filter-from "${BACKUP_TARGET}" / mine:backup >> "${LOG_FILE}" 2>&1 &
+    nohup rclone sync --filter-from "${BACKUP_TARGET}" / mine:backup >> "${LOG_FILE}" 2>&1 &
     echo $! > "${PID_FILE}"
   }
 
   status () {
   if [[ -f "${PID_FILE}" ]]; then
       PID="$(cat ${PID_FILE})"
-      watch --beep ps -u --pid "${PID}"
+      watch --beep --errexit ps -u --pid "${PID}"
     else
       _error "${PID_FILE} was not found"
     fi
