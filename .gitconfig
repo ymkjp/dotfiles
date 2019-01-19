@@ -2,7 +2,7 @@
 # https://gist.github.com/4117588
 # =====
 [core]
-	excludesfile = /Users/kyamamoto/.gitignore_global
+	excludesfile = ~/.gitignore_global
   # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
   pager = less -r
 	editor = vim
@@ -97,7 +97,7 @@
 	email =
 	signingkey = 0D082C85EFA5691B
 [commit]
-	template = /Users/kyamamoto/.stCommitMsg
+	template = ~/.stCommitMsg
 [include]
     # git version must be 1.7.10 or higher to use [include]
     path = ~/.gitconfig.local
