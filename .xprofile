@@ -1,2 +1,8 @@
 
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+
+[[ -x "$(command -v xbindkeys)" ]] && xbindkeys
