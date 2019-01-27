@@ -6,3 +6,8 @@ export QT_IM_MODULE=ibus
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 [[ -x "$(command -v xbindkeys)" ]] && xbindkeys
+
+if [[ -x /usr/bin/xkeysnail ]]; then
+  xhost +SI:localuser:xkeysnail
+  sudo -u xkeysnail DISPLAY=:1 /usr/bin/xkeysnail /etc/xkeysnail/config.py &
+fi
