@@ -10,13 +10,15 @@
 - /lost+found
 
 # Exclude cache and temporary files
+- /boot/$RECYCLE.BIN/**
 - /var/cache/**
 - /var/tmp/**
 
-# Exclude user files
+# Exclude user files (secret, temporary or cloud-oriented)
 - /home/*/.local/share/Trash/**
 - /home/*/.cache/**
 - /home/*/.ssh/**
 - /home/*/Dropbox/**
 - /home/*/.dropbox/**
 - /home/*/tmp/**
+- /home/*/.config/google-chrome/**
