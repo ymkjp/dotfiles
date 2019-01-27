@@ -192,6 +192,10 @@ linux*)
     ;;
 esac
 
+HOST_CONF="${HOME}/.zshrc.$(hostname)"
+[[ -f "${HOST_CONF}" ]] && . "${HOST_CONF}"
+
+
 # alias
 setopt complete_aliases
 [ -f ~/.zshrc.alias ] && . ~/.zshrc.alias
