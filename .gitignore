@@ -5,3 +5,4 @@
 !/log/.gitkeep
 /*.out
 /*.pid
+/.*.local
