@@ -9,5 +9,5 @@ export QT_IM_MODULE=ibus
 
 if [[ -x /usr/bin/xkeysnail ]]; then
   xhost +SI:localuser:xkeysnail
-  sudo -u xkeysnail DISPLAY=:1 /usr/bin/xkeysnail /etc/xkeysnail/config.py &
+  systemctl --user restart xkeysnail.service
 fi
