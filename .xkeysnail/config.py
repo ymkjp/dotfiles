@@ -24,15 +24,15 @@ define_multipurpose_modmap({
 # }, "Esc")
 
 
-# Emacs-like keybindings in non-Emacs applications
-define_keymap(lambda wm_class: wm_class not in ("Emacs", "URxvt"), {
-    # Cursor
-    K("C-h"): with_mark(K("backspace")),
-    # # Beginning/End of line
-    # K("C-a"): with_mark(K("home")),
-    # K("C-e"): with_mark(K("end")),
-    # Newline
-    K("C-j"): K("enter"),
-    # Kill line
-    K("C-k"): [K("Shift-end"), K("C-x"), set_mark(False)],
-}, "Emacs-like keys")
+# # Emacs-like keybindings in non-Emacs applications
+# define_keymap(lambda wm_class: wm_class not in ("Emacs", "URxvt"), {
+#     # Cursor
+#     # K("C-h"): with_mark(K("backspace")),
+#     # # Beginning/End of line
+#     # K("C-a"): with_mark(K("home")),
+#     # K("C-e"): with_mark(K("end")),
+#     # Newline
+#     # K("C-j"): K("enter"),
+#     # Kill line
+#     # K("C-k"): [K("Shift-end"), K("C-x"), set_mark(False)],
+# }, "Emacs-like keys")
