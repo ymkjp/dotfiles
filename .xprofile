@@ -11,3 +11,5 @@ if [[ -x /usr/bin/xkeysnail ]]; then
   xhost +SI:localuser:xkeysnail
   systemctl --user restart xkeysnail.service
 fi
+
+setKbdLight 1
