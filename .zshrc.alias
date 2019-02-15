@@ -44,10 +44,10 @@ tm () {
 }
 
 jj () {
-  if [ $# = 0 ]; then
+  if [[ $# = 0 ]]; then
     ghq look "$(ghq list P)"
   else
-    ghq look "$(ghq list P --query "$1")"
+    ghq look "$(ghq list G "$1" P --query "$1")"
   fi
 }
 
