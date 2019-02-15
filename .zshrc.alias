@@ -47,7 +47,13 @@ jj () {
   if [[ $# = 0 ]]; then
     ghq look "$(ghq list P)"
   else
-    ghq look "$(ghq list G "$1" P --query "$1")"
+    local FOUND_LINE="$(ghq list G "$1")"
+    local LINE_NUM="$(echo "${FOUND_LINE}" | wc -l | tr -d '[:space:]')"
+    if [[ "${LINE_NUM}" == "1" ]]; then
+      ghq look "${FOUND_LINE}"
+    else
+      ghq look "$(ghq list P --query "$1")"
+    fi
   fi
 }
 
