@@ -7,3 +7,5 @@ setKbdLight () {
 }
 
 setKbdLight 1
+
+alias pbcopy='copyq copy -'
