@@ -10,3 +10,5 @@ setKbdLight 1
 
 alias pbcopy='copyq copy -'
 alias open='xdg-open'
+
+[[ -r "/usr/share/z/z.sh" ]] && . /usr/share/z/z.sh
