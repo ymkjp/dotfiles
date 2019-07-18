@@ -36,6 +36,10 @@ mc () {
     mkdir -p "$1" && cd "$1" || return
 }
 
+i () {
+  idea . &
+}
+
 tm () {
   if [[ $# = 0 ]]; then
     tmux attach || tmux new

@@ -2,5 +2,20 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/VimClojure" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/neobundle.vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/neocomplcache" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/neomru.vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/simple-javascript-indenter" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/syntastic" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/unite.vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/vim-endwise" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/vim-hybrid" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/vim-javascript-syntax" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/vim-rails" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/vim-slime" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/vim-tags" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/vim-wakatime" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vim/bundle/vimfiler" vcs="Git" />
   </component>
 </project>
