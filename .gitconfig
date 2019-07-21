@@ -6,6 +6,7 @@
   # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
   pager = less -r
 	editor = vim
+	autocrlf = input
 [pager]
     log = diff-highlight | less -R
     show = diff-highlight | less -R
@@ -101,3 +102,7 @@
 [include]
     # git version must be 1.7.10 or higher to use [include]
     path = ~/.gitconfig.local
+
+# This next lines include Netlify's Git Credential Helper configuration in your Git configuration.
+[include]
+  path = /home/i05/.netlify/helper/git-config

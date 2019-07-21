@@ -164,8 +164,8 @@ fi
 # ln -s ~/local/cafeobj-1.5.5-sbcl-x64Darwin ~/bin/cafeobj
 [[ -e "$HOME/bin/cafeobj/bin" ]] && PATH=$HOME/bin/cafeobj/bin:$PATH
 
-# Atlassian Products
-[[ -e "$HOME/bin/aget" ]] && PATH=$HOME/bin/aget:$PATH
+# The next line updates PATH for Netlify's Git Credential Helper.
+if [ -f '/home/i05/.netlify/helper/path.zsh.inc' ]; then source '/home/i05/.netlify/helper/path.zsh.inc'; fi
 
 # PAGER
 # ===
