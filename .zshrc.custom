@@ -28,6 +28,22 @@ export GOPATH=$HOME
 # Java
 [[ -f /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
 
+# Add JDKs by `jenv add $(/usr/libexec/java_home)`
+# Others `/usr/libexec/java_home -V`
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+
+# Gradle
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -f "$HOME/.sdkman/bin/sdkman-init.sh" ]] && . "$HOME/.sdkman/bin/sdkman-init.sh"
+alias sp="${SDKMAN_DIR}/candidates/springboot/current/bin/spring"
+
+export MAVEN_OPTS="-Xmx2g -XX:MaxMetaspaceSize=512m"
+
+# Python (where BASH_ENV is not defined)
+[[ -e "$HOME/.pyenv/bin" ]] && PATH="$HOME/.pyenv/bin:$PATH"
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
 # === Complement ===
 # Git completion http://blog.qnyp.com/2013/05/14/zsh-git-completion/
 fpath=(~/.zsh/completion $fpath)
