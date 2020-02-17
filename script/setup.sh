@@ -4,7 +4,19 @@ _setup () {
   set -u
 
   init () {
+    createFileTree
+    deployDotfiles
+    setupMac
+    checkDarwinDependencies
+    installBrewKegs
+    setupShell
+    installGitContrib
+  }
+
+  function createFileTree
+  {
     mkdir -p ~/bin ~/tmp ~/src
+    touch ~/.zshrc.local ~/.gitconfig.local
   }
 
   function deployDotfiles
@@ -51,14 +63,19 @@ _setup () {
 
   function installBrewKegs
   {
-    brew install --with-default-name coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt
+    brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt
 
     brew install zsh vim jq nkf tmux reattach-to-user-namespace wget z ssh-copy-id \
-        gibo tcptraceroute peco
+        gibo tcptraceroute peco \
+        pyenv-virtualenv nvm
 
     brew cask install \
-        karabiner-elements iterm2 bettertouchtool vagrant google-chrome dropbox \
-        visual-studio-code charles imageoptim docker bartender
+        karabiner-elements iterm2 bettertouchtool vagrant google-chrome google-japanese-ime dropbox \
+        visual-studio-code charles imageoptim docker bartender alfred dash
+
+    brew tap homebrew/cask-versions
+
+    brew cask install adoptopenjdk8
   }
 
   function setupShell

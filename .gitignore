@@ -6,3 +6,5 @@
 /*.out
 /*.pid
 /.*.local
+/.config/
+!/.config/karabiner
