@@ -50,17 +50,7 @@ tm () {
 }
 
 jj () {
-  if [[ $# = 0 ]]; then
-    ghq look "$(ghq list P)"
-  else
-    local FOUND_LINE="$(ghq list G "$1")"
-    local LINE_NUM="$(echo "${FOUND_LINE}" | wc -l | tr -d '[:space:]')"
-    if [[ "${LINE_NUM}" == "1" ]]; then
-      ghq look "${FOUND_LINE}"
-    else
-      ghq look "$(ghq list P --query "$1")"
-    fi
-  fi
+  cd "$(ghq list | peco --query "$1" --select-1 | xargs -I{} ghq list --full-path {} )"
 }
 
 da () {
