@@ -49,6 +49,10 @@ tm () {
   fi
 }
 
+gg () {
+  ghq get --look "$1"
+}
+
 jj () {
   cd "$(ghq list | peco --query "$1" --select-1 | xargs -I{} ghq list --full-path {} )"
 }
@@ -62,9 +66,6 @@ da () {
   fi
   docker exec -it "$(docker ps --format '{{.ID}}\t{{.Image}}\t{{.Command}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}' | peco --select-1 | awk '{print $1}')" sh
 }
-
-# npm install -g git-grep-edit
-if which git-grep-edit > /dev/null; then alias gg='git-grep-edit'; fi
 
 # https://github.com/mollifier/anyframe
 bindkey '^x^k' anyframe-widget-checkout-git-branch
