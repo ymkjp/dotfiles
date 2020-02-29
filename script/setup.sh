@@ -71,7 +71,7 @@ _setup () {
 
     brew cask install \
         karabiner-elements iterm2 bettertouchtool vagrant google-chrome google-japanese-ime dropbox \
-        visual-studio-code charles imageoptim docker bartender alfred dash
+        visual-studio-code charles imageoptim docker bartender alfred dash virtualbox
 
     brew tap homebrew/cask-versions
 

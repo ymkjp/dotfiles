@@ -11,7 +11,6 @@
     log = diff-highlight | less -R
     show = diff-highlight | less -R
     diff = diff-highlight | less -R
-
 [diff]
   compactionHeuristic = true
 [color]
@@ -33,6 +32,7 @@
     br = browse-remote
     ci = commit
     co = checkout
+    coo = !git branch --sort=-authordate | grep -v -e '->' -e '*' | peco | xargs -I{} git checkout {}
     cb = checkout -b
     col = checkout @{-1}
     d = diff
@@ -51,9 +51,6 @@
     st = status
     su = submodule update --init --recursive
     sp = git submodule foreach 'git checkout master && git pull origin master'
-
-# git-browse-remote
-# http://subtech.g.hatena.ne.jp/motemen/20120917/1347889804
 
 [browse-remote "github.com"]
     rev = https://{host}/{path}/commit/{commit}
@@ -83,7 +80,7 @@
 	autosquash = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
