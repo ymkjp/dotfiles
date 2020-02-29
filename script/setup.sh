@@ -41,10 +41,6 @@ _setup () {
 
   function setupMac
   {
-    # defaults delete -g KeyRepeat
-    # defaults delete -g InitialKeyRepeat
-    #      defaults write NSGlobalDomain InitialKeyRepeat -int 12
-    #      defaults write NSGlobalDomain KeyRepeat -int 1
     defaults write NSGlobalDomain AppleShowAllExtensions -bool true
     defaults write com.apple.finder AppleShowAllFiles -boolean true
     defaults write com.apple.desktopservices DSDontWriteNetworkStores true
