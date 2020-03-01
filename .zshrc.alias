@@ -55,7 +55,7 @@ gg () {
 }
 
 jj () {
-  cd "$(ghq list | peco --query "$1" --select-1 | xargs -I{} ghq list --full-path {} )"
+  cd "$(ghq list | peco --query "$1" --select-1 | xargs -I{} ghq list --exact --full-path {} )"
 }
 
 da () {
