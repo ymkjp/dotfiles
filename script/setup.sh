@@ -63,7 +63,7 @@ _setup () {
 
     brew install git zsh vim jq nkf tmux reattach-to-user-namespace wget z ssh-copy-id \
         gibo tcptraceroute ghq peco \
-        pyenv-virtualenv nvm
+        pyenv-virtualenv nvm watch direnv
 
     brew cask install \
         karabiner-elements iterm2 bettertouchtool vagrant google-chrome google-japanese-ime dropbox \

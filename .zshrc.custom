@@ -22,20 +22,18 @@ export PATH=/usr/local/git/bin:$PATH
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=${HOME}/bin:$PATH
 
+# Env
+if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
+
 # Golang
 export GOPATH=$HOME
 
 # Java
 [[ -f /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
 
-# Add JDKs by `jenv add $(/usr/libexec/java_home)`
-# Others `/usr/libexec/java_home -V`
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-
 # Gradle
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -f "$HOME/.sdkman/bin/sdkman-init.sh" ]] && . "$HOME/.sdkman/bin/sdkman-init.sh"
-alias sp="${SDKMAN_DIR}/candidates/springboot/current/bin/spring"
 
 export MAVEN_OPTS="-Xmx2g -XX:MaxMetaspaceSize=512m"
 
