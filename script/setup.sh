@@ -9,6 +9,7 @@ _setup () {
     setupMac
     checkDarwinDependencies
     installBrewKegs
+    installBrewCasks
     setupShell
     installGitContrib
   }
@@ -64,7 +65,10 @@ _setup () {
     brew install git zsh vim jq nkf tmux reattach-to-user-namespace wget z ssh-copy-id \
         gibo tcptraceroute ghq peco \
         pyenv-virtualenv nvm watch direnv
+  }
 
+  function installBrewCasks
+  {
     brew cask install \
         karabiner-elements iterm2 bettertouchtool vagrant google-chrome google-japanese-ime dropbox \
         visual-studio-code charles imageoptim docker bartender alfred dash virtualbox
