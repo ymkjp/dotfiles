@@ -34,3 +34,10 @@ Set up local settings for your own
     name  = YOUR_NAME
     email = example@example.com
 ```
+
+Install optional packages:
+
+```
+rbenv exec bundle install
+```
+
