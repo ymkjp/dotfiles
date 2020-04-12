@@ -46,6 +46,7 @@ _setup () {
     defaults write com.apple.finder AppleShowAllFiles -boolean true
     defaults write com.apple.desktopservices DSDontWriteNetworkStores true
     defaults write com.apple.ImageCapture disableHotPlug -bool NO
+    defaults write com.apple.systempreferences TMShowUnsupportedNetworkVolumes 1
   }
 
   function checkDarwinDependencies
