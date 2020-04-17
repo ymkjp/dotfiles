@@ -63,7 +63,7 @@ _setup () {
   {
     brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt
 
-    brew install git zsh vim jq nkf tmux reattach-to-user-namespace wget z ssh-copy-id \
+    brew install git git-lfs zsh vim jq nkf tmux reattach-to-user-namespace wget z ssh-copy-id \
         gibo tcptraceroute ghq peco \
         pyenv-virtualenv nvm watch direnv
   }
