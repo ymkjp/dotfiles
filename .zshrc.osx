@@ -12,9 +12,6 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 export GPG_TTY=$(tty)
 
-# z like autojump
-_Z_CMD=j
-. `brew --prefix`/etc/profile.d/z.sh
 
 # Ruby
 # if which gem > /dev/null; then
@@ -78,14 +75,22 @@ alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 
 # Homebrew
 if which brew > /dev/null; then
-    # Jump
-    . `brew --prefix`/etc/profile.d/z.sh
+  # Jump
+  . `brew --prefix`/etc/profile.d/z.sh
 
-    # Node
-    export NVM_DIR="$HOME/.nvm"
-    mkdir -p ${NVM_DIR}
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  # autojump
+  _Z_CMD=j
+  . `brew --prefix`/etc/profile.d/z.sh
+
+  # gcloud
+  . "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+  . "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+  # Node
+  export NVM_DIR="$HOME/.nvm"
+  mkdir -p ${NVM_DIR}
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 fi
 
 #vim:set ft=zsh:
