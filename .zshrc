@@ -40,7 +40,7 @@ export DISABLE_AUTO_TITLE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-export plugins=(docker aws go emoji python tmux z iterm2 branch git history vagrant)
+export plugins=(docker aws golang emoji python tmux z iterm2 branch git history vagrant)
 
 source "$ZSH/oh-my-zsh.sh"
 
