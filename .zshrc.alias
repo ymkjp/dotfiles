@@ -75,9 +75,9 @@ bindkey '^x^j' anyframe-widget-insert-git-branch
 
 # Networks
 alias troute='traceroute -P icmp -S'
-alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias localip='ipconfig getifaddr en1'
-alias ips='ifconfig -a'
+alias myips='ifconfig -a'
 
 # alias -s (suffix)
 # http://d.hatena.ne.jp/itchyny/20130227/1361933011
