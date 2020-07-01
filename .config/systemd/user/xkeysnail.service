@@ -7,10 +7,8 @@ Environment=DISPLAY=:1
 ExecStartPre=/usr/bin/xhost +SI:localuser:root
 ExecStart=/usr/local/bin/xkeysnail /etc/xkeysnail/config.py
 KillMode=process
-;StandardOutput=null
-;StandardError=journal
-;Restart=always
-;RestartSec=10
+Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=default.target
