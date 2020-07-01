@@ -6,5 +6,8 @@
 /*.out
 /*.pid
 /.*.local
-/.config/
-!/.config/karabiner
+/.config
+!/.config/
+/.config/*
+!/.config/karabiner/
+!/.config/systemd/

@@ -1,0 +1,12 @@
+[Unit]
+Description=Xkeysnail Service
+
+[Service]
+Type=idle
+Environment=DISPLAY=:1
+ExecStart=/usr/bin/sudo -u xkeysnail /usr/local/bin/xkeysnail /etc/xkeysnail/config.py
+ExecStop=/usr/bin/sudo -u xkeysnail /usr/bin/pkill xkeysnail
+StandardOutput=null
+StandardError=journal
+;Restart=always
+;RestartSec=10
