@@ -49,8 +49,7 @@ tm () {
   fi
 }
 
-alias gg='' &&  unalias gg
-gg () {
+clone () {
   ghq get --look "$1"
 }
 
