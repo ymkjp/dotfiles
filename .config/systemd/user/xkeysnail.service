@@ -5,7 +5,7 @@ Description=Xkeysnail Service
 Type=simple
 Environment=DISPLAY=:1
 ExecStartPre=/usr/bin/xhost +SI:localuser:root
-ExecStart=/usr/local/bin/xkeysnail /etc/xkeysnail/config.py
+ExecStart=/home/i05/.pyenv/shims/xkeysnail /home/i05/dotfiles/.xkeysnail/config.py
 KillMode=process
 Restart=always
 RestartSec=10
