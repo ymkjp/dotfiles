@@ -2,7 +2,6 @@
 # https://gist.github.com/4117588
 # =====
 [core]
-	excludesfile = ~/.gitignore_global
   # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
   pager = less -r
 	editor = vim
@@ -82,7 +81,7 @@
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 # IntelliJ mergetool config
 [mergetool "idea"]
@@ -103,3 +102,5 @@
 # This next lines include Netlify's Git Credential Helper configuration in your Git configuration.
 [include]
   path = /home/i05/.netlify/helper/git-config
+[init]
+	defaultBranch = main

@@ -22,7 +22,7 @@ _setup () {
 
   function deployDotfiles
   {
-    for FILE in $(find "${PWD}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' !   -name '.gitignore')
+    for FILE in $(find "${PWD}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' !   -name '.gitignore*')
     do
         ln -is "${FILE}" "${HOME}"
     done
@@ -38,6 +38,8 @@ _setup () {
         TARGET="$(basename "${DIR}")"
         [[ ! -e "${HOME}/${TARGET}" ]] && ln -is "${DIR}" "${HOME}"
     done
+
+    mkdir -p "${HOME}/.config/git" && ln -is "${PWD}/.gitignore_global" "${HOME}/.config/git/ignore"
   }
 
   function setupMac
