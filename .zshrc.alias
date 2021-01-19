@@ -49,7 +49,7 @@ tm () {
   fi
 }
 
-clone () {
+ggg () {
   ghq get --look "$1"
 }
 
