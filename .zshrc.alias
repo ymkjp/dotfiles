@@ -49,7 +49,8 @@ tm () {
   fi
 }
 
-ggg () {
+[[ ! -x "$(command -v gg)" ]] && unalias gg
+gg () {
   ghq get --look "$1"
 }
 
