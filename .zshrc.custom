@@ -31,9 +31,8 @@ export GOPATH=$HOME
 # Java
 [[ -f /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
 
-# Gradle
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -f "$HOME/.sdkman/bin/sdkman-init.sh" ]] && . "$HOME/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 export MAVEN_OPTS="-Xmx2g -XX:MaxMetaspaceSize=512m"
 

@@ -71,11 +71,6 @@
 
 [credential]
 	helper = osxkeychain
-[filter "lfs"]
-	required = true
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	clean = git-lfs clean -- %f
 [rebase]
 	autosquash = true
 [difftool "sourcetree"]
@@ -96,6 +91,7 @@
 	signingkey = 0D082C85EFA5691B
 [commit]
 	template = ~/.stCommitMsg
+	gpgsign = true
 [include]
     # git version must be 1.7.10 or higher to use [include]
     path = ~/.gitconfig.local
@@ -105,3 +101,8 @@
   path = /home/i05/.netlify/helper/git-config
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
