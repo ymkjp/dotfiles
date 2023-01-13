@@ -6,7 +6,7 @@ dotfiles
 * Mac OSX
   * `xcode-select --install`
   * [Homebrew](http://brew.sh/) 
-* Debian GNU/Linux, Ubuntu, CentOS
+* Arch Linux, Debian GNU/Linux, Ubuntu, CentOS
 
 ## Usage
 ```
@@ -35,9 +35,11 @@ Set up local settings for your own
     email = example@example.com
 ```
 
-Install optional packages:
+## Network settings
 
-```
-rbenv exec bundle install
-```
+(Optional) to turn off IPv6:
 
+```bash
+networksetup -listallnetworkservices
+networksetup -setv6off Wi-Fi
+````
