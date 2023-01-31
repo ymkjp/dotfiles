@@ -12,11 +12,7 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 export GPG_TTY=$(tty)
 
-
 # Ruby
-# if which gem > /dev/null; then
-    # [[ `gem --version` > "2.2.0" ]] && export RUBYGEMS_GEMDEPS=-
-# fi
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then
     eval "$(rbenv init -)"
@@ -31,11 +27,6 @@ alias ctags='/Applications/MacVim.app/Contents/MacOS/ctags "$@"'
 
 # Skype
 alias skype2='su guest -c /Applications/Skype.app/Contents/MacOS/Skype'
-
-# use SQuirreL SQL to query Hive in Java 7
-# alias jdk6home="export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)"
-# alias jdk7home="export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)"
-alias jdk8home="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
 
 # Docker on OSX
 docker () {
@@ -74,23 +65,35 @@ alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Goo
 alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 
 # Homebrew
-if which brew > /dev/null; then
-  # Jump
-  . `brew --prefix`/etc/profile.d/z.sh
-
-  # autojump
-  _Z_CMD=j
-  . `brew --prefix`/etc/profile.d/z.sh
-
-  # gcloud
-  . "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-  . "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
-  # Node
-  export NVM_DIR="$HOME/.nvm"
-  mkdir -p ${NVM_DIR}
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+if  which brew > /dev/null; then
+  echo "ERROR: install Homebrew" >&2
 fi
+
+# Util commands
+export PATH="$(brew --prefix util-linux)/bin:$PATH"
+export PATH="$(brew --prefix git)/bin:$PATH"
+
+# Jump
+. `brew --prefix`/etc/profile.d/z.sh
+
+# autojump
+_Z_CMD=j
+. `brew --prefix`/etc/profile.d/z.sh
+
+# gcloud
+. "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+. "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+# Java
+export PATH="$(brew --prefix mvnvm)/bin:$PATH"
+
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
+# Node
+export NVM_DIR="$HOME/.nvm"
+mkdir -p ${NVM_DIR}
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 #vim:set ft=zsh:

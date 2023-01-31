@@ -18,7 +18,7 @@ typeset -U sudo_path
 #            /: Ignore all except directory
 sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
 
-export PATH=/usr/local/git/bin:$PATH
+
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=${HOME}/bin:$PATH
 
@@ -27,14 +27,6 @@ if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
 
 # Golang
 export GOPATH=$HOME
-
-# Java
-[[ -f /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
-
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
-export MAVEN_OPTS="-Xmx2g -XX:MaxMetaspaceSize=512m"
 
 # Python (where BASH_ENV is not defined)
 if [[ -e "$HOME/.pyenv" ]]; then
