@@ -12,14 +12,14 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 export GPG_TTY=$(tty)
 
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Ruby
-export RBENV_ROOT=/usr/local/var/rbenv
+export RBENV_ROOT=$(brew --prefix rbenv)
 if which rbenv > /dev/null; then
     eval "$(rbenv init -)"
 fi
-
-# OSX
-alias T='trash'
 
 # MacVim
 alias mvi='mvim --remote-tab-silent'
@@ -64,14 +64,9 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 
-# Homebrew
-if  which brew > /dev/null; then
-  echo "ERROR: install Homebrew" >&2
-fi
-
 # Util commands
 export PATH="$(brew --prefix util-linux)/bin:$PATH"
-export PATH="$(brew --prefix git)/bin:$PATH"
+export PATH="$(brew --prefix git)/bin:$(brew --prefix git)/share/git-core/contrib/diff-highlight:$PATH"
 
 # Jump
 . `brew --prefix`/etc/profile.d/z.sh
@@ -81,8 +76,9 @@ _Z_CMD=j
 . `brew --prefix`/etc/profile.d/z.sh
 
 # gcloud
-. "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-. "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+export GCLOUD_SDK_PATH="$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+[[ -d "${GCLOUD_SDK_PATH}" ]] && . "${GCLOUD_SDK_PATH}/path.zsh.inc"
+[[ -d "${GCLOUD_SDK_PATH}" ]] && . "${GCLOUD_SDK_PATH}/completion.zsh.inc"
 
 # Java
 export PATH="$(brew --prefix mvnvm)/bin:$PATH"

@@ -18,6 +18,9 @@ alias jc='journalctl -xe'
 alias docker-clean='docker system prune -a --volumes'
 alias k='kubectl'
 
+# OSX
+alias T='trash'
+
 alias dstat-full='dstat --epoch --cpu --load --mem --disk --io --net'
 alias dstat-top='dstat --epoch --all --top-cpu-adv --top-io-adv --top-bio-adv --top-mem --top-oom --load'
 
