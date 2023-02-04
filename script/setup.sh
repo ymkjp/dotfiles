@@ -11,7 +11,6 @@ _setup () {
     installBrewKegs
     installBrewCasks
     setupShell
-    installGitContrib
   }
 
   function createFileTree
@@ -48,7 +47,7 @@ _setup () {
     defaults write com.apple.finder AppleShowAllFiles -boolean true
     defaults write com.apple.desktopservices DSDontWriteNetworkStores true
     defaults write com.apple.ImageCapture disableHotPlug -bool NO
-    defaults write com.apple.systempreferences TMShowUnsupportedNetworkVolumes 1
+    launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist
   }
 
   function checkDarwinDependencies
@@ -63,46 +62,34 @@ _setup () {
 
   function installBrewKegs
   {
-    brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt
-
-    brew install git git-lfs zsh vim jq nkf tmux reattach-to-user-namespace wget z ssh-copy-id \
-        gibo tcptraceroute ghq peco \
-        pyenv-virtualenv nvm watch direnv
+    brew tap sdkman/tap
+    brew install coreutils util-linux findutils \
+        git git-lfs zsh vim jq tmux reattach-to-user-namespace wget z ssh-copy-id \
+        gibo tcptraceroute ghq \
+        go mvnvm pyenv-virtualenv nvm yarn rbenv watch direnv nebula sdkman-cli
   }
 
   function installBrewCasks
   {
-    brew cask install \
-        karabiner-elements iterm2 bettertouchtool vagrant google-chrome google-japanese-ime dropbox \
-        visual-studio-code charles imageoptim docker bartender alfred dash virtualbox keycastr
+    brew install --cask \
+        karabiner-elements iterm2 bettertouchtool google-japanese-ime dropbox \
+        google-cloud-sdk authy firefox \
+        jetbrains-toolbox docker bartender alfred dash meetingbar deepl grammarly hazel
 
     brew tap homebrew/cask-versions
-    brew cask install adoptopenjdk8
   }
 
   function setupShell
   {
     if type zsh > /dev/null 2>&1; then
       # Install oh-my-zsh
-      [[ ! -d ~/.oh-my-zsh ]] && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+      [[ ! -d ~/.oh-my-zsh ]] && git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
       [[ ! -d ~/.zsh/antigen ]] && git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
       # Create symlink for tmux
       [[ ! -s ~/bin/zsh ]] && ln -s "$(command -v zsh)" ~/bin/zsh
     fi
     if type tmux > /dev/null 2>&1; then
       git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    fi
-  }
-
-  function installGitContrib
-  {
-    GIT_CONTRIB_URL="https://raw.githubusercontent.com/git/git/v2.12.5/contrib/diff-highlight/diff-highlight"
-    GIT_CONTRIB_BIN="${HOME}/bin/diff-highlight"
-    if type diff-highlight > /dev/null 2>&1; then
-        return 0
-    else
-        curl -LS "${GIT_CONTRIB_URL}" -o "${GIT_CONTRIB_BIN}" \
-            && chmod +x "${GIT_CONTRIB_BIN}"
     fi
   }
 

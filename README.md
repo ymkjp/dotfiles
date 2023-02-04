@@ -10,8 +10,10 @@ dotfiles
 
 ## Usage
 ```
-git clone https://github.com/ymkjp/dotfiles.git ${HOME}
-bash ${HOME}/dotfiles/setup.sh
+cd ${HOME}
+git clone https://github.com/ymkjp/dotfiles.git
+cd ./dotfiles
+bash ./script/setup.sh init
 
 # [Mac] Reboot to apply OS settings
 shutdown -r now "Rebooting for $0"
