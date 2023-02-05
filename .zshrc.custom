@@ -72,7 +72,7 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*:default' list-colors ""
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
-#zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' use-cache yes
 #zstyle ':completion:*' verbose yes
 
 zstyle ':completion:*' completer _expand _complete _match _prefix _list _history
@@ -174,13 +174,6 @@ elif [ ! -S "$SSH_AUTH_SOCK" ]; then
 elif [ ! -L "$SSH_AUTH_SOCK" ]; then
   ln -snf "$SSH_AUTH_SOCK" $_SSH_AGENT && export SSH_AUTH_SOCK=$_SSH_AGENT
 fi
-
-# CafeOBJ
-# ln -s ~/local/cafeobj-1.5.5-sbcl-x64Darwin ~/bin/cafeobj
-[[ -e "$HOME/bin/cafeobj/bin" ]] && PATH=$HOME/bin/cafeobj/bin:$PATH
-
-# The next line updates PATH for Netlify's Git Credential Helper.
-if [ -f '/home/i05/.netlify/helper/path.zsh.inc' ]; then source '/home/i05/.netlify/helper/path.zsh.inc'; fi
 
 # PAGER
 # ===
