@@ -18,11 +18,9 @@
 [branch]
     autosetuprebase = always
 [merge]
-    tool = idea # vimdiff
-    # from 1.7.6
+    tool = idea
     ff = false
 [pull]
-    # from 1.7.9
     rebase = true
 [alias]
     # http://oli.jp/2012/git-powerup/
@@ -75,7 +73,7 @@
 	autosquash = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -88,7 +86,6 @@
 [user]
 	name = Kenta Yamamoto
 	email = lq33xxx@gmail.com
-	signingkey = 0D082C85EFA5691B
 [commit]
 	template = ~/.stCommitMsg
 	gpgsign = true

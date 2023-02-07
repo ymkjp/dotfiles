@@ -65,7 +65,7 @@ _setup () {
     brew tap sdkman/tap
     brew install coreutils util-linux findutils \
         git git-lfs zsh vim jq tmux reattach-to-user-namespace wget z ssh-copy-id \
-        gibo tcptraceroute ghq trash \
+        gibo tcptraceroute ghq trash terminal-notifier gnu-tar zstd gnupg pinentry-mac \
         go mvnvm pyenv-virtualenv nvm yarn rbenv watch direnv nebula sdkman-cli
   }
 
