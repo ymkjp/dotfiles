@@ -63,20 +63,13 @@ _setup () {
   function installBrewKegs
   {
     brew tap sdkman/tap
-    brew install coreutils util-linux findutils \
-        git git-lfs zsh vim jq tmux reattach-to-user-namespace wget z ssh-copy-id \
-        gibo tcptraceroute ghq trash terminal-notifier gnu-tar zstd gnupg pinentry-mac \
-        go mvnvm pyenv-virtualenv nvm yarn rbenv watch direnv nebula sdkman-cli
+    brew install --formula -- $(cat $PWD/osx-packages/keg.txt)
   }
 
   function installBrewCasks
   {
-    brew install --cask \
-        karabiner-elements iterm2 bettertouchtool google-japanese-ime dropbox \
-        google-cloud-sdk authy firefox \
-        jetbrains-toolbox docker bartender alfred dash meetingbar deepl grammarly hazel
-
     brew tap homebrew/cask-versions
+    brew install --cask -- $(cat $PWD/osx-packages/cask.txt)
   }
 
   function setupShell
