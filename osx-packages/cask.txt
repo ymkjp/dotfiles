@@ -1,0 +1,17 @@
+alfred
+authy
+bartender
+bettertouchtool
+dash
+deepl
+docker
+dropbox
+firefox
+google-cloud-sdk
+google-japanese-ime
+grammarly
+hazel
+iterm2
+jetbrains-toolbox
+karabiner-elements
+meetingbar

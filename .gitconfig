@@ -3,7 +3,7 @@
 # =====
 [core]
   # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
-  pager = less -r
+  pager = less -R
 	editor = vim
 	autocrlf = input
 	excludesfile = /Users/kyamamoto/.gitignore_global
@@ -18,11 +18,9 @@
 [branch]
     autosetuprebase = always
 [merge]
-    tool = idea # vimdiff
-    # from 1.7.6
+    tool = idea
     ff = false
 [pull]
-    # from 1.7.9
     rebase = true
 [alias]
     # http://oli.jp/2012/git-powerup/
@@ -75,7 +73,7 @@
 	autosquash = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -88,17 +86,11 @@
 [user]
 	name = Kenta Yamamoto
 	email = lq33xxx@gmail.com
-	signingkey = 0D082C85EFA5691B
 [commit]
 	template = ~/.stCommitMsg
 	gpgsign = true
 [include]
-    # git version must be 1.7.10 or higher to use [include]
     path = ~/.gitconfig.local
-
-# This next lines include Netlify's Git Credential Helper configuration in your Git configuration.
-[include]
-  path = /home/i05/.netlify/helper/git-config
 [init]
 	defaultBranch = main
 [filter "lfs"]
