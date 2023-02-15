@@ -92,4 +92,12 @@ mkdir -p ${NVM_DIR}
 [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
 [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
 
+# Postgres
+local PSQL_ROOT="$(brew --prefix postgresql@11)"
+local SSL_ROOT="$(brew --prefix openssl)"
+export PATH="${PSQL_ROOT}/bin:$PATH"
+export LDFLAGS="-L${PSQL_ROOT}/lib -L${SSL_ROOT}/lib"
+export CPPFLAGS="-I${PSQL_ROOT}/include -I${SSL_ROOT}/include"
+export PKG_CONFIG_PATH="${PSQL_ROOT}/lib/pkgconfig"
+
 #vim:set ft=zsh:

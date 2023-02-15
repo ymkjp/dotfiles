@@ -15,6 +15,7 @@ nebula
 nvm
 pinentry-mac
 pyenv-virtualenv
+postgresql@11
 rbenv
 reattach-to-user-namespace
 sdkman-cli
