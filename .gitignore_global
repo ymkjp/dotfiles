@@ -1,6 +1,9 @@
 # .gitignore
 .envrc
 
+# Java
+.sdkman*
+
 # =====
 # https://help.github.com/articles/ignoring-files
 # =====

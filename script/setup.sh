@@ -21,7 +21,7 @@ _setup () {
 
   function deployDotfiles
   {
-    for FILE in $(find "${PWD}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' !   -name '.gitignore*')
+    for FILE in $(find "${PWD}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' ! -name '.gitignore*')
     do
         ln -is "${FILE}" "${HOME}"
     done

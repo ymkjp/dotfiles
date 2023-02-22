@@ -1,0 +1,1 @@
+MAVEN_OPTS='-Xmx2g'

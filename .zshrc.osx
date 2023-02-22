@@ -8,8 +8,6 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
 export PATH=${HOME}/.cabal/bin:$PATH
 export PATH=${HOME}/Library/Android/sdk/platform-tools:${PATH}
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 export GPG_TTY=$(tty)
 
 # Set PATH, MANPATH, etc., for Homebrew.
@@ -57,7 +55,7 @@ docker () {
 }
 
 # GOROOT-based install location
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:$(brew --prefix go)/libexec/bin
 
 # Headless Chrome https://developers.google.com/web/updates/2017/04/headless-chrome
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
@@ -85,6 +83,9 @@ export PATH="$(brew --prefix mvnvm)/bin:$PATH"
 
 export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 # Node
 export NVM_DIR="$HOME/.nvm"
