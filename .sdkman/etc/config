@@ -1,0 +1,10 @@
+# https://sdkman.io/usage#config
+
+# check for newer versions and prompt for update
+sdkman_selfupdate_enable=true
+
+# enable automatic env
+sdkman_auto_env=true
+
+# enable bash or zsh auto-completion
+sdkman_auto_complete=true

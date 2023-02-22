@@ -9,7 +9,7 @@ dropbox
 firefox
 google-cloud-sdk
 google-japanese-ime
-grammarly
+grammarly-desktop
 hazel
 iterm2
 jetbrains-toolbox
