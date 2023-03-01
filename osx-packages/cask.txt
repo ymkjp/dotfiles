@@ -15,3 +15,4 @@ iterm2
 jetbrains-toolbox
 karabiner-elements
 meetingbar
+charles

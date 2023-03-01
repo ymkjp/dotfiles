@@ -6,7 +6,6 @@
   pager = less -R
 	editor = vim
 	autocrlf = input
-	excludesfile = /Users/kyamamoto/.gitignore_global
 [pager]
     log = diff-highlight | less -R
     show = diff-highlight | less -R
