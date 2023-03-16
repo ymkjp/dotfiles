@@ -1,5 +1,6 @@
 # .gitignore
 .envrc
+.idea
 
 # Java
 .sdkman*

@@ -21,7 +21,14 @@ indent_size = 8
 [*.py]
 indent_size = 4
 
-[*.java]
+[*.{java,kt}]
+indent_size = 4
+continuation_indent_size = 4
+wildcard_import_limit = 200
+ij_kotlin_name_count_to_use_star_import = 200
+ij_kotlin_name_count_to_use_star_import_for_members = 200
+
+[*.xml]
 indent_size = 4
 continuation_indent_size = 4
 
@@ -32,4 +39,3 @@ continuation_indent_size = 4
 
 [*.md]
 trim_trailing_whitespace = false
-

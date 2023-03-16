@@ -34,3 +34,4 @@ zsh
 zstd
 bluetoothconnector
 switchaudio-osx
+tree
