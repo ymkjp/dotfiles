@@ -134,7 +134,8 @@ setopt transient_rprompt
 unsetopt promptcr
 # https://linux.die.net/man/1/zshmisc
 NEWLINE=$'\n'
-PROMPT="%F{8}%D{%{F}T%T%z} %(?.%?.%S%?%s)%f${NEWLINE}${PROMPT}"
+TAB=$'\t'
+PROMPT="%F{8}%D{%FT%T%z}${TAB}%(?.%?.%S%?%s)%f${NEWLINE}${PROMPT}"
 
 # === History ===
 # http://news.mynavi.jp/column/zsh/003/index.html
