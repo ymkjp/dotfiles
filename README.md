@@ -28,7 +28,7 @@ sudo bash ./script/backup.bash stop
 
 ## Local settings
 Set up local settings for your own
- * `.zshrc.local`
+ * `.zshrc.local.sh`
  * `.gitconfig.local`
 
 ```

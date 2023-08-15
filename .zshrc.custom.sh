@@ -187,24 +187,23 @@ fi
 case "${OSTYPE}" in
 # MacOSX
 darwin*)
-    [ -f ~/.zshrc.osx ] && . ~/.zshrc.osx
+    [ -f ~/.zshrc.osx.sh ] && . ~/.zshrc.osx.sh
     ;;
 # Linux
 linux*)
-    [ -f ~/.zshrc.linux ] && . ~/.zshrc.linux
+    [ -f ~/.zshrc.linux.sh ] && . ~/.zshrc.linux.sh
     ;;
 esac
 
-HOST_CONF="${HOME}/.zshrc.$(hostname)"
-[[ -f "${HOST_CONF}" ]] && . "${HOST_CONF}"
-
+HOST_RC="${HOME}/.zshrc.$(hostname).sh"
+[[ -f "${HOST_RC}" ]] && . "${HOST_RC}"
 
 # alias
 setopt complete_aliases
-[ -f ~/.zshrc.alias ] && . ~/.zshrc.alias
+[ -f ~/.zshrc.alias.sh ] && . ~/.zshrc.alias.sh
 
 # Local specific
-[ -f ~/.zshrc.local ] && . ~/.zshrc.local
+[ -f ~/.zshrc.local.sh ] && . ~/.zshrc.local.sh
 
 # Unique path
 typeset -U path

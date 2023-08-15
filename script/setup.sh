@@ -16,17 +16,17 @@ _setup () {
   function createFileTree
   {
     mkdir -p ~/bin ~/tmp ~/src
-    touch ~/.zshrc.local ~/.gitconfig.local
+    touch ~/.zshrc.local.sh ~/.gitconfig.local
   }
 
   function deployDotfiles
   {
-    for FILE in $(find "${PWD}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' ! -name '.gitignore*')
+    for FILE in $(find "${PWD}" -type f -name '.*' ! -name '.travis*' ! -name '.*.local' ! -name '.*.local.sh' ! -name '.gitignore*')
     do
         ln -is "${FILE}" "${HOME}"
     done
 
-    for FILE in $(find "${PWD}" -type f -name '*.local')
+    for FILE in $(find "${PWD}" -type f -name '*.local*')
     do
         TARGET="$(basename "${FILE}")"
         [[ ! -e "${HOME}/${TARGET}" ]] && cp "${FILE}" "${HOME}"
