@@ -133,7 +133,8 @@ setopt prompt_subst
 setopt transient_rprompt
 unsetopt promptcr
 # https://linux.die.net/man/1/zshmisc
-PROMPT="%F{8}%* %(?.%?.%S%?%s)%f ${PROMPT}"
+NEWLINE=$'\n'
+PROMPT="%F{8}%D{%FT%T%z} %(?.%?.%S%?%s)%f${NEWLINE}${PROMPT}"
 
 # === History ===
 # http://news.mynavi.jp/column/zsh/003/index.html
