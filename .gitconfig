@@ -97,3 +97,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[trace2]
+	eventTarget = /Users/kyamamoto/.gittrace/dump
+	configparams = custom.metacommands
+	eventBrief = true

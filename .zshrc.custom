@@ -18,12 +18,16 @@ typeset -U sudo_path
 #            /: Ignore all except directory
 sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
 
-
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 export PATH=${HOME}/bin:$PATH
 
 # Env
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
+
+if which pack > /dev/null; then
+  . $(pack completion --shell zsh)
+fi
+
 
 # Golang
 export GOPATH=$HOME

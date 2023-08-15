@@ -1,6 +1,7 @@
 # .gitignore
 .envrc
 .idea
+.wakatime-*
 
 # Java
 .sdkman*
