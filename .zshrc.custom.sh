@@ -132,11 +132,8 @@ bindkey -e
 setopt prompt_subst
 setopt transient_rprompt
 unsetopt promptcr
-# Override gentoo
-function prompt_char {
-    if [ $UID -eq 0 ]; then echo "\n#"; else echo "\n$"; fi
-}
-
+# https://linux.die.net/man/1/zshmisc
+PROMPT="%F{8}%* %(?.%?.%S%?%s)%f ${PROMPT}"
 
 # === History ===
 # http://news.mynavi.jp/column/zsh/003/index.html

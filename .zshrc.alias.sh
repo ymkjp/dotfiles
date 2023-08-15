@@ -31,7 +31,6 @@ alias -g G='| grep'
 alias -g W='| wc'
 alias -g S='| sed'
 alias -g A='| awk'
-alias -g P='| peco --select-1'
 
 # IRC irssi
 alias irssi='env TERM=screen-256color irssi'
@@ -58,7 +57,7 @@ gg () {
 }
 
 jj () {
-  cd "$(ghq list | peco --query "$1" --select-1 | xargs -I{} ghq list --exact --full-path {} )"
+  cd "$(ghq list | peco --query "$1" --select-1 | xargs ghq list --exact --full-path {} )"
 }
 
 da () {
