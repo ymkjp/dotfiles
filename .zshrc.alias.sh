@@ -70,6 +70,10 @@ da () {
   docker exec -it "$(docker ps --format '{{.ID}}\t{{.Image}}\t{{.Command}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}' | peco --select-1 --query "$1" | awk '{print $1}')" ${2:-sh}
 }
 
+ps-port () {
+  ps -ef | awk -v pid="$(lsof -ti:$1)" '$2==pid { print $0 }'
+}
+
 # https://github.com/mollifier/anyframe
 bindkey '^x^k' anyframe-widget-checkout-git-branch
 bindkey '^x^r' anyframe-widget-execute-history

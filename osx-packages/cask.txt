@@ -16,3 +16,4 @@ jetbrains-toolbox
 karabiner-elements
 meetingbar
 charles
+keycastr
