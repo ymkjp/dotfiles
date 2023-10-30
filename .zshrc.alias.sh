@@ -60,6 +60,11 @@ jj () {
   cd "$(ghq list | peco --query "$1" --select-1 | xargs -I '{}' ghq list --exact --full-path {} )"
 }
 
+[[ ! -x "$(command -v gb)" ]] && unalias gb
+gb () {
+  git branch | awk -F ' ' '$1!="*" { print $0 }' | peco --select-1 | xargs -I '{}' git checkout {}
+}
+
 da () {
   if ! [ -x "$(command -v docker)" ]; then
     error 'docker is not installed. Visit https://docs.docker.com/docker-for-mac/install/ and install it.'
