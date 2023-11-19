@@ -1,4 +1,4 @@
-# Ignore
+# Project
 /.vim/backups/
 /.vim/bundle/
 /log/*
@@ -12,3 +12,4 @@
 !/.config/karabiner/
 /.config/karabiner/automatic_backups
 !/.config/systemd/
+*.log

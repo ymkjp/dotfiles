@@ -47,8 +47,13 @@ tm () {
   if [[ $# = 0 ]]; then
     tmux attach || tmux new
   else
-    ssh -t "$@" "tmux attach || tmux new";
+    tmux attach -t "$1"
   fi
+}
+
+# Remote tmux
+rtm () {
+  ssh -t "$@" "tmux attach || tmux new";
 }
 
 [[ ! -x "$(command -v gg)" ]] && unalias gg
