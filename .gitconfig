@@ -25,11 +25,12 @@
     # http://oli.jp/2012/git-powerup/
     # http://blog.blindgaenger.net/advanced_git_aliases.html
     alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
-    b = branch
+    b = branch --sort=-authordate
     br = browse-remote
+    bl = blame -wCCC
     ci = commit
     co = checkout
-    coo = !git branch --sort=-authordate | grep -v -e '->' -e '*' | peco | xargs -I{} git checkout {}
+    coo = !git branch --sort=-authordate | awk -F ' ' '$1!="*" { print $0 }' | peco --select-1 | xargs -I '{}' git checkout {}
     cb = checkout -b
     col = checkout @{-1}
     d = diff
@@ -48,6 +49,8 @@
     st = status
     su = submodule update --init --recursive
     sp = git submodule foreach 'git checkout master && git pull origin master'
+    search-log = log -pS
+	  staash = stash --all
 
 [browse-remote "github.com"]
     rev = https://{host}/{path}/commit/{commit}
@@ -101,3 +104,7 @@
 	eventTarget = /Users/kyamamoto/.gittrace/dump
 	configparams = custom.metacommands
 	eventBrief = true
+[maintenance]
+	repo = /Users/kyamamoto/src/github.com/ymkjp/dotfiles
+	repo = /Users/kyamamoto/src/confluence
+	repo = /Users/kyamamoto/src/jira

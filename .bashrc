@@ -6,6 +6,7 @@
 
 # Source user specific
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f ~/".bashrc-$(hostname).sh" ] && ~/".bashrc-$(hostname).sh"
 
 # Color
 export CLICOLOR=1
@@ -40,5 +41,3 @@ export HISTFILESIZE=1048576
 export HISTSIZE=1048576
 export HISTTIMEFORMAT="%s "
 export PROMPT_COMMAND="history -a; history -c; history -r"
-
-

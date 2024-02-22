@@ -61,13 +61,16 @@ gg () {
   ghq get --look "$1"
 }
 
-jj () {
-  cd "$(ghq list | peco --query "$1" --select-1 | xargs -I '{}' ghq list --exact --full-path {} )"
+ghq-full-path () {
+  ghq list | peco --query "$1" --select-1 | xargs -I '{}' ghq list --exact --full-path {}
 }
 
-[[ ! -x "$(command -v gb)" ]] && unalias gb
-gb () {
-  git branch | awk -F ' ' '$1!="*" { print $0 }' | peco --select-1 | xargs -I '{}' git checkout {}
+jj () {
+  cd "$(ghq-full-path $1)"
+}
+
+jjj () {
+  code "$(ghq-full-path $1)"
 }
 
 da () {
